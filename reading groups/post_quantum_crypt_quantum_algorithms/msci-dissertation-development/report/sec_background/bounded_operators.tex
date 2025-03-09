@@ -1,0 +1,671 @@
+An {\emph{operator}} is a mapping between two possibly equal vector spaces. A {\emph{bounded operator}} between Hilbert spaces $\HS_1, \HS_2$ is a linear map $T: \HS_1 \to \HS_2$ such that there exists some real constant number $M \geq 0$ such that for all $x \in \HS_1$,
+\begin{equation*}
+  \norm{Tx}_{\HS_2} \leq M \norm{x}_{\HS_1}.
+\end{equation*}
+From here, we will drop the subscripts of the norms of different spaces unless there is a risk of confusion to which norm we refer to. For a bounded operator, this boundedness inequality allows us to define the {\emph{operator norm}} on the subspace of bounded operators:
+\begin{equation*}
+  \op{T} \coloneqq \text{inf}\set{M \geq 0 \,:\, \norm{Tx} \leq M \norm{x} \quad \text{for all $x \in \HS$}}.
+\end{equation*}
+For a proof that this is actually a norm and that the set of bounded operators is a complete subspace of all operators, please see {\cite[Theorem 8.7]{muscat}}. When we say that a sequence of operators converges to some operator, we will be usually referring to them convering in the {\emph{norm topology}} of this operator norm; that is, a sequence of operators $(T_n)_{n \in \N}$ converges in the norm topology to an operator $T$ if
+\begin{equation*}
+  \op{T_n - T} \to 0 \quad \text{as} \, n \to \infty.
+\end{equation*}
+
+An important inequality for us is the {\emph{operator norm inequality}}, which states that for a bounded operator $T: \HS \to \HS$ and for all $x \in \HS$,
+\begin{equation*}
+  \norm{Tx} \leq \op{T}\norm{x}.
+\end{equation*}
+
+This result falls directly from the definition of the operator norm. Boundedness of an operator is a nice condition, as it turns out that it's equivalent to continuity.
+
+\begin{proposition}[{\cite[Proposition 5.2]{stein}}]\label{lbl_prop_bounded_iff_continuous}
+  Let $\HS_1$ and $\HS_2$ be Hilbert spaces, and let $T: \HS_1 \to \HS_2$ be an operator. Then, $T$ is bounded if and only if it is continuous.
+\end{proposition}
+\begin{proof}
+  This is a standard result, so we omit the proof; please see {\cite[Proposition 5.2]{stein}} for a proof.
+\end{proof}
+
+\medskip
+
+It turns out that every bounded operator is related to another operator via the inner products on our Hilbert spaces; we call this second operator the {\emph{adjoint}} operator. Very nicely, the adjoint operator has to exist uniquely. In the next chapter, we will extend this notion with care to unbounded operators.
+
+\begin{proposition}[{\cite[Proposition 8.28]{griffel}}]
+  Let $\HS_1$ and $\HS_2$ be Hilbert spaces, and let $T: \HS_1 \to \HS_2$ be a bounded operator. Then, there exists a unique bounded operator $T^* : \HS_2 \to \HS_1$ such that for all $x \in \HS_1$ and $y \in \HS_2$, we have that
+  \begin{equation*}
+    \ip{Tx, y}_{\HS_2} = \ip{x, T^*y}_{\HS_1}.
+  \end{equation*}
+
+  We call the operator $T^*$ the {\emph{adjoint of $T$}}.
+\end{proposition}
+\begin{proof}
+  This is a standard result we include only for completeness; please see {\cite[Proposition 8.28]{griffel}} for the proof.
+\end{proof}
+
+\begin{proposition}[{\cite[Proposition 10.20]{muscat}}]\label{lbl_prop_adjoint_rules}
+  Let $\HS_1$ and $\HS_2$ be Hilbert spaces and $T: \HS_1 \to \HS_2$, $S: \HS_1 \to \HS_2$, $R: \HS_2 \to \HS_1$ be bounded operators. Then, for $\lambda \in \C$,
+  \begin{enumerate}
+    \item $(S+T)^* = S^* + T^*$.
+    \item $(\lambda T)^* = \overline{\lambda}T^*$.
+    \item $(T^*)^* = T$.
+    \item $\op{T^* T} = \op{T}^2$.
+    \item $(RT)^* = T^* R^*$.
+    \item For the identity map $I: \HS_1 \to \HS_1$, $I^* = I$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  This is a standard result we include only for completeness; please see {\cite[Proposition 10.20]{muscat}} for the proof.
+\end{proof}
+
+An important type of linear map on a Hilbert space $\HS$ is one taking the Hilbert space to its underlying field. We call such a map a {\emph{linear functional}}. As we are focused on complex Hilbert spaces, these are maps of the form $\psi: \HS \to \C$. A very fundamental result which we will make use of when expanding our definition of the adjoint to unbounded operators is the {\emph{Riesz representation theorem}}, which gives a characterisation of all bounded linear functionals.
+
+\begin{theorem}[Riesz Representation Theorem, {\cite[Chapter 1, Theorem 3.4]{conway}}]\label{lbl_thrm_riesz_representation_thrm}
+  Let $\HS$ be a Hilbert space and $\psi: \HS \to \C$ a bounded linear functional. Then, there exists a unique vector $x_0 \in \HS$ such that for all $x \in \HS$, \[\psi(x) = \ip{x, x_0}.\] As well, $\op{\psi} = \norm{x_0}$.
+\end{theorem}
+\begin{proof}
+  This is a well known result which we include only for completeness; please see {\cite[Chapter 1, Theorem 3.4]{conway}} for the proof.
+\end{proof}
+
+A final result which will prove useful to us is the relation of the kernel and image of any operator on two Hilbert spaces.
+
+\begin{proposition}[{\cite[Proposition 10.21]{muscat}}]\label{lbl_prop_op_kernel_image_relationship}
+  Let $\HS$ and $\mathcal{K}$ be two Hilbert spaces, and let $T: \HS \to \mathcal{K}$ be a bounded operator. Then,
+  \begin{enumerate}[label=(\alph*)]
+    \item $\text{ker}(T^*) = (\range{T})^\perp$.
+    \item $\overline{\range{T^*}} = (\text{ker}(T))^\perp$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  % We recreate this proof from {\cite[Proposition 10.21]{muscat}}. By definition of the adjoint, we have that $\ip{Tx, y}_{\mathcal{K}} = 0$ if and only if $\ip{T^*x, y}_{\HS}$ for all $x$ in the domain of $T^*$ and all $y$ in the domain of $T$. This means that $x \in \text{im(T)}^\perp$ if and only if
+
+  We recreate proof from {\cite[Proposition 10.21]{muscat}}. For part (a), notice that $x \in (\range{T})^\perp$ is equivalent to, for every $y \in \HS$,
+  \begin{align*}
+    0
+    &= \ip{Ty, x}_\mathcal{K} \\
+    &= \ip{y, T^*x}_{\HS},
+  \end{align*}
+  which is true for all $y$ if and only if $T^*x = 0$. Therefore, $x \in \text{ker}(T^*)$, giving us our result of $(\range{T})^\perp = \text{ker}(T^*)$.
+
+  \medskip
+
+  For part (b), we notice that $T = (T^*)^*$ means that \[\text{ker}(T) = \text{ker}((T^*)^*) = \range{T^*}^\perp,\]
+  so
+  \begin{align*}
+    (\text{ker}(T))^\perp = \left(\range{T^*}^\perp \right)^\perp = \overline{\range{T^*}}.
+  \end{align*}
+\end{proof}
+
+\subsubsection{Orthogonal complements}
+
+An immensely important type of operator is the {\emph{orthogonal projection}}. We start by recalling what is meant by a {\emph{projection}} in linear algebra.
+
+\begin{definition}[{\cite[Definition 8.15]{muscat}}]
+  Let $\HS$ be a Hilbert space. Then, an operator $P \colon \HS \to \HS$ is a {\emph{projection}} if $P^2 = P$.
+\end{definition}
+
+As might be expected by the name, an orthogonal projection is a type of projection. If we have a closed subspace $S$ of a Hilbert space $\HS$, then we can decompose $\HS$ with the direct sum $S \oplus S^{\perp}$. This is shown in {\cite[Theorem 10.12]{muscat}}; we omit the details here, as this is very similar to the finite-dimensional case which is normally shown in a first course to abstract linear algebra. For details, please see {\cite[Theorem 10.12]{muscat}}. This decomposition allows us to define the {\emph{orthogonal projection}}.
+
+\begin{definition}[{\cite[Theorem 10.12]{muscat}}]
+  Let $\HS$ be a Hilbert space, and suppose that $S$ is a closed subspace of $\HS$. Then, every vector $x \in \HS = S \oplus S^\perp$ can be written as $x = s + s_{\perp}$, where $s$ belongs to $S$ and $s_{\perp}$ belongs to $S^{\perp}$. We define the orthogonal projection as the operator $P \colon \HS \to S^{\perp}$ by
+  \begin{equation*}
+   Px = s_{\perp}
+  \end{equation*}
+  for every $x$, where $x$ is written with the decomposition $x = s + s_{\perp}$.
+\end{definition}
+\begin{remark}
+  As the proof of {\cite[Theorem 10.12]{muscat}} notices, this has the implication that $\ker{P} = S$ and $\range{P} = S^{\perp}$. We also have that $P$ must be continuous by the application of Pythagoras' theorem, which means that it is necessarily a bounded operator.
+\end{remark}
+
+A nice property about the orthogonal projection onto a closed subspace of a Hilbert space $\HS$ is that it is the only projection onto that subspace that is self-adjoint.
+
+\begin{proposition}
+  Let $\HS$ be a Hilbert space. For a closed subspace $S$ of $\HS$, let $P$ be a orthogonal projection onto the subspace $S$. Then, $P$ is self-adjoint.
+\end{proposition}
+\begin{proof}
+  Let $P \colon \HS \to S$ be a projection onto a closed subspace $S$ of $\HS$. Suppose first that it is the orthogonal projection. Let $x, y \in \HS$ have the decomposition $x = a_1 + b_1$ and $y = a_2 + b_2$, where $a_1, a_2 \in S$ and $b_1, b_2 \in S^{\perp}$. Then,
+  \begin{align*}
+    \ip{Px, y}
+    &=
+    \ip{a_1, a_2 + b_2} \\
+    &=
+    \ip{a_1, a_2} + \ip{a_1, b_2} \\
+    &=
+    \ip{a_1, a_2} + 0 \\
+    &=
+    \ip{a_1, a_2} + \ip{b_1, a_s} \\
+    &=
+    \ip{a_1 + b_1, a_2} \\
+    &=
+    \ip{x, Py}.
+  \end{align*}
+  Therefore, $P$ is self-adjoint by definition.
+\end{proof}
+There is a lot more to be said on orthogonal projections. Due to our time constraints, however, this is all we have time for. Fortunately, it is all we need. The unspecialised reader is encouraged to learn more about orthogonal projections.
+
+\subsubsection{Compact operators}
+
+% Another useful class of operators are the {\emph{compact operators}}. These can loosely considered as the closest thing to `infinite-dimensional matrices'. We first introduce the ideas of a set being {\emph{bounded}} and {\emph{totally bounded}}.
+%
+% \begin{definition}[Muscat]
+%   Let $S$ be a set with a metric $d: S \times S \to \R_{\geq 0}$, and let $B$ be a subset of $S$. We say that $B$ is {\emph{bounded}} if there is some positive real constant $c > 0$ such that for all elements $x$ and $y$ in $B$, \[d(x,y) \leq r.\] We call $B$ {\emph{totally bounded}} if it can be covered by a finite number of arbitrarily small open balls of equal radius: that is, for all $\eps > 0$, there is some positive real constant $N > 0$ and elements $a_1, \ldots, a_N \in S$ such that \[B \subset \bigcup_{n = 1}^{N} B_\eps(a_n).\]
+% \end{definition}
+
+\begin{definition}
+  Let $T$ be an operator between two Hilbert spaces $\HS_1$ and $\HS_2$. Then $T$ is called a {\emph{compact operator}} if for every bounded sequence $(x_n)_{n \in \N}$ in $\HS$, its image under $T$, $(T(x_n))_{n \in \N}$, has a convergent subsequence.
+\end{definition}
+
+\begin{example}
+  Any operator whose range is finite-dimensional, known as a {\emph{finite-rank operator}}, is a compact operator. This is an easy verification normally seen in a first course to operator theory, so we omit the details here; for a justification, please see {\cite[Examples 11.10 (1)]{muscat}}.
+\end{example}
+
+The following results tell us some useful properties on how compact operators behave.
+
+\begin{proposition}[{\cite[Chapter 2, Proposition 4.2]{conway}}]\label{lbl_prop_compact_implies_bounded}
+  Let $\HS$ and $\mathcal{K}$ be Hilbert spaces, let $S: \HS \to \mathcal{K}$ be a compact operator, and let $(T_n)_{n \in \N}$ be a sequence of compact operators $T_n: \HS \to \mathcal{K}$ that converge to some operator $T: \HS \to \mathcal{K}$. Then,
+  \begin{enumerate}[label = (\alph*)]
+    \item $S$ is a bounded operator.
+    \item $T$ is a compact operator.
+    \item If $A: \HS \to \HS$ and $B: \mathcal{K} \to \mathcal{K}$ are bounded operators, then $SA$ and $BS$ are compact operators.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  This is a standard result normally shown in a first course to operator theory, so we omit the details here. For a proof, please see {\cite[Chapter 2, Proposition 4.2]{conway}} or for (b) and {\cite[Proposition 11.9]{Muscat}} (c).
+\end{proof}
+
+
+\begin{theorem}[{\cite[Chapter 2, Theorem 4.4]{conway}}]
+  Let $\HS$ and $\mathcal{K}$ be Hilbert spaces, and let $T:\HS \to \mathcal{K}$ be an operator. Then, the following are equivalent:
+  \begin{enumerate}[label = (\alph*)]
+    \item $T$ is compact.
+    \item $T^*$ is compact.
+    \item There exists a sequence of finite rank operators $(T_n)_{n \in \N}$ which converge in the norm topology to $T$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  This is a standard result normally seen in a first course to operator theory, and we therefore omit the proof here. For details, please see {\cite[Chapter 2, Theorem 4.4]{conway}}, or {\cite[Examples 11.10 (2)]{muscat}} for part (c).
+\end{proof}
+
+
+\subsubsection{Normal and unitary operators}
+
+The final types of useful operator that we will look at in this section are the {\emph{normal operators}} and the {\emph{unitary operators}}.
+
+\begin{definition}[{\cite[Definition 15.4]{muscat}}]
+  Let $\HS$ be a Hilbert space and let $T: \HS \to \HS$ be an operator. We say that $T$ is a {\emph{normal operator}} if \[T^* T = T T^*.\]
+\end{definition}
+
+
+% \begin{theorem}[Fuglede's theorem]
+%   Let $\HS$ be a Hilbert space, let $T: \HS \to \HS$ be a normal operator, and let $S: \HS \to \HS$ be an operator such that $TS = ST$. Then, $ST^* = T^* S$.
+% \end{theorem}
+% \begin{proof}
+%   \textbf{Proposition 15.9, Muscat}
+% \end{proof}
+
+\begin{proposition}[{\cite[Proposition 15.12]{muscat}}]\label{lbl_prop_normal_op_kernels}
+  Let $\HS$ be a Hilbert space and let $T: \HS \to \HS$ be a bounded normal operator. Then,
+  \begin{enumerate}[label=(\alph*)]
+    \item For all $x \in \HS$, $\norm{Tx} = \norm{T^* x}$.
+    \item \(\text{ker}(T) = \text{ker}(T^*) = \text{ker}(T^2) = (\text{im} T)^{\perp}\).
+    \item $T$ is injective if and only if $\text{im}T$ is dense in $\HS$.
+    \item $T$ has a bounded inverse if and only if there exists some constant $M > 0$ such that for all vectors $x \in \HS$, \begin{equation*} M \norm{x} \leq \norm{Tx}.\end{equation*}
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  We recreate this proof from {\cite[Proposition 15.12]{muscat}}. For part (a), we notice that for any $x \in \HS$,
+  \begin{align*}
+    \norm{Tx}^2
+    &=
+    \ip{Tx, Tx} \\
+    &=
+    \ip{x, T^*Tx} \\
+    &=
+    \ip{x, TT^*x} \quad \text{as $T$ is normal} \\
+    &=
+    \ip{T^*x, T^*x} \\
+    &=
+    \norm{T^*x}^2,
+  \end{align*}
+  so $\norm{Tx}^2 = \norm{T^*x}^2$.
+
+  \medskip
+
+  For part (b), $T^*x = 0$ for some $x \in \HS$ if and only if $\norm{T^*x} = \norm{0} = 0$. By part (a), $\norm{Tx}=\norm{T^*x}$, so this is true if and only if $\norm{Tx} = 0$, which again is true if and only if $Tx = 0$. Therefore, $\text{ker}(T) = \text{ker}(T^*)$. Now, for all $x \in \HS$,
+  \begin{align*}
+    \norm{Tx}^2
+    &=
+    \ip{Tx, Tx} \\
+    &=
+    \ip{x, T^* Tx} \\
+    &\leq \norm{x}\norm{T^*Tx} \qquad\qquad \text{by the Cauchy-Schwarz inequality} \\
+    &=
+    \norm{x}\ip{T^*Tx, T^* Tx} \\
+    &=
+    \norm{x}\ip{Tx, TT^*Tx} \\
+    &=
+    \norm{x}\ip{Tx, T^* T^2 x} \quad \text{as $T$ is normal} \\
+    &=
+    \norm{x}\ip{T^2x, T^2x}.
+  \end{align*}
+  Now, if $T x = 0$, then $T^2 x  = 0$ as linear maps map the zero element to the zero element. Conversely, $T^2 x = 0$ if and only if $\norm{T^2 x} = 0$, so by our above inequality and the non-negativity if the norm, $\norm{Tx} = 0$, which is true if and only if $Tx = 0$. Therefore, $\text{ker}(T^2) = \text{ker}(T)$. Finally, as $\range{T})^\perp = \text{ker}(T^*)$ by Proposition \eqref{lbl_prop_op_kernel_image_relationship} and $\text{ker}(T^*) = \text{ker}(T)$, $\range{T})^\perp = \text{ker}(T)$.
+
+  \medskip
+
+  For part (c), we recall that a linear map is injective if and only if $\text{ker}(T) = \set{0}$. Now,
+  \begin{align*}
+    \overline{\range{T}}
+    &=
+    (\text{ker}(T))^\perp \quad \text{by Proposition \eqref{lbl_prop_op_kernel_image_relationship}} \\
+    &=
+    \set{0}^\perp \\
+    &=
+    \HS,
+  \end{align*}
+  and $\HS$ is dense in $\HS$.
+
+  Finally, for part (d), suppose first that $T$ has a bounded inverse $T^{-1}$. By the operator norm inequality and the definition of the bounded inverse, we then see that for all $x \in \HS$,
+  \begin{equation*}
+    \norm{x} = \norm{T^{-1}Tx} \leq \op{T^{-1}}\norm{Tx},
+  \end{equation*}
+  so setting $M = \op{T^{-1}}$ gives us our required inequality. For the converse, suppose that there is some constant $M > 0$ such that $M\norm{x} \leq \norm{Tx}$ for all $x \in \HS$. By following {\cite[Examples 8.13 (3)]{muscat}}, we see that this means that $T$ is injective and that it has closed image. For injectivity, let $x, y \in \HS$ such that $Tx = Ty$. Then, by our inequality,
+  \begin{align*}
+    M\norm{x - y}
+    &\leq \norm{T(x - y)} \\
+    &=
+    \norm{Tx - Ty} \\
+    &= 0,
+  \end{align*}
+  which implies that $\norm{x-y} = 0$ by $M$ being positive and the non-negativity of the norm, which is true if and only if $x = y$. To see that $\range{T}$ is closed, let $(x_n)_{n \in \N}$ be some sequence in $\HS$ such that $(Tx_n)_{n \in \N}$ converges to some $y \in \HS$. By our inequality, we see that for all $n, m \in \N$,
+  \begin{equation*}
+    M\norm{x_n - x_m} \leq \norm{T(x_n - x_m)} = \norm{Tx_n - Tx_m},
+  \end{equation*}
+  which converges to $0$ as $n, m \to \infty$ by our constraint that $Tx_n \to y$ as $n \to \infty$. This means that $(x_n)_{n \in \N}$ is a Cauchy sequence, which must converge as $\HS$ is a Hilbert space; therefore, let $x \in \HS$ be the limit point of $(x_n)_{n \in \N}$. As $T$ is bounded, it is continuous, so $Tx_n \to Tx$ as $n \to \infty$. By the uniqueness of limits, this means that $Tx = y$, so $y$ is in the image of $T$ and therefore $\range{T}$ is closed.
+
+  \medskip
+
+  By now using part (c), we have that $\range{T} = \HS$, as \[\range{T} = \overline{\overline{\range{T}}} = \overline{\HS} = \HS.\] This means that $T$ is injective and surjective, so it is bijective and an inverse function $T^{-1}$ exists. This function is continous as by our inequality and the definition of an inverse function,
+  \begin{align*}
+    M\norm{T^{-1}x} \leq \norm{TT^{-1} x} = \norm{x},
+  \end{align*}
+  so as it is continuous it must be bounded.
+\end{proof}
+
+A result which will prove useful in our next section is that if $T: \HS \to \HS$ is a normal operator, so is $T - \lambda I$.
+
+\begin{proposition}\label{lbl_spec_operator_normal}
+  Let $\HS$ be a Hilbert space and let $T: \HS \to \HS$ be a normal operator. Then, $T - \lambda I$ is also a normal operator.
+\end{proposition}
+\begin{proof}
+  By Proposition \eqref{lbl_prop_adjoint_rules}, we have that
+  \begin{equation*}
+    (T - \lambda I)^* = T^* - \conjugate{\lambda} I.
+  \end{equation*}
+  Now,
+  \begin{align*}
+    (T - \lambda I)(T - \lambda I)^*
+    &=
+    (T - \lambda I)(T^* - \conjugate{\lambda} I) \\
+    &=
+    TT^* - \conjugate{\lambda}T - \lambda T^* + \abs{\lambda}^2 I.
+  \end{align*}
+  Similarly,
+  \begin{align*}
+    (T - \lambda I)^*(T - \lambda I)
+    &=
+    T^*T - \lambda T^* - \conjugate{\lambda}T + \abs{\lambda}^2 I \\
+    &=
+    TT^* - \conjugate{\lambda}T - \lambda T^* + \abs{\lambda}^2 I \qquad \text{as $T$ is normal.}\\
+    &=
+    (T - \lambda I)(T - \lambda I)^*,
+  \end{align*}
+  so $T - \lambda I$ satisfies the definition of a normal operator.
+\end{proof}
+
+\subsubsection{The spectrum of an operator}
+
+In linear algebra, eigenvalues play an important role in the study of linear maps. We can generalise this idea to the infinite-dimensional case.
+
+
+
+% \begin{proposition}
+%   Suppose that $\HS$ is a Hilbert space and $T: \HS \to \HS$ is a bounded operator. Then, it is invertible if and only if
+%   \begin{enumerate}[label = (\alph*)]
+%     \item There exists some positive real number $M > 0$ such that for all $x \in \HS$, we have that $\norm{Tx} \geq c \norm{x}$.
+%     \item The image of $T$ is dense in $\HS$.
+%   \end{enumerate}
+% \end{proposition}
+% \begin{proof}
+%   Please see chapter 2.4, theorem 1, invitation to linear operators by takayuki furuta.
+% \end{proof}
+
+% The next theorem is very fundamental to the study of bounded operators, and helps identify when bounded operators are invertible.
+%
+% \textbf{open mapping, inverse mapping}
+% \begin{theorem}{Open Mapping Theorem}
+%   Let $\HS$ and $\mathcal{K}$ be two Hilbert spaces and let $T: \HS \to \mathcal{K}$ be a continuous surjective operator. Then, $T$ maps open sets to open sets.
+% \end{theorem}
+% \begin{proof}
+%   \textbf{Theorem 11.1, muscat}
+% \end{proof}
+%
+% \begin{corollary}{Inverse mapping theorem}
+%   Let $\HS$ and $\mathcal{K}$ be two Hilbert spaces and let $T: \HS \to \mathcal{K}$ be a continuous bijective operator. Then, the inverse of $A$, $A^{-1}$, is continuous as well.
+% \end{corollary}
+% \begin{proof}
+%   find proof.
+% \end{proof}
+%
+% \textbf{Muscat, section 14.2} why does this help
+
+\begin{definition}[{\cite[Definition 14.1 and p.313 and Theorem 14.3]{muscat}},]
+  Let $\HS$ be a Hilbert space and $T: \HS \to \HS$ be a bounded operator. Then, the {\emph{spectrum}} of $T$ is the set
+  \begin{align*}
+    \sigma(T) \coloneqq \set{\lambda \in \C \,:\, T - \lambda I \, \text{is not invertible}}.
+  \end{align*}
+  The {\emph{point spectrum}} of $T$ is the set
+  \begin{align*}
+    \sigma_p(T) \coloneqq \set{\lambda \in \C \,:\, \lambda \, \text{is an eigenvalue of $T$}}.
+  \end{align*}
+  We note that $\lambda$ being an eigenvalue of $T$ means that $T - \lambda I$ is not injective; therefore, the point spectrum is a subset of the spectrum. We will later see that the point spectrum can be the empty set; that is, some operators do not have any eigenvalues at all.
+
+  \medskip
+
+  The {\emph{resolvent set}} of $T$ is the set $\C \backslash \sigma(T)$.
+
+  \medskip
+
+  Finally, the {\emph{spectral radius}} of $T$ is the value
+  \begin{equation*}
+    \nu(T)
+    \coloneqq
+    \max_{\lambda \in \sigma(T)}\abs{\lambda}.
+  \end{equation*}
+\end{definition}
+
+\begin{remark}\label{lbl_remark_finite_dim_spectrum_all_eigenvalues}
+  If $\HS$ is finite-dimensional, then the rank-nullity theorem tells us that every element of the spectrum of an operator is an eigenvalue for the operator.
+\end{remark}
+% \begin{remark}
+%   The zero element of a Hilbert space is always non-invertible. Therefore, the spectrum of an operator includes any of the eigenvalues of the operator, if they exist. If the Hilbert space is finite dimensional, the rank-nullity theorem shows that every element in the spectrum of an operator must be an eigenvalue of the operator; see \textbf{find reference} for details.
+% \end{remark}
+
+We now see some useful properties about the spectrum of a bounded operator.
+
+\begin{lemma}[{\cite[Chapter 32, Theorem 1]{halmos}}]\label{lbl_lemma_bounded_operator_invertible_op_norm_less_1}
+  Let $\HS$ be a Hilbert space and $T: \HS \to \HS$ be a bounded operator. If $\op{I - T} < 1$, then $T$ is invertible.
+\end{lemma}
+\begin{proof}
+  We omit this proof, which can be found in {\cite[Chapter 32, Theorem 1]{halmos}}.
+\end{proof}
+
+\begin{proposition}[{\cite[Chapter 32, Theorem 2]{halmos}}]
+  Let $\HS$ be a Hilbert space and $T: \HS \to \HS$ be a bounded operator. Then,
+  \begin{enumerate}[label = (\alph*)]
+    \item $\sigma(T)$ is closed.
+    \item For all $\lambda \in \sigma(T)$, $\abs{\lambda} \leq \op{T}$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  We take this proof from {\cite[Chapter 32, Theorem 2]{halmos}}. For part (a), suppose that $\alpha, \beta \in \sigma(T)^\mathrm{C}$. By definition of the spectrum, this means that $T - \alpha I$ is invertible. Now,
+  \begin{align*}
+    \op{I - (T - \alpha I)^{-1}(T - \beta I)}
+    &=
+    \op{(T - \alpha I)^{-1} \big( (A - \alpha) - (A - \beta) I \big)} \\
+    &\leq
+    \abs{\alpha - \beta}\op{(T - \alpha I)^{-1}},
+  \end{align*}
+  where the line comes from the operator norm inequality. Therefore,
+  \begin{equation*}
+    \op{I - (T - \alpha I)^{-1}(T - \beta I)} < 1 \qquad \text{whenever} \qquad \abs{\alpha - \beta} < \frac{1}{\op{(T - \alpha I)^{-1}}}.
+  \end{equation*}
+  By Lemma \eqref{lbl_lemma_bounded_operator_invertible_op_norm_less_1}, this means that $I - (T - \alpha I)^{-1}(T - \beta I)$ is invertible when $\abs{\alpha - \beta} < \op{(T - \alpha I)^{-1}}^{-1}$, which can only be true if $T - \beta I$ would be invertible too. This means that every point in $\sigma(T)^{\mathrm{C}}$ centers an open ball contained fully in $\sigma(T)^{\mathrm{C}}$, so it is an open set; therefore, $\sigma(T)$ must be closed.
+
+  \medskip
+
+  For part (b), suppose that $\lambda \in \sigma(T)$ such that $\abs{\lambda} > \op{T}$. Then,
+  \begin{equation*}
+    \frac{1}{\abs{\lambda}}\op{T} = \op{\frac{1}{\lambda}T} < 1,
+  \end{equation*}
+  so as $\op{I - \lambda^{-1}T} \leq \op{I} - \op{\lambda^{-1}T} < 1$, by Lemma \eqref{lbl_lemma_bounded_operator_invertible_op_norm_less_1} we have that $\lambda^{-1}T$ is invertible. As $\lambda$ is just a scalar, this must mean that $\lambda^2 \lambda^{-1}T = \lambda T$ is invertible, so $\lambda \not \in \sigma(T)$, which is a contradiction; therefore, if $\lambda \in \sigma(T)$, then $\lambda \leq \op{T}$.
+\end{proof}
+\begin{remark}
+  An important result called the {\emph{Heine-Borel theorem}} tells us that a subset of $\C$ is compact if and only if it is closed and bounded. Therefore, the spectrum of an operator is a compact set.
+\end{remark}
+
+Unfortunately, the spectrum of an operator does not uniquely identify the operator. To see this, we don't even need to be in infinite-dimensions.
+\begin{example}
+  Let $\C^2$ be a Hilbert space with respect to its standard inner product, as defined in Example \eqref{lbl_example_Cn_HS}. The zero map $0: \C^2 \to \C^2$ is defined for all $x \in \C^2$ by the matrix
+  \begin{equation*}
+    0(x) = \begin{pmatrix}
+              0 & 0 \\
+              0 & 0
+            \end{pmatrix}x,
+  \end{equation*}
+  and therefore only 0 is an eigenvalue for the zero map. As $\C^2$ is finite-dimensional, by Remark \eqref{lbl_remark_finite_dim_spectrum_all_eigenvalues}, all elements in its spectrum are its eigenvalues; therefore, $\sigma(0) = \set{0}$. Now, consider the map $T: \C^2 \to \C^2$ defined for all $x \in \C^2$ by
+  \begin{equation*}
+    T(x) = \begin{pmatrix}
+              0 & 1 \\
+              0 & 0
+            \end{pmatrix}x.
+  \end{equation*}
+  This map also has $0$ as its only distinct eigenvalue, so by the same reasoning, $\sigma(T) = \set{0}$. Clearly, the zero map and $T$ behave very differently.
+\end{example}
+
+Another unfortunate fact is that not every operator has eigenvalues.
+
+\begin{example}\label{lbl_example_right_shift_no_eigenvalues}
+  Let $R: \ell^2 \to \ell^2$ be the {\emph{right-shift operator}} defined by
+  \begin{equation*}
+    R(x_1, x_2, x_3, \cdots) = (0, x_1, x_2, x_3, \cdots).
+  \end{equation*}
+  Suppose that $\lambda \in \C$ is an eigenvalue for $R$; then, by definition,
+  \begin{equation*}
+    (0, x_1, x_2, x_3, \cdots) = \lambda (x_1, x_2, x_3, \cdots).
+  \end{equation*}
+  Let $x_j$ be the first non-zero entry in the sequence $(x_1, x_2, x_3, \cdots)$. We then must have that $x_{j-1} = 0$, so $\lambda x_{j} = 0$. As $x_j$ must be non-zero, this forces $\lambda$ to be 0. However, $\lambda x_{j+1} = x_j \neq 0$, but $\lambda = 0$ implies that $\lambda x_{j+1} = 0$. This is a contradiction; therefore, the right-shift operator has no eigenvalues.
+\end{example}
+
+\subsubsection{Spectral results for compact operators and normal operators}
+
+One of the nice properties about compact operators is that we can say a lot about their point spectrum.
+
+\begin{proposition}[{\cite[Chapter 2, Proposition 4.14]{conway}}]
+  Let $\HS$ be a Hilbert space and let $T: \HS \to \HS$ be a compact operator. Let $\lambda \in \C$ be a non-zero scalar such that \[\text{inf}\set{\norm{(T - \lambda I)v} \,: \, \norm{v} = 1} = 0.\] Then, $\lambda \in \sigma_p(T)$.
+\end{proposition}
+\begin{proof}
+  We recreate this proof from {\cite[Chapter 2, Proposition 4.14]{conway}}. As \[\text{inf}\set{\norm{(T - \lambda I)v} \,: \, \norm{v} = 1} = 0,\] there is a sequence of unit vectors $(v_n)_{n \in \N}$ in $\HS$ such that $\norm{(T - \lambda I)v_n} \to 0$ as $n \to \infty$. Now, as $T$ is compact and $(v_n)_{n \in \N}$ is bounded, there is a subsequence $(v_{n_k})_{k \in \N}$ of $(v_n)_{n \in \N}$ and some $w \in \HS$ such that $Tv_{n_k} \to w$ as $k \to \infty$. Now, we notice that
+  \begin{align*}
+    v_{n_k} &= \frac{1}{\lambda}\big( (\lambda I - T)v_{n_k} + Tv_{n_k} \big) \\
+    & \to
+    \frac{1}{\lambda}\left(0 + w\right) \\
+    &=
+    \frac{w}{\lambda} \quad \text{as $k \to \infty$}.
+  \end{align*}
+  Now, all of the $v_{n_k}$ are unit vectors by assumption, so
+  \begin{align*}
+    1 &= \norm{v_{n_k}} \\
+    &= \norm{\frac{w}{\lambda}} \\
+    &= \frac{\norm{w}}{\abs{\lambda}},
+  \end{align*}
+  which implies that $\norm{w} \neq 0$, which is true if and only if $w$ is non-zero. Now, as $T$ is compact, it is bounded (by Proposition \eqref{lbl_prop_compact_implies_bounded}) and therefore sequentially continuous (by Proposition \eqref{lbl_prop_bounded_iff_continuous}). Therefore, as $v_{n_k} \to \lambda^{-1}w$ as $k \to \infty$,
+  \begin{equation*}
+    Tv_{n_k} \to T\left(\frac{w}{\lambda}\right) = \frac{1}{\lambda} Tw \quad \text{as $k \to \infty$}.
+  \end{equation*}
+  As $Tv_{n_k} \to w$ by our assumption of $w$, this means that $w = \lambda^{-1}Tw$. Therefore,
+  \begin{equation*}
+    Tw = \lambda w.
+  \end{equation*}
+  As $w$ is non-zero, this means that $\lambda$ is an eigenvalue of $T$.
+\end{proof}
+
+\begin{proposition}[{\cite[Chapter 2, Proposition 4.13]{conway}}] \label{lbl_prop_compact_finite_eigenspace}
+  Suppose that $T: \HS \to \HS$ is a compact operator. If $\lambda \in \sigma_p(T)$, then the associated eigenspace $\text{ker}(T - \lambda I)$ is finite-dimensional.
+\end{proposition}
+\begin{proof}
+  We recreate this proof from {\cite[Chapter 2, Proposition 4.13]{conway}}. Suppose that the claim is false; as $\text{ker}(T - \lambda I)$ is then an infinite subspace, there exists an orthnormal sequence $(v_n)_{n \in \N}$ in  $\text{ker}(T - \lambda I)$. As $T$ is compact and $(v_n)_{n \in \N}$ is bounded, there is some subsequence $(v_{n_k})_{k \in \N}$ of $(v_n)_{n \in \N}$ such that $(T v_{n_k})_{k \in \N}$ is convergent. Now, every convergent sequence is automatically a Cauchy sequence, so $(T v_{n_k})_{k \in \N}$ is Cauchy. Suppose now that $n_k \neq n_j$ for some $j$ and $k$; then, as $v_{n_k}$ and $v_{n_j}$ are in the eigenspace $\text{ker}(T - \lambda I)$,
+  \begin{align*}
+    \norm{Tv_{n_k} - Tv_{n_j}}^2
+    &=
+    \norm{\lambda v_{n_k} - \lambda v_{n_k}}^2 \\
+    &=
+    2\abs{\lambda}^2,
+  \end{align*}
+  which must be greater than 0 as $\lambda$ is positive by assumption. Therefore, $(T v_{n_k})_{k \in \N}$ cannot be Cauchy, which is a contradiction; therefore, the eigenspace $\text{ker}(T - \lambda I)$ must be finite-dimensional.
+\end{proof}
+
+\begin{proposition}[{\cite[Theorem 6.3]{weidmann}}]
+  Let $\HS$ be an infinite-dimensional Hilbert space. Then for every compact operator $T: \HS \to \HS$, $0 \in \sigma(T)$.
+\end{proposition}
+\begin{proof}
+  We omit this proof, as it relies on the concept of a {\emph{weak null-sequence}}; for a proof, please see {\cite[Theorem 6.3]{weidmann}}
+\end{proof}
+
+
+Our final result about compact operators is that every non-zero value in its spectrum is in its point spectrum. We treat this result as a black box, as the proof relies on a type of operator called a  {\emph{Fredholm operator}}; a discussion of Fredholm operators can be found in {\cite[Chapter 11.2]{muscat}}.
+
+\begin{theorem}[The Riesz-Schauder Theorem, {\cite[Theorem 14.18 (i),(ii)]{muscat}}] \label{lbl_thrm_riesz_schauder}
+  Let $\HS$ be a Hilbert space and $T: \HS \to \HS$ a compact operator. Then,
+
+  \begin{enumerate}[label = (\alph*)]
+  \item Every non-zero $\lambda \in \sigma(T)$ is an eigenvalue of $T$.
+  \item $\sigma(T)$ is a countable set with only $0$ as a limit point.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  We omit the proof of this result due to the use of Fredholm operators; for details, please see the proof of {\cite[Theorem 14.18]{muscat}}.
+\end{proof}
+
+For a bounded and normal operator, we can relate its eigenvectors and eigenvalues if they exist to the eigenvectors and eigenvalues of its adjoint.
+
+\begin{proposition}[{\cite[Proposition 15.13]{muscat}}] \label{lbl_prop_normal_means_orthogonal_eigenvectors}
+  Let $\HS$ be a Hilbert space and $T: \HS \to \HS$ a bounded normal operator. Then, $v$ is an eigenvector for $T$ with corresponding eigenvalue $\lambda$ if and only if $v$ is an eigenvector for $T^*$ with corresponding eigenvalue $\conjugate{\lambda}$, and any two eigenvectors of $T$ with distinct eigenvalues are orthogonal to each other.
+\end{proposition}
+\begin{proof}
+  We recreate this proof from {\cite[Proposition 15.13]{muscat}}. By Proposition \eqref{lbl_spec_operator_normal}, we have that $T - \lambda I$ is normal as $T$ itself is; therefore, by Propositon \eqref{lbl_prop_normal_op_kernels}, we have that
+  \begin{equation*}
+    \text{ker}\big((T - \lambda I)^*\big) = \text{ker}(T - \lambda I).
+  \end{equation*}
+  As $(T - \lambda I)^* = T - \conjugate{\lambda}I$ by Proposition \eqref{lbl_prop_adjoint_rules}, we have that $\conjugate{\lambda}$ is an eigenvalue for $T^*$ if and only if $\lambda$ is an eigenvector of $T$. As $\text{ker}(T^* - \conjugate{\lambda I} = \text{ker}(T - \lambda I)$, clearly if $v$ is an eigenvector for $T$, it is an eigenvector for $T^*$.
+
+  \medskip
+
+  Now, suppose that $v_{\lambda}$ and $v_{\mu}$ is are eigenvectors for $T$ with corresponding eigenvalues $\lambda$ and $\mu$. Then,
+  \begin{align*}
+    \lambda \ip{v_{\lambda}, v_{\mu}}
+    &=
+    \ip{\lambda v_{\lambda}, v_{\mu}} \\
+    &=
+    \ip{T v_{\lambda}, v_{\mu}} \\
+    &=
+    \ip{v_{\lambda}, T^* v_{\mu}} \\
+    &=
+    \ip{v_{\lambda}, \conjugate{\mu} v_{\mu}} \\
+    &=
+    \mu \ip{v_{\lambda}, v_{\mu}},
+  \end{align*}
+  which is true if and only if $\lambda = \mu$ or $\ip{v_\lambda, v_\mu} = 0$. If $\lambda \neq \mu$, then we must have that  $\ip{v_\lambda, v_\mu} = 0$, so the eigenvectors with distinct eigenvalues are orthogonal to each other by definition of orthogonality.
+\end{proof}
+\begin{remark}\label{lbl_remark_sa_op_real_eigenvalues}
+  This result shows that for a self-adjoint bounded operator $T \colon \HS \to \HS$, all of its eigenvalues are real. This is as every self-adjoint operator is trivially a normal operator, and $\lambda$ being in $\sigma_p(T)$ if and only if $\conjugate{\lambda}$ is in $\sigma_p(T^*)$ means that $\lambda = \conjugate{\lambda}$ by the self-adjointness of $T$, which is true if and only if $\lambda$ is real. It also follows that any eigenvectors of $T$ with distinct corresponding eigenvalues are orthogonal to one another.
+\end{remark}
+
+Our final result for this section is that every bounded normal operator's spectral radius is equal to its operator norm.
+
+\begin{proposition}[{\cite[Proposition 15.8]{muscat}}]\label{lbl_prop_spectral_radius_of_norm_operator}
+  Let $\HS$ be a Hilbert space and suppose that $T \colon \HS \to \HS$ is a bounded normal operator. Then,
+  \begin{equation*}
+    \nu(T) = \op{T}.
+  \end{equation*}
+\end{proposition}
+\begin{proof}
+  This proof is very simple once the {\emph{Gelfand formula}} is introduced. Due to our time constraints, we therefore omit this proof; for details on the Gelfand formula, please see {\cite[Theorem 14.3]{muscat}}, and for details on the proof of this result, please see the proof of {\cite[Proposition 15.8]{muscat}}.
+\end{proof}
+
+\subsubsection{The spectral theorem for compact normal operators}
+
+ Our results about the spectrum of compact operators and normal operators allow us to prove a powerful result called the {\emph{spectral theorem for compact normal operators}}. This can be thought of as a generalisation of the spectral theorem for self-adjoint complex matrices, as every complex matrix defines a compact normal operator on finite dimensions.
+
+%We first need a lemma, which is that $\C^n$ has the property that every bounded sequence has a convergent subsequence; this is known as the {\emph{Bolzano-Weierstrass property}}.
+%
+% \begin{lemma}[Bolzano-Weierstrass for $\C^n$]
+%   Let $\C^n$ be equipped with the norm that comes from its standard inner product. Then, every bounded sequence in $\C^n$ has a convergent subsequence.
+% \end{lemma}
+% \begin{proof}
+%   We prove this result by induction. The fact that the Bolzano-Weierstrass property is true in $\C$ is a well-known result which we omit; for a proof, please see \textbf{find a reference}.
+%
+%   \medskip
+%
+%   Assume that the Bolzano-Weierstrass property holds in $\C^k$. Now, let $(z_n)_{n \in \N}$ be a bounded sequence in $\C^{k+1}$; by definition, there exists some real number $M \geq 0$ such that $\norm(z_n)_{C^{k+1}} \leq M$ for all $n \in \N$. Now, let $(x_n)_{n \in \N}$ be a sequence in $C^{k}$ and $(y_n)_{n \in \N}$ be a sequence in $\C$ such that
+%   \begin{equation*}
+%     a_n = (x_n, y_n)
+%   \end{equation*}
+%   for all $n \in \N$. By our boundedness of $(z_n)_{n \in \N}$ and the definition of our norm on $\C$, $\C^k$, and $\C^{k+1}$, we see that
+%   \begin{equation*}
+%     \norm{x_n}_{C^k}, \norm{y_n}_{\C} \leq \norm{z_n}_{\C^{k+1}} \leq M.
+%   \end{equation*}
+%   By definition, this means that both $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$ are bounded subsequences. Now, by the Bolzano-Weierstrass properties of $\C^k$ and $\C$, we have subsequences $(x_{n_k})_{k \in \N}$ and $(y_{n_k})_{k \in \N}$ which are convergent to some $x \in \C^k$ and $y \in \C$ respectively.
+%
+%   \medskip
+%
+%   Now, convergent sequences are necessarily bounded, so we can re-apply the Bolzano-Weierstrass property to our subsequences $(x_{n_k})_{k \in \N}$ and $(y_{n_k})_{k \in \N}$ to get convergent subsequences $(x_{n_{k_l}})_{l \in \N}$ and $(y_{n_{k_l}})_{l \in \N}$. These must have the same limit points as the subsequences $(x_{n_k})_{k \in \N}$ and $(y_{n_k})_{k \in \N}$, namely $x$ and $y$ respectively. Therefore, $a_{n_{k_l}} \to (x, y)$ as $l \to \infty$, so $C^{k+1}$ satisfies the Bolzano-Weierstrass property if $C^k$ does, and we get our result by induction.
+% \end{proof}
+
+\begin{theorem}[The spectral theorem for compact normal operators, {\cite[Theorem 15.21]{muscat}}]
+  Let $\HS$ be an infinite Hilbert space of dimension $N$ (which we allow to be infinite) and $T: \HS \to \HS$ a compact normal operator. Then, for the distinct eigenvectors $v_n$ of $T$ and their corresponding eigenvalues $\lambda_n$, for any $x \in \HS$,
+  \begin{equation*}
+    Tx = \sum_{j = 1}^{\infty} \lambda_j \ip{v_j, x} v_j,
+  \end{equation*}
+  and $\lambda_n \to 0$ as $n \to \infty$.
+\end{theorem}
+\begin{proof}
+  We showcase this proof from {\cite[Theorem 15.21]{muscat}}. As $T$ is compact, the Riesz-Schauder Theorem (Theorem \eqref{lbl_thrm_riesz_schauder}) tells us that every non-zero $\lambda \in \sigma(T)$ is an eigenvalue for $T$ and $\sigma(T)$ is a countable set. For all $n$, let $\lambda_n \in \sigma(T)$ be the eigenvalues for $T$. Let $(v_n)_{n \in \N}$ be a sequence of orthonormal eigenvectors where each $v_n$ has the eigenvalue $\lambda_n$. As these are orthonormal, they are bounded, so as $T$ is compact, $(Te_n)$ must have a convergent subsequence. Every convergent sequence is a Cauchy sequence, so this subsequence is also Cauchy. Now, for all $n, m \in \N$ such that $n \neq m$,
+  \begin{align*}
+    \norm{Tv_n - Tv_m}^2
+    &=
+    \norm{\lambda_n v_n - \lambda_m e_m}^2 \\
+    &=
+    \abs{\lambda_n}^2 \ip{v_n, v_n}
+      - \lambda_n\conjugate{\lambda_m} \ip{v_n, v_m}
+      - \lambda_m\conjugate{\lambda_n} \ip{v_m, v_n}
+      + \abs{\lambda_m}^2 \ip{v_m, v_m} \\
+    &=
+    \abs{\lambda_n}^2 + \abs{\lambda_m}^2.
+  \end{align*}
+  As $\norm{Tv_n - Tv_m} \to 0$ as $n, m \to 0$ and the absolute function is non-negative, we must have that $\lambda_n \to 0$ as $n \to \infty$.
+
+  \medskip
+
+  Now as $T$ is compact, the eigenspace $\text{ker}(T - \lambda_n I)$ is finite-dimensional by Proposition \eqref{lbl_prop_compact_finite_eigenspace}. This means that a countable number of orthonormal eigenvectors account for all the non-zero eigenvalues as there are countably many eigenvalues, as each eigenspace has a finite orthonormal basis and a countable union of finitely-sized sets is countable. They also clearly form an orthonormal basis for the space $S =\overline{\text{span}}\set{v_n}_{n \in \N}$ generated by them. Now, let $x \in S^\perp$. As $T$ is normal, by Proposition \eqref{lbl_prop_normal_means_orthogonal_eigenvectors} we have that $T^* v_n = \conjugate{\lambda_n} v_n$. Therefore,
+  \begin{align*}
+    \ip{Tx, v_n}
+    &=
+    \ip{x, T^* v_n} \\
+    &=
+    \lambda_n \ip{x, v_n} \\
+    &=
+    0.
+  \end{align*}
+  Therefore, if $x \in S^\perp$, then $Tx \in S^\perp$. Now, the the restriction of $T$ to $S^\perp$, $T\vert_{S^\perp}$ is also a compact map, as $T\vert_{S^\perp} = P_{S^\perp} T$ where $P_{S^\perp}$ is the projection onto $S^\perp$ and Proposition \eqref{lbl_prop_compact_implies_bounded} tells us that the composition of a compact operator with another bounded operator is a compact operator. It also clearly remains a normal map under this domain restriction, as we have that $TT^* = T^*T$ for every element in $\HS$.
+
+  \medskip
+
+  Now, $T\vert_{S^\perp}$ can't have any eigenvalues; if it did, the eigenvalue would be an eigenvalue of $T$ and would lie in $M$. Therefore, $\sigma(T\vert_{S^\perp}) = \set{0}$, as every non-zero element of the spectrum of a compact operator is an eigenvalue. As $T\vert_{S^{\perp}}$ is normal, its operator norm is equal to its spectral radius $\nu(T)$ by Proposition \eqref{lbl_prop_spectral_radius_of_norm_operator}, so it follows that $\op{T\vert_{S^\perp}} = 0$. Therefore, $T\vert{S^{\perp}}$ must be the zero operator on $S^{\perp}$. Therefore, we must have that $S^\perp$ is the kernel of $T$. Now, if $S^\perp \neq \set{0}$, there must be some orthonormal basis of eigenvectors $(w_n)_{n \in \N}$ for $S^\perp$, so together with $(v_n)_{n \in \N}$ we get an orthonormal basis of vectors for $S \oplus S^\perp = \HS$. If $S^\perp = \set{0}$, then as $T$ is a bounded (as its compact) normal operator, we have that $\range{T}^\perp = \text{ker}(T)$ by Proposition \eqref{lbl_prop_normal_op_kernels}, so $\range{T} = \HS$ and our $(v_n)_{n \in \N}$ already formed an orthonormal basis for $\HS$ and would give us our result.
+
+  \medskip
+
+  As $(v_n)_{n \in \N}$ and $(w_n)_{n \in \N}$ form an orthonormal basis for $\HS$, we have that for all $x \in \HS$,
+  \begin{equation*}
+    x = \sum_{n=1}^{\infty} ( \ip{v_n, x}v_n ) + \sum_{m=1}^{\infty} (\ip{w_m, x}w_m).
+  \end{equation*}
+  By the linearity of $T$, we therefore get that
+  \begin{align*}
+    Tx
+    &=
+    T\left(  \sum_{n=1}^{\infty} ( \ip{v_n, x}v_n ) + \sum_{m=1}^{\infty} (\ip{w_m, x}w_m) \right) \\
+    &=
+    \sum_{n=1}^{\infty} ( \ip{v_n, x}T v_n ) + \sum_{m=1}^{\infty} (\ip{w_m, x}T w_m) \\
+    &=
+    \sum_{n=1}^{\infty} ( \ip{v_n, x} \lambda_n v_n ) + 0 \\
+    &=
+    \sum_{n=1}^{\infty} ( \ip{v_n, x} \lambda_n v_n ).
+  \end{align*}
+\end{proof}

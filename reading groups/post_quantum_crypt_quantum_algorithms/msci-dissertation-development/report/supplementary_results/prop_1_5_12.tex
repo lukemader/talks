@@ -1,0 +1,28 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_sym_op_eigenvalues_orthogonal}}\label{proof_lbl_prop_sym_op_eigenvalues_orthogonal}
+
+\begin{proposition}[{\cite[Chapter 41, Theorem 3]{glazman}}]
+  Let $T$ be a symmetric operator in $\HS$ with distinct eigenvalues $\lambda_1$ and $\lambda_2$. If $v_1$ is an eigenvalue of $T$ corresponding to $\lambda_1$ and $v_2$ is an eigenvalue of $T$ corresponding to $\lambda_2$, then $v_1$ and $v_2$ are orthogonal.
+\end{proposition}
+\begin{proof}
+  We recreate this proof from the proof of {\cite[Chapter 41 Theorem 3]{glazman}}.Let $\lambda_1 \neq \lambda_2$ be eigenvalues of $T$ such that $v_1$ is an eigenvector corresponding to $\lambda_1$ and $v_2$ is an eigenvector corresponding to $\lambda_2$. Then, we notice that
+  \begin{align*}
+    \lambda_1 \ip{v_1, v_2}
+    &=
+    \ip{\lambda_1 v_1, v_2} \\
+    &=
+    \ip{Tv_1, v_2} \\
+    &=
+    \ip{v_1, Tv_2} \\
+    &=
+    \ip{v_1, \lambda_2 v_2} \\
+    &=
+    \conjugate{\lambda_2} \ip{v_1, v_2} \\
+    &=
+    \lambda_2 \ip{v_1, v_2},
+  \end{align*}
+  where the last step follows as all the eigenvalues of $T$ are real by Proposition \eqref{lbl_prop_sym_ops_real_eigenvalues}. We therefore have that
+  \begin{align*}
+    (\lambda_1 - \lambda_2) \ip{v_1, v_2} = 0.
+  \end{align*}
+  However, as $\lambda_1 \neq \lambda_2$, this is true if and only if $\ip{v_1, v_2} = 0$, meaning that $v_1$ and $v_2$ are orthogonal.
+\end{proof}

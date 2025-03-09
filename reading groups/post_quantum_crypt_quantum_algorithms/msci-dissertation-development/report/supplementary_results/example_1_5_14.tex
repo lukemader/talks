@@ -1,0 +1,94 @@
+\subsection{Proof of Example \eqref{lbl_example_multiplication_operator_spectrum}}\label{proof_lbl_example_multiplication_operator_spectrum}
+
+\begin{example}[{\cite[Theorem 10.7-3]{kreyszig}}]
+  For some real-valued $x$, the multiplication by $x$ operator $M_x \colon \dom{M_x} \to L^2(\R)$, defined by
+  \begin{align*}
+    \dom{M_x} &\coloneqq  \set{f \in L^2(\R) \colon xf \in L^2(\R)}, \\
+    f(x) &\mapsto xf(x).
+  \end{align*}
+  On this domain, $M_x$ has the following spectral properties:
+  \begin{enumerate}[label = (\alph*)]
+    \item $M_x$ has no eigenvalues: $\sigma_p(M_x) = \emptyset$.
+    \item The spectrum of $M_x$ consists of every real number: $\sigma(M_x) = \R$.
+  \end{enumerate}
+\end{example}
+\begin{proof}
+  We recreate this proof from the proof of {\cite[Theorem 10.7-3]{kreyszig}}, and start by showing that $M_x$ has no eigenvalues. Suppose that $\lambda \in \C$ is some complex number such that $f \in \dom{M_x}$ satisfies $M_x f = \lambda f$. By positive-semidefiniteness of the norm, it follows that
+  \begin{align*}
+    0
+    &=
+    \norm{0}^2 \\
+    &=
+    \norm{(M_x - \lambda I)f }^2 \\
+    &=
+    \int_{\R} \abs{(x - \lambda)f(x)}^2   \,\mathrm{d}x \\
+    &=
+    \int_{\R} \abs{x - \lambda}^2 \abs{f(x)} \,\mathrm{d}x.
+  \end{align*}
+  Now, $\abs{x - \lambda} > 0$ for almost all $x$, so our above equation is true if and only if $f(x)$ is $0$ almost everywhere on $\R$, which means that it can't be an eigenvector by definition. As our $\lambda$ was arbitrarily chosen, this means that $M_x$ cannot have any eigenvectors.
+
+  \medskip
+
+  We now show that the spectrum of $M_x$ is precisely the real numbers. By Proposition \eqref{lbl_sa_operator_real_spectrum}, we know that $\sigma(M_x)$ must be contained in $\R$, as Example $\eqref{lbl_example_multiplication_operator_sa}$ showed that it is symmetric (or, more precisely, we showed that it was actually self-adjoint). Therefore, let $\lambda$ be an arbitrary real number. By using the same trick as in Examples \eqref{lbl_example_multiplication_operator_sa} and \eqref{lbl_example_multiplication_operator_dense_not_bounded}, every function which is of the form of being zero outside of an arbitrary bounded interval $[a,b]$ in $\R$ will be square-integrable and in the domain of $M_x$. Specifically, the family of functions defined by
+  \begin{equation*}
+    q_n(x)
+    \coloneqq
+    \begin{cases}
+      1 & \text{if $\lambda - \frac{1}{n} \leq x \leq \lambda + \ \frac{1}{n}$}, \\
+      0 & \text{otherwise.}
+    \end{cases}
+  \end{equation*}
+  for all $n \in \N$ are trivially in $\dom{M_x}$. This means that the family of functions defined by
+  \begin{equation*}
+    f_n \coloneqq \frac{1}{\norm{g_n}} g_n
+  \end{equation*}
+  for all $n \in \N$ are also in $\dom{M_x}$. They are also all clearly normalised vectors. Now, when $f_n$ is not zero, re-arranging the bounds in our definition  of $q_n$ shows us that
+  \begin{equation*}
+    (x - \lambda)^2 \leq \frac{1}{n^2}.
+  \end{equation*}
+  Therefore, when $f_n$ is not zero-valued, this inequality and the fact that $f_n$ are normalised gives us for all $n \in \N$,
+  \begin{align*}
+    \norm{(M_x - \lambda I)f_n}^2
+    &=
+    \int_{\R} \abs{ (x - \lambda) f_n(x) }^2  \,\mathrm{d}x \\
+    &=
+    \int_{\R} (x - \lambda)^2 \abs{f_n(x)}^2  \,\mathrm{d}x \\
+    &\leq
+    \frac{1}{n^2} \int_{\R} \abs{f_n(x)}^2 \,\mathrm{d}x \\
+    &=
+    \frac{1}{n^2} \norm{f_n}^2 \\
+    &=
+    \frac{1}{n^2}.
+  \end{align*}
+  This gives us that
+  \begin{equation}
+    \begin{aligned}\label{lbl_eq_multiplication_op_real_spectrum_inequality}
+    \norm{ (M_x - \lambda I)f_n } \leq \frac{1}{n}.
+    \end{aligned}
+  \end{equation}
+  Now, we showed in the previous part of this example that $M_x$ has no eigenvalues. As the eigenvalues are precisely the values of $\lambda$ that make $M_x - \lambda I$ not an injective operator, this means that $M_x - \lambda I$ is injective, and therefore its inverse operator, $(M_x - \lambda I)^{-1}$ exists.  As $f_n$ is not the zero function and $M_x - \lambda I$ is injective, we have that $(M_x - \lambda I)f_n$ is not the zero function. Therefore, by the positive-semidefiniteness of the norm, for all $n$ we have that
+  \begin{equation*}
+    \norm{(M_x - \lambda I)f_n} > 0.
+  \end{equation*}
+  If we now define the family of functions
+  \begin{equation*}
+    g_n(x) \coloneqq \frac{1}{\norm{(M_x - \lambda I)f_n}}f_n
+  \end{equation*}
+  for all $n$. Firstly, we instantly see that $g_n$ are all normalised functions. Secondly, We must have that $g_n$ is in the range of $M_x - \lambda I$. This is as the range is a subspace and each $f_n$ is in the range. As $\dom{(M_x - \lambda I)^{-1}} = \range{M_x - \lambda I}$, this means that each $g_n$ is in the domain of $(M_x - \lambda I)^{-1}$. By re-arranging Equation \eqref{lbl_eq_multiplication_op_real_spectrum_inequality}, we  have that
+  \begin{align*}
+    n  \leq \frac{1}{\norm{(M_x - \lambda I)f_n}}.
+  \end{align*}
+  Putting everything together, we have that
+  \begin{align*}
+    \norm{(M_x - \lambda I)^{-1}g_n}
+    &=
+    \frac{1}{\norm{(M_x - \lambda I)f_n}}\norm{(M_x - \lambda I)^{-1}(M_x - \lambda I)f_n} \\
+    &=
+    \frac{1}{\norm{(M_x - \lambda I)f_n}} \norm{f_n} \\
+    &=
+    \frac{1}{\norm{(M_x - \lambda I)f_n}} \\
+    &\geq
+    n.
+  \end{align*}
+  As this is true for all $n \in \N$, we have that $\norm{(M_x - \lambda I)^{-1}g_n} \to \infty$ as $n \to \infty$. Therefore, it cannot be a bounded operator, so $\lambda$ isn't in the resolvent set of $M_x$ and is therefore in the spectrum of $M_x$.  As $\lambda$ was an arbitrary real number, this gives us our result of \[\sigma(M_x) =  \R\].
+\end{proof}

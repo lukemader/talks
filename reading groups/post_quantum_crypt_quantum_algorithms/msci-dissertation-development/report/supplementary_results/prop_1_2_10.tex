@@ -1,0 +1,21 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_1_2_10}}\label{proof_lbl_prop_1_2_10}
+
+\begin{proposition}[{\cite[Proposition 1.5]{konrad}}]
+  Let $T$ be an operator in $\HS$. Then, the following are equivalent:
+  \begin{enumerate}[label = (\alph*)]
+    \item $T$ is closable.
+    \item If $(x_n)_{n \in \N}$ is a sequence of vectors in $\dom{T}$ such that they converge to 0 and $(Tx_n)_{n \in \N}$ converges to some vector in $\HS$, then $(Tx_n)_{n \in  \N}$ converges to 0 too.
+    \item $\overline{\G(T)}$ is the graph of a linear operator.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We recreate this proof from the proof of {\cite[Proposition 1.5]{konrad}}, and start by showing that (a) implies (c). Suppose that $T$ is a closable operator, and $S$ is a closed extension of $T$ in $\HS$. Then, $\G(T) \subset \G(S)$ by Proposition \eqref{lbl_prop_extension_iff_graphs_subset}. As taking the closure of sets preserves subsets, we have that $\overline{\G(T)} \subset \overline{\G(S)}$. We also have that $\overline{\G(S)} = \G(S)$ as $S$ is closed; therefore, $\overline{\G(T)} \subset \G(S)$. Now, by  Lemma \eqref{lbl_lemma_subspace_conditions_to_be_graph}, as $\G(S)$ is the graph of an operator, we can only have that $(0, x) \in \G(S)$ if $x = 0$. As $\overline{\G(T)}$ is a subset of $\G(S)$, we therefore also have that $(0, x) \in \overline{\G(T)}$ when $x = 0$. Therefore, by Lemma \eqref{lbl_lemma_subspace_conditions_to_be_graph}, $\overline{\G(T)}$ must be the graph of some operator.
+
+    \medskip
+
+    We now  show that (c) implies (a). Suppose that there is some operator in $S$ such that $\overline{\G(T)}$ is the graph of $S$. By the properties of the closure of a set, we must also have that $\G(T) \subset \overline{\G(T)}$, so $\G(T) \subset \G(S)$, which means that there is some operator $T \subset S$ in $\HS$. As $\G(S)$ is clearly a closed set, this means that $T$ has a closed extension, and is therefore closable by definition.
+
+    \medskip
+
+    We have shown that (a) is equivalent to (c), so all that is left to show is that (b) is equivalent to (c). Suppose that (b) holds, which means that if $(0, x) \in \overline{\G(T)}$, we have that $Tx = 0$. The closure of a subspace is also a subspace (this is easily verified, so we omit the details here; for details, please see {\cite[Proposition 7.10]{muscat}}), so $\overline{\G(T)}$ is a subspace. This gives us that $\overline{\G(T)}$ is the graph of an operator by Lemma \eqref{lbl_lemma_subspace_conditions_to_be_graph}. If (c) holds, then $\overline{\G(T)}$ is the graph of an operator, so $(0, x) \in \overline{\G(T)}$ must imply that $x = 0$ by Lemma \eqref{lbl_lemma_subspace_conditions_to_be_graph}. This means that if $(x_n)_{n \in \N}$ is a sequence in $\dom{T}$ converging to 0  such that $(Tx_n)_{n \in \N}$ converges in $\HS$, then as $(x_n, Tx_n) = (0, \lim_{n \to \infty} Tx_n)$ is in $\overline{\G(T)}$, we have that $\lim_{n \to \infty}Tx_n = 0$, showing that (c) implies (b).
+\end{proof}

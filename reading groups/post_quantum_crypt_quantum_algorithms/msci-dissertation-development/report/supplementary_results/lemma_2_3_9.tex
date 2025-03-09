@@ -1,0 +1,16 @@
+\subsection{Proof of Lemma \eqref{lbl_eigenvalues_aastar}}\label{proof_lbl_eigenvalues_aastar}
+
+\begin{lemma}[{\cite[p.230]{Hall2013}}]
+  Every eigenvalue of $a^*a$ with the domain $\mathcal{S}(\R)$ is non-negative.
+\end{lemma}
+\begin{proof}
+  This proof comes from the comments on {\cite[p.230]{Hall2013}}, which we repeat here. Suppose that $\psi$ is an eigenvalue of $a^*a$ with corresponding eigenvalue $\lambda$. Then,
+  \begin{align*}
+    \lambda \ip{\psi, \psi}
+    &= \ip{\lambda \psi, \psi} \\
+    &= \ip{a^* a \psi, \psi} \\
+    &= \ip{a \psi, a \psi} \\
+    &\geq 0.
+  \end{align*}
+  As we have that $\ip{\psi, \psi} \geq 0$ by the positive-definiteness of the inner product, we must have that $\lambda \geq 0$.
+\end{proof}

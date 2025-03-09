@@ -1,0 +1,74 @@
+\subsection{Proof of Example \eqref{lbl_example_multiplication_operator_sa}}\label{proof_lbl_example_multiplication_operator_sa}
+
+\begin{example}[{\cite[Theorem 10.7-2]{kreyszig}}]
+  Recall that in Example \eqref{lbl_example_multiplication_operator_dense_not_bounded} that, for some real-valued $x$, we introduced the multiplication by $x$ operator $M_x$ in $L^2(\R)$, defined by
+  \begin{align*}
+    \dom{M_x} &\coloneqq  \set{f \in L^2(\R) \colon xf \in L^2(\R)}, \\
+    f(x) &\mapsto xf(x).
+  \end{align*}
+  In this example, we showed that $M_x$ on this domain was densely-defined (meaning that an adjoint is defined) and not bounded. $M_x$ is also self-adjoint on this domain.
+\end{example}
+\begin{proof}
+  We recreate this proof from {\cite[Theorem 10.7-2]{kreyszig}}. We start by showing that $M_x$ is symmetric.  Let $f$ and $g$ be functions in the domain of $M_x$. As $x$ is real-valued, we then have that
+  \begin{align*}
+    \ip{M_x f, g}
+    =
+    \int_{\R} xf(x)\conjugate{g(x)} \, \mathrm{d}x
+    =
+    \int_{\R} f(x)\conjugate{xg(x)} \, \mathrm{d}x
+    =
+    \ip{f, M_x g},
+  \end{align*}
+  so $M_x$ is symmetric by definition.  By Proposition \eqref{lbl_prop_sym_iff_adjoint_is_extension}, this means that $M_x^*$ is an extension of $M_x$.
+
+  \medskip
+
+  To show that $M_x = M_x^*$, all that is left is to show that $\dom{M_x}$ contains $\dom{M_x^*}$;  if this is the case, as $M_x^*$ is an extension of $M_x$, they must be equal. For all functions $f$ in $\dom{M_x}$ and $h$ in $\dom{M_x^*}$, we have by definition of the adjoint that
+  \begin{align*}
+    \ip{M_x f, h}
+    =
+    \ip{f, M_x^* h}.
+  \end{align*}
+  Therefore,
+  \begin{align*}
+    \int_{\R} xf(x)\conjugate{h(x)} \, \mathrm{d}x
+    &=
+    \int_{\R} f(x)\conjugate{xh(x)} \, \mathrm{d}x
+    =
+    \int_{\R} f(x)\conjugate{M_x^* h(x)} \, \mathrm{d}x,
+  \end{align*}
+  where our first equality comes from the fact that $x$ is real and our second equality is the definition of $\ip{f, M_x^* h}$. Re-arranging gives us that
+  \begin{equation}
+  \begin{aligned}\label{lbl_eq_multiplication_op_sa_eq}
+    \int_\R  f(x) \left( \conjugate{xh(x)} - \conjugate{M_x^* h(x)} \right) \,\mathrm{d}x
+    &=
+    \int_\R  f(x) \conjugate{\left( xh(x) - M_x^* h(x) \right)} \,\mathrm{d}x
+    =
+    0.
+  \end{aligned}
+  \end{equation}
+  We now use a similar trick  to the one we used in Example \eqref{lbl_example_multiplication_operator_dense_not_bounded}. By basic calculus, every function which is of the form of being zero outside of an arbitrary bounded interval $(a,b)$ in $\R$ will be square-integrable and in the domain of $M_x$. Specifically, the function defined by
+  \begin{equation*}
+    q(x)
+    \coloneqq
+    \begin{cases}
+      xh(x) - M_x^* h(x) & \text{if $x \in (a,b)$}, \\
+      0                  & \text{otherwise}
+    \end{cases}
+  \end{equation*}
+  for some arbitrary bounded interval $(a,b)$ will be in the domain of $M_x$. By plugging this into Equation \eqref{lbl_eq_multiplication_op_sa_eq}, we now have that
+  \begin{align*}
+    0
+    &=
+    \int_\R  q(x) \conjugate{\left( xh(x) - M_x^* h(x) \right)} \,\mathrm{d}x
+    =
+    \int_\R q(x)\conjugate{q(x)} \, \mathrm{d}x
+    =
+    \int_\R \abs{q(x)}^2 \,\mathrm{d}x,
+  \end{align*}
+  which is true if and only if $\abs{q(x)}^2$ is 0 almost everywhere on $(a,b)$, which is true if and only if $q(x)$ is 0 almost everywhere on (a,b). Therefore, we have that, on $(a,b)$, $xh(x) - M_x^* h(x) = 0$ almost everywhere, giving us that
+  \begin{equation*}
+    xh(x) = M_x^* h(x)
+  \end{equation*}
+  almost everywhere on $(a,b)$. Now, our choice of $(a,b)$ was any arbitrary bounded interval. As we're free to make this as big as we please as long as it stays bounded, this must imply that $h$ is in the domain of $M_x$ as well as being in the domain of $M_x^*$. Therefore, as $\dom{M_x}$ contains $\dom{M_x^*}$ and $M_x^*$ is an extension of $M_x$, we must have that $M_x = M_x^*$, making it self-adjoint.
+\end{proof}

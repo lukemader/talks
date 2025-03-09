@@ -1,0 +1,44 @@
+\subsection{Proof of Theorem \eqref{lbl_oscillator_general_formula_ground_state}}\label{proof_lbl_oscillator_general_formula_ground_state}
+
+\begin{theorem}[{\cite[p.232]{Hall2013}}]
+  On the domain $\mathcal{S}(\R)$, the equation $a \psi_0 = 0$ has solution
+  \begin{equation*}
+    \psi_0 (x) = \left(\frac{m \omega}{\pi \hbar}\right)^{\frac{1}{4}} \exp\left( -\frac{m \omega}{2 \hbar}x^2 \right).
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  This result comes from the comments on {\cite[p.232]{Hall2013}} with a miscalculated constant fixed in the corrections of the book. We base this proof on those comments and fill in the gaps. Suppose that $a\psi_0(\tilde{x}) = 0$. We then have that
+  \begin{equation*}
+    \frac{1}{\sqrt{2}} \left( \tilde{x}\psi_0 (\tilde{x}) + \frac{d\psi_0(\tilde{x})}{d\tilde{x}} \right) = 0,
+  \end{equation*}
+  which gives us the first order linear differential equation $\psi_0^{\prime}(\tilde{x}) + \tilde{x}\psi_0(\tilde{x}) = 0$. With use of the integrating factor
+  \begin{equation*}
+    I = \exp\left(\int \tilde{x} \,\mathrm{d}\tilde{x}\right) = \exp\left(\frac{\tilde{x}^2}{2}\right),
+  \end{equation*}
+  we see that the general solution to this equation is \(\psi_0(\tilde{x}) = C \exp\left(-\frac{\tilde{x}^2}{2}\right)\) for some integration constant $C$. Now, by our previous argument on how the lowering operator works, we must have that $\psi(\tilde{x})$ is non-negative. As $\exp\left(-\frac{\tilde{x}^2}{2}\right)$ is always non-negative, this must mean that $C$ is a non-negative constant.
+
+  \medskip
+
+  Now, $\psi_0$ is a wavefunction for this system, so we have the normalisation condition that $\norm{\psi_0(\tilde{x})} = 1$, where our norm is the Lebesgue-integral over $\R$ of $\abs{\psi_0(\tilde{x})}^2$ with respect to $\tilde{x}$. With our general solution for $\psi_0(\tilde{x})$, we therefore see that
+  \begin{align*}
+    1
+    &=
+    \int_{-\infty}^{\infty} \abs{C\exp\left(-\frac{\tilde{x}^2}{2}\right)}^2 \,\mathrm{d}\tilde{x} \\
+    &=
+    C^2 \int_{-\infty}^{\infty} \left(\exp\left(-\frac{\tilde{x}^2}{2}\right)\right)^2 \,\mathrm{d}\tilde{x} \\
+    &=
+    C^2 \int_{-\infty}^{\infty} \exp\left(-\frac{x^2}{D^2}\right) \,\mathrm{d}x.
+  \end{align*}
+  Using Lemma \eqref{lbl_oscillator_hard_integral} with $\alpha = D^2$ and $\beta = 0$, we see that $1 = C^2 D\sqrt{\pi}.$ As we have the constraint that $C$ is non-negative, this solves $C$ to be
+  \begin{equation*}
+    C = \frac{1}{\pi^{\frac{1}{4}}\sqrt{D}},
+  \end{equation*}
+  which finally gives us that
+  \begin{align*}
+    \psi_0(x)
+    &=
+    \frac{1}{\pi^{\frac{1}{4}}\sqrt{D}} \exp\left(-\frac{x^2}{D^2}\right)
+    =
+    \left( \frac{m \omega}{\hbar \omega} \right)^{\frac{1}{4}} \exp\left(- \frac{m\omega}{2\hbar}x\right).
+  \end{align*}
+\end{proof}

@@ -1,0 +1,8 @@
+PWD C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_background
+INPUT C:\Users\lukem\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT hilbert_spaces.tex
+OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_background\build\hilbert_spaces.log
+INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_background\build\hilbert_spaces.pdf
+INPUT C:\Users\lukem\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map

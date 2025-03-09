@@ -1,0 +1,31 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_equiv_closed_defs}}\label{proof_lbl_prop_equiv_closed_defs}
+
+\begin{proposition}[{\cite[Proposition 1.4]{konrad}}]
+  Let $T$ be an operator in $\HS$. Then, the following are equivalent:
+  \begin{enumerate}[label=(\alph*)]
+    \item $T$ is a closed operator.
+    \item If $(x_n)_{n \in \N}$ is a sequence in $\dom{T}$ such that it converges to some $x \in \HS$ and that the sequence $(Tx_n)_{n \in \N}$ converges to some $y \in \HS$, then $x$ is in the domain of $T$ and $Tx = y$.
+    \item The normed space $\big( \dom{T}, \norm{\cdot}_T \big)$ is a Hilbert space.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  We take this proof from the proof of {\cite[Proposition 1.4]{konrad}}. It is easy to see that (a) is equivalent to (b), as (b) is exactly what it means for $\G(T)$ to be closed. Indeed, every sequence in $\G(T)$ is of the form $\big( (x_n, Tx_n) \big)$, so suppose that it converges to some $(x, y) \in \HS \oplus \HS$. Then we must have that $x_n \to x$ and $Tx_n \to y$ as $n \to \infty$. If $T$ is closed, then $\G(T)$ contains all of its limit points, so $(x, y) \in \G(T)$ means that $x \in \dom{T}$ and $Tx = y$ by definition of the graph of $T$. Conversely, if $x$ is in the domain of $T$ and $Tx = y$, then $(x, y) = (x, Tx)$, which must be in the graph of $T$, making it closed.
+
+  \medskip
+
+  We now show that (a) is equivalent to (c), which by the previous of this proof means that (b) is equivalent to (c) too. To see that (a) and (c) are eqwuivalent, we define the operator $S_T \colon  \dom{T} \to \G(T) $  by
+  \begin{equation*}
+    S_T x = (x, Tx)
+  \end{equation*}
+  for all $x \in \dom{T}$. We now notice that
+  \begin{align*}
+    \norm{S_T x}_{\HS \oplus \HS}^2
+    &=
+    \ip{(x, Tx), (x, Tx)}_{\HS \oplus \HS} \\
+    &=
+    \ip{x, x}_\HS + \ip{Tx, Tx}_{\HS} \\
+    &=
+    \norm{x}_T.
+  \end{align*}
+  Therefore, $\norm{S_T x}_{\HS \oplus \HS} = \norm{x}_T$ for all $x \in \dom{T}$, so the operator $S_T$ is norm-preserving. This clearly gives us the structure-preservation of $\dom{T}$ being complete if and only if $\G(T)$ is complete, as by this norm-preservation we can only have that Cauchy sequences converge in one space if they do in the other. As both of the norms $\norm{\cdot}_{\HS \oplus \HS}$ and $\norm{\cdot}_{T}$ are induced by their respective space's inner products, it follows that $\dom{T}$ is a Hilbert space if and only if $\G(T)$ is Hilbert space. Now, $\G(T)$ is a subspace of $\HS \oplus \HS$, so $\G(T)$ is a Hilbert space if and only if it is closed. Therefore, we get our required result that $\dom{T}$ is a Hilbert space if and only if $T$ is a closed operator.
+\end{proof}

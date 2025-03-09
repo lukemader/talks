@@ -1,0 +1,67 @@
+\subsection{Proof of Example \eqref{lbl_example_kreyzsig_not_closed_operator}}\label{proof_lbl_example_kreyzsig_not_closed_operator}
+
+\begin{example}[{\cite[Problem 1, Chapter 10.3]{kreyszig}}]
+  Let $T$ be the operator in $\ell^2$ defined by
+  \begin{align*}
+    \dom{T} &= \set{x \in \ell^2 \colon \text{$x$ has finitely many non-zero elements}}, \\
+    Tx &= (jx_j)_{j \in \N}.
+  \end{align*}
+  Then, $T$ is not a closed operator.
+\end{example}
+\begin{proof}
+  We start by verifying that $\dom{T}$ is indeed a dense subspace of $\ell^2$, which is very quickly done through the subspace test. We have that the zero sequence is in $\dom{T}$, as it has no non-zero terms and that is clearly a finite amount of non-zero terms. Now, if $x$ and $y$ are square-summable sequences with a finite amount of non-zero terms, then clearly $x+y = (x_j + y_j)_{j \in \N}$ also has a finite amount of non-zero terms. Similarly, if $\alpha$ is any complex number, then $\alpha x = (\alpha x_j)_{j \in \N}$ still has a finite amount of non-zero terms, as we haven't actually added any terms. Therefore, $\dom{T}$ is a subspace of $\ell^2$.
+
+  \medskip
+
+  The density of $\dom{T}$ isn't that hard to see either, and we do so by constructing a sequence. For this sequence, we adopt the notation of $b_{(n)}$ being the $n^\text{th}$ square-summable sequence in a sequence of square-summable sequence, and $b_{(n)_j}$ referring to the $j^\text{th}$ element of the sequence $b_{(n)}$. For any $a \in \ell^2$ and an arbitrarily picked natural number $n \geq 1$, we can construct the sequence $b_{(n)} = \left(b_{(n)_j}\right)_{j \in \N}$ defined by
+  \begin{equation*}
+    b_{(n)_j}
+    =
+    \begin{cases}
+      a_j & \text{if $ 1 \leq j \leq n$}, \\
+      0   & \text{otherwise}.
+    \end{cases}
+  \end{equation*}
+  We clearly have that $b_{(n)} \to a$ as $n \to \infty$, and each $b_{(n)}$ is an element of $\dom{T}$ as it only has a finite amount of non-zero terms, which also makes it square-summable. This means that every element in $\ell^2$ is a limit point of a sequence in $\dom{T}$, so $\dom{T}$ is dense. Therefore, $T$ is a densely-defined operator.
+
+  \medskip
+
+  We now show that $T$ is not closed, which is most easily done by finding a sequence $(x_{(n)})_{n \in \N}$ in $\dom{T}$ which converges to some $x$ in $\ell^2$ and makes $(Tx_{(n)})_{n \in \N}$ converge to $y \in \ell^2$, but is a sequence such that $x$ is not in $\dom{T}$. This is what it would mean for $\G(T)$ to not be closed.
+
+  \medskip
+
+  As the solution to {\cite[Problem 1, Chapter 10.3]{kreyszig}} points out, which can be found in {\cite[p.667]{kreyszig}}, the sequence $(x_{(n)})_{n \in \N}$ defined by
+  \begin{equation*}
+    \left(x_{(n)_j}\right)_{j \in \N} = \left(1, \frac{1}{2^2}, \cdots, \frac{1}{n^2}, 0, 0, 0, \cdots  \right)
+  \end{equation*}
+  is a suitable sequence to show this. We indeed have that it is in the domain of $T$, as it has $n$ non-zero terms. We also have that
+  \begin{align*}
+    \left(T x_{(n)_j}\right)_{j \in \N}
+    &=
+    \left(j x_{(n)_j} \right)_{j \in \N}
+    =
+    \left(1, \frac{1}{2}, \cdots, \frac{1}{n}, 0, 0, 0, \cdots  \right).
+  \end{align*}
+  Now, $(Tx_{(n)})_{n \in \N}$ clearly converges to the sequence $y = \left( 1/n \right)_{n \in \N}$, which is square-summable as
+  \begin{align*}
+    \sum_{n \in \N} \abs{\frac{1}{n}}^2
+    =
+    \sum_{n \in \N} \frac{1}{n^2}
+    =
+    \frac{\pi^2}{6}
+    <
+    \infty,
+  \end{align*}
+  so $(Tx_{(n)})_{n \in \N}$ converges to $y$ in $\ell^2$. Now, we can easily see that $(x_{(n)})_{n \in \N}$ converges to $x = (1/n^2)_{n \in \N}$, which is also square-summable as
+  \begin{align*}
+    \sum_{n \in \N} \abs{\frac{1}{n^2}}^2
+    =
+    \sum_{n \in \N} \frac{1}{n^4}
+    \leq
+    \sum_{n \in \N} \frac{1}{n^2}
+    = \frac{\pi^2}{6}
+    <
+    \infty,
+  \end{align*}
+  so $(x_{(n)})_{n \in \N}$ converges to $x$ in $\ell^2$. However, $x$ obviously has a countably infinite number of non-zero terms, so it isn't in the domain of $T$. Therefore, $\G(T)$ cannot be closed, so it is not a closed operator.
+\end{proof}

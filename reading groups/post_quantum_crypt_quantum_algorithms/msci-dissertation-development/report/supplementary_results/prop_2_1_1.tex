@@ -1,0 +1,30 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_wavefunction_equivalence}}\label{proof_lbl_prop_wavefunction_equivalence}
+
+\begin{proposition}[{\cite[p.574]{kreyszig}}]
+  Let $\psi_1$ and $\psi_2$ be wavefunctions in $L^2(\R)$. Then, the relation
+  \begin{align*}
+    \psi_1 \sim \psi_2 \,\, \text{if and only if} \,\, \text{there exists some $\alpha \in \C$ such that $\abs{\alpha} = 1$ and $\psi_1 = \alpha \psi_2$}
+  \end{align*}
+  defines an equivalence relation on the set of all wavefunctions in $L^2(\R)$.
+\end{proposition}
+\begin{proof}
+  Suppose that $\psi_1$ is a wavefunction in $L^2(\R)$. Clearly it is equal to itself, so taking $\alpha$ to be 1 shows that $\psi_1 \sim \psi_1$, meaning that $\sim$ is reflexive. Now, suppose that $\psi_2$ is another wavefunction such that $\psi_1 \sim \psi_2$. Then, there is some complex-valued $\alpha$ with norm 1 such that $\psi_1 = \alpha \psi_2$. Then,
+  \begin{align*}
+    \psi_2 &= \frac{1}{\alpha} \psi_1,\, \text{and}\\
+    \abs{\frac{1}{\alpha}} &= \frac{\abs{1}}{\abs{\alpha}} = 1,
+  \end{align*}
+  meaning that $\psi_2 \sim \psi_1$ if $\psi_1 \sim \psi_2$. The same method as above shows that $\psi_1 \sim \psi_2$ if $\psi_2 \sim \psi_1$. Therefore, $\sim$ is symmetric.
+
+  \medskip
+
+  Now suppose that there is another wavefunction $\psi_3$ such that $\psi_1 \sim \psi_2$ and $\psi_2 \sim \psi_3$. There then exists two complex numbers $\alpha_1$ and $\alpha_2$ such that
+  \begin{align*}
+    \psi_1 = \alpha_1 \psi_2 \qquad \text{and} \qquad \psi_2 = \alpha_2 \psi_3.
+  \end{align*}
+  Together, we have that
+  \begin{align*}
+    \psi_1 &= \alpha_1 \alpha_2 \psi_3, \,\text{and} \\
+    \abs{\alpha_1 \alpha_2} &= \abs{\alpha_1}\abs{\alpha_2} = 1.
+  \end{align*}
+  Therefore, $\psi_1 \sim \psi_3$ if $\psi_1 \sim \psi_2$ and $\psi_2 \sim \psi_3$. Therefore, $\sim$ is transitive. As $\sim$ is reflexive, symmetric, and transitive, it is an equivalence relation by definition.
+\end{proof}

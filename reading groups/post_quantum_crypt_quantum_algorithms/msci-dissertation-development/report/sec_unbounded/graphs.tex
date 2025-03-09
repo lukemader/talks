@@ -1,0 +1,221 @@
+We now have a quick aside of introducing the {\emph{graph}} of an operator. This is a very useful concept, which both makes our life easier and gives deep insight into operators. Throughout this section, we let $\HS$ be any Hilbert spaces. Particularly, this means that our operators might not be densely-defined.
+
+\begin{definition}[{\cite[Definitions 13.1]{rudin}}, {\cite[Definition 9.6]{Hall2013}}]
+  Let $T$ be an operator in $\HS$. The {\emph{graph of $T$}}, $\G(T)$, is defined to be the set of ordered pairs
+  \begin{equation*}
+    \G(T) \coloneqq \set{ (x, Tx) \colon x \in \dom{T}} \subset \HS \oplus \HS.
+  \end{equation*}
+  If $\G(T)$ is closed in $\HS \oplus \HS$, then we say that $T$ is a {\emph{closed operator}}. If $T$ has a closed extension, we call $T$ a {\emph{closable operator}}.
+\end{definition}
+\begin{remark}
+  It can be easily seen through the subspace test that $\G(T)$ is in fact a subspace of $\HS \oplus \HS$. We omit this verification here due to its simplicity.
+\end{remark}
+
+Closed operators are very important in the study of unbounded operators, and the majority of our work involves closed operators. Our goal for this section is to arrive at the famous {\emph{closed graph theorem}}, Theorem \eqref{lbl_thrm_closed_graph}. This theorem will give us an equivalence between the continuity of an operator and the closure of its graph.
+
+\medskip
+
+For now, we start with an example of an operator that is not closed; after developing some more theory, in Example \eqref{lbl_example_kreyzsig_closed_operator} we will show that this example is closable. Recall that the Hilbert space $\ell^2$ with its standard norm, as defined in Example \eqref{lbl_example_ell2_is_HS}, is the space of square-summable complex sequences.
+
+\begin{example}[{\cite[Problem 1, Chapter 10.3]{kreyszig}}]\label{lbl_example_kreyzsig_not_closed_operator}
+  Let $T$ be the operator in $\ell^2$ defined by
+  \begin{align*}
+    \dom{T} &= \set{x \in \ell^2 \colon \text{$x$ has finitely many non-zero elements}}, \\
+    Tx &= (jx_j)_{j \in \N},
+  \end{align*}
+  is not closed.
+\end{example}
+\begin{proof}
+  The proof of this example is very simple, but due to its length and our time constraints we move the proof to Section \eqref{proof_lbl_example_kreyzsig_not_closed_operator}. It is, however, a good example of how an operator can fail to be closed, so we describe the method briefly here. To see that $\dom{T}$ is a subspace, it is easiest to use the subspace test. To see that $\dom{T}$ is dense, we notice that any sequence in $x \in \ell^2$ is the limit point of a sequence of sequences, where the $n^\text{th}$ sequence is constructed by taking the first $n$ elements of $x$ and then making every other element $0$. To see that it is not closed, we construct a sequence $(x_n)_{n \in \N}$ in $\dom{T}$ which converges to $x$ and is such that $Tx_n$ converges to some element, but is a sequence such that  $x$ is not in $\dom{T}$. {\cite[Problem 1, Chapter 10.3]{kreyszig}} gives an example of such a sequence. The interested reader can find the full details of this proof in Section \eqref{proof_lbl_example_kreyzsig_not_closed_operator}.
+\end{proof}
+
+We now move on to investigating some properties of the graphs of operators and some properties of closed and closable operators. We start with the following intuitive result, which is not too hard to prove but is very useful.
+
+\begin{proposition}[{\cite[Definitions 13.1]{rudin}}]\label{lbl_prop_extension_iff_graphs_subset}
+  Suppose that $T$ and $S$ are operators in $\HS$. Then, $T \subset S$ if and only if $\G(T) \subset \G(S)$.
+\end{proposition}
+\begin{proof}
+  Suppose first that $S$ is an extension of $T$. Then, for all $x$ in the domain of $T$, we have that $Tx = Sx$. Therefore,
+  \begin{equation*}
+    (x, Tx) = (x, Sx)
+  \end{equation*}
+  for all $x \in \dom{T}$. As $\dom{T} \subset \dom{S}$, it follows that $\G(T) \subset \G(S)$.
+
+  Now suppose that $\G(T) \subset \G(S)$. Then, we have that $\dom{T} \subset \dom{S}$ and that
+  \begin{equation*}
+    (x, Tx) = (x, Sx)
+  \end{equation*}
+  for all $x \in \dom{T}$, which is true if and only if $Tx = Sx$ for all $x \in \dom{T}$. Therefore, $S$ is an extension of $T$.
+\end{proof}
+
+The next result tells us when a subspace of $\HS \oplus \HS$ is the graph of an operator, and that the graph of an operator uniquely identifies the operator. This is a fairly easy result; however, it has some useful consequences for us, as we will see in a bit.
+
+\begin{lemma}[{\cite[Lemma 1.1]{konrad}}]\label{lbl_lemma_subspace_conditions_to_be_graph}
+  Let $M$ be a subspace of $\HS \oplus \HS$. Then,
+  \begin{enumerate}[label=(\alph*)]
+    \item $M$ is the graph of an operator if and only if $(0, x) \in M$ implies that $x = 0$.
+    \item The graph of an operator uniquely identifies the operator.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  For part (a), first suppose that $M$ is the graph of an operator $T$ in $\HS$, and that there are elements $(0, x) \in \M$. Every element of $M$ is of form $(y, Ty)$, meaning that $(0, x) = (0, T(0))$. Every operator $T$ maps 0 to 0 by linearity, so $x = T(0)$, and as its an operator, this mapping is unique. Therefore, $(0, x) \in \M$ implies that $x = 0$.
+
+  \medskip
+
+  Now suppose that $M$ satisfies the condition that $(0, x) \in M$ implies that $x = 0$. For every $(x, y) \in \M$, we then define a mapping in $\HS$ by $T: \dom{T} \to \HS$, $Tx = y$, where
+  \begin{equation*}
+    \dom{T} \coloneqq \set{x \in \HS \colon \text{there exists some $y \in \HS$ such that} \,(x, y) \in \M}.
+  \end{equation*}
+  To show that this is an operator, we need to verify that it is both well-defined and linear. To see that it is well-defined, suppose that there is some vectors $x, y_1,$ and $y_2$ in $\HS$ such that $Tx = y_1 = y_2$. By how our mapping is defined, we must have that $(x, y_1)$ and $(x, y_2)$ are in $M$. Now,
+  \begin{equation*}
+    (x, y_1) - (x, y_2) = (0, y_1 - y_2),
+  \end{equation*}
+  which must be in $M$ as $M$ is a subspace. However, as $(0, x) \in M$ implies that $x = 0$, this is true if and only if $y_1 = y_2$. Therefore, $T$ is well-defined.
+
+  \medskip
+
+  The linearity of $T$ is also easy to see. We note that for all $\alpha, \beta \in \C$ and all $(x_1, y_1), (x_2, y_2) \in M$, we have that
+  \begin{align*}
+    \alpha (x_1, y_1) + \beta (x_2, y_2)
+    =
+    (\alpha x_1 + \beta x_2, \alpha y_1 + \beta y_2).
+  \end{align*}
+  This gives us that
+  \begin{align*}
+    T(\alpha x_1 + \beta x_2)
+    &=
+    \alpha y_1 + \beta y_2
+    =
+    \alpha Tx_1 + \beta Tx_2,
+  \end{align*}
+  so $T$ is a well-defined linear mapping and therefore is an operator.
+
+  \medskip
+
+  For part (b), it is easy to see that the graph of an operator uniquely identifies the operator. Suppose that $T$ and $S$ are operators in $\HS$. If $T = S$, then we have that $\dom{S} = \dom{T}$ and that, for all $x \in \dom{T}$, $Sx = Tx$, so clearly $(x, Tx) = (x, Sx)$ and we have that $\G(S) = \G(S)$. Now suppose that $\G(S) = \G(T)$, then
+  \begin{equation*}
+    \set{(x, Sx) \colon x \in \dom{S}} = \set{(x, Tx) \colon x \in \dom{T}},
+  \end{equation*}
+  which can clearly only be true if for all $x \in \dom{T}$, $x \in \dom{S}$ and $Sx = Tx$, meaning that $S = T$.
+\end{proof}
+
+Our next step is to develop some criteria to determine if when an operator is closed or closable. For our criteria to be closed, it is useful to notice that any operator in $\HS$ can have its domain turned into a normed space, whose norm is related to the inner product on $\HS$.
+
+\begin{proposition}[{\cite[p.5]{konrad}}]\label{lbl_prop_graph_norm}
+  Let $T$ be an operator in $\HS$. Then, the function $\ip{\cdot, \cdot}_{T} \colon \dom{T} \times \dom{T} \to \C$ defined by
+  \begin{equation*}
+    \ip{x, y}_T \coloneqq \ip{x, y}_\HS + \ip{Tx, Ty}_{\HS}
+  \end{equation*}
+  is an inner product on $\dom{T}$, and the function $\norm{\cdot}_T \colon \dom{T} \to [0,\infty)$ defined by
+  \begin{equation*}
+    \norm{x}_T \coloneqq \sqrt{\norm{x}^2_\HS + \norm{Tx}^2 _\HS}
+  \end{equation*}
+  is a norm on $\dom{T}$, which we call the {\emph{graph norm of $T$}}.
+\end{proposition}
+\begin{proof}
+  This proof is a simple verification that the graph norm satisfies the definition of a norm. Where this is easily seen, {\cite[p.5]{konrad}} does not prove it, so we therefore move the verification to Section \eqref{proof_lbl_prop_graph_norm}.
+\end{proof}
+
+\begin{proposition}[{\cite[Proposition 1.4]{konrad}}]\label{lbl_prop_equiv_closed_defs}
+  Let $T$ be an operator in $\HS$. Then, the following are equivalent:
+  \begin{enumerate}[label=(\alph*)]
+    \item $T$ is a closed operator.
+    \item If $(x_n)_{n \in \N}$ is a sequence in $\dom{T}$ such that it converges to some $x \in \HS$ and that the sequence $(Tx_n)_{n \in \N}$ converges to some $y \in \HS$, then $x$ is in the domain of $T$ and $Tx = y$.
+    \item The normed space $\big( \dom{T}, \norm{\cdot}_T \big)$ is a Hilbert space.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  The method for this proof is fairly simple. Part (b) is what it means for the graph of $T$ to be closed, so the equivalence of (a) and (b) follows easily from the definition of the closure of the graph of $T$. it is also easy to see that part (a) and part (c) are equivalent. This is done by creating an operator from $\dom{T}$ to the graph of $T$, which is defined by the mapping $x \mapsto (x, Tx)$. This operator is norm-preserving, which means that the property of Cauchy sequences converging is preserved between the two, showing the equivalence of completeness.
+
+  \medskip
+
+  Due to the simplicity of this proof and the fact that we include part (c) for completeness and for interest, we move it to Section \eqref{proof_lbl_prop_equiv_closed_defs} for the interested reader.
+\end{proof}
+
+The following simple corollary of our previous result will prove very useful to us.
+
+\begin{corollary}\label{lbl_closed_means_resolvent_function_closed}
+  If $T$ is a closed operator in $\HS$ and $\lambda$ is any complex number, the operator $T - \lambda I$ is also closed.
+\end{corollary}
+\begin{proof}
+  Suppose that $T$ is a closed operator in $\HS$, $\lambda$ is any complex number, and that $(x_n)_{n \in \N}$ is a sequence in $\dom{T}$ such that, for some $x, y \in \HS$, we have that
+  \begin{equation*}
+    \big(x_n, (T - \lambda I)x_n \big) \to (x, y) \,\,\text{as $n \to \infty$}
+  \end{equation*}
+  This clearly means that $x_n \to \infty$ and $(T - \lambda I)x_n \to y$ as $n \to \infty$. Now, we also have that
+  \begin{equation*}
+    (T - \lambda I)x_n = Tx_n - \lambda x_n.
+  \end{equation*}
+  As $(x_n)_{n \in \N}$ converges, we must have that $(Tx_n)_{n \in \N}$ converges too, or else $(T - \lambda I)x_n$ would not converge. Now, $T$ is an operator, so $(Tx_n)_{n \in \N}$ converging implies that $x$ is in the domain of $T$ and $Tx_n \to Tx$ as $n \to \infty$ by Proposition \eqref{lbl_prop_equiv_closed_defs}(b). Therefore,
+  \begin{equation*}
+    (T - \lambda I)x_n = Tx_n - \lambda x_n
+    \to
+    Tx - \lambda x
+    =
+    (T - \lambda I)x.
+  \end{equation*}
+  By the uniqueness of limits, this means that $y = (T - \lambda I)x$. Therefore, any convergent sequence in $\G(T - \lambda I)$ has a limit point of the form $(x, (T - \lambda I)x)$ for some $x$ in the domain of $T$, which is also an element of $\G(T - \lambda I)$, giving us that $\G(T)$ is closed.
+\end{proof}
+
+We can also use Lemma \eqref{lbl_lemma_subspace_conditions_to_be_graph} to create a similar criteria of when an operator in $\HS$ is closable.
+
+\begin{proposition}[{\cite[Proposition 1.5]{konrad}}]\label{lbl_prop_1_2_10}
+  Let $T$ be an operator in $\HS$. Then, the following are equivalent:
+  \begin{enumerate}[label = (\alph*)]
+    \item $T$ is closable.
+    \item If $(x_n)_{n \in \N}$ is a sequence of vectors in $\dom{T}$ such that they converge to 0 and $(Tx_n)_{n \in \N}$ converges to some vector in $\HS$, then $(Tx_n)_{n \in  \N}$ converges to 0 too.
+    \item $\overline{\G(T)}$ is the graph of a linear operator.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We require this result in order to justify the following definition. As this is the only reason for it and as it is simple but long, we omit the details here. The interested reader can find these in Section \eqref{proof_lbl_prop_1_2_10}, which is a recreation of the proof of {\cite[Proposition 1.5]{konrad}}.
+\end{proof}
+
+As graph of an operator uniquely determines an operator, armed with our previous result we are now safe to make the following definition.
+
+\begin{definition}[{\cite[Definition 9.6]{Hall2013}}]
+  If $T$ is a closable operator in $\HS$, then we define the {\emph{closure of $T$}}, $\overline{T}$, to be the operator such that $\G(\overline{T}) = \overline{\G(T)}$.
+\end{definition}
+
+Our final result is a very important and fundamental result in functional analysis, and is known as the {\emph{closed graph theorem}}. It tells us the relation between a graph of an operator defined on the entirety of $\HS$ and the boundedness of the operator.
+
+\begin{theorem}[Closed graph theorem, {\cite[Theorem 2.2.7]{analysis_now}}]\label{lbl_thrm_closed_graph}
+  Let $T: \HS \to \HS$ be an operator. Then, $T$ is continuous (and therefore bounded) if and only if the graph of $T$ is closed.
+\end{theorem}
+\begin{proof}
+  Suppose that $T: \HS \to \HS$ is a continuous operator and let $\big( (x_n, Tx_n) \big)_{n \in \N}$ be a convergent sequence in $\G(T)$ with limit point $(x, y) \in \HS \oplus \HS$. This means that $x_n \to x$ as $n \to \infty$. As $T$ is continuous, $Tx_n \to Tx$ as $n \to \infty$. Therefore,
+  \begin{equation*}
+    (x_n, Tx_n) \to (x, Tx) \,\,\text{as $n \to \infty$}.
+  \end{equation*}
+  By the uniqueness of limits, we therefore have that $(x, y) = (x, Tx)$, which is clearly an element of $G(T)$ by the definition of the graph of an operator.
+
+  \medskip
+
+  For the converse, we model our proof off of the proof found in {\cite[Theorem 2.2.7]{analysis_now}}. Suppose that $\G(T)$ is closed. As it is a closed subspace of the Hilbert space $\HS \oplus \HS$, it is also a Hilbert space with the same inner product and norm as $\HS \oplus \HS$. It is now useful to define the orthogonal projection $P_\HS \colon \G(T) \to \HS$ which maps every $(x, Tx)$ to $x$. Injectivity and surjectivity of $P_\HS$ is a trivial consequence of it having the entirety of $\HS$ as its range. It is also easy to see that it is continuous. Suppose that $\big( (x_n, Tx_n) \big)_{n \in \N}$ is a convergent sequence in $\G(T)$ with limit point $(x, Tx)$. Then, we have that $x_n \to x$ as $n \to \infty$ and that
+  \begin{equation*}
+    P_\HS(x_n, Tx_n)
+    =
+    x_n
+    \to
+    x
+    =
+    P_\HS(x, Tx)
+    \,\, \text{as $n \to \infty$.}
+  \end{equation*}
+  As $P_\HS$ is a continuous, bijective operator, $P_\HS^{-1}: \HS \to \G(T)$ exists and is continuous by the bounded inverse theorem, which states that every bounded bijective operator has a bounded inverse; see {\cite[Corollary 2.2.5]{analysis_now}} for details. This means that it is bounded, so there exists some positive real constant $M \geq 0$ such that
+  \begin{equation*}
+    \norm{P^{-1}(x)}_{\G(T)} \leq M\norm{x}_{\HS}
+  \end{equation*}
+  for every $x$ in $\HS$. Now, for any $x$ in $\HS$,
+  \begin{align*}
+    \norm{Tx}_{\HS}
+    &\leq
+    \norm{Tx}_{\HS} + \norm{x}_{\HS} \\
+    &= \norm{(x, Tx)}_{\G(T)} \\
+    &= \norm{P_{\HS}^{-1}(x)}_{\G(T)} \\
+    &\leq
+    M \norm{x}_{\HS},
+  \end{align*}
+  so $T$ is bounded and therefore is continuous.
+\end{proof}
+We will see shortly that the closed graph theorem has fundamental consequences for a class of operator we deeply care about, known as an {\emph{unbounded self-adjoint operator}}.

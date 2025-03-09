@@ -1,0 +1,237 @@
+In this section, we provide a recap of Hilbert spaces and offer some important examples. Recall that a {\emph{Hilbert space}} $\HS$ is a real or complex vector space equipped with an inner product $\ip{\cdot, \cdot}$ (which we choose to define as linear in the first variable), equipped with the norm induced by the inner product, $\norm{\cdot} = \sqrt{\ip{\cdot, \cdot}}$, and is complete; that is, every Cauchy sequence in $\HS$ converges with respect to the metric induced by our norm. Hilbert spaces are a special type of {\emph{Banach space}}, which is defined in nearly the same way but does not have the condition that our norm is induced by the inner product. For our purposes, we will be concerned solely with complex Hilbert spaces. For a subset $X \subset \HS$, we use the notation $\overline{X}$ to refer to the norm closure of $X$.
+
+\begin{example}\label{lbl_example_Cn_HS}
+  Let $\C^n$ be equipped with the standard inner product
+  \begin{equation}
+    \ip{x, y} = \sum_{j = 1}^{n} x_j \overline{y_j} \quad \text{for all $x, y \in \C^n$}.
+  \end{equation}
+  $\C^n$ is a Hilbert space when equipped with the norm induced by the inner product, $\norm{\cdot} = \sqrt{\ip{\cdot, \cdot}}$; see \cite[Example 4.1.6]{christensen2010functions} for details.
+\end{example}
+
+\begin{example}\label{lbl_example_ell2_is_HS}
+  Let $\ell^2(\N)$ be the vector space of complex {\emph{square-summable sequences}}:
+  \begin{equation*}
+    \ell^2(\N) \coloneqq \set{ (x_n)_{n \in \N} \, : \, x_n \in \C, \, \sum_{j=1}^{\infty} \abs{x_n}^2 < \infty }.
+  \end{equation*}
+  The following function is an inner product on $\ell^2$:
+  \begin{equation*}
+    \ip{x, y} = \sum_{j = 1}^{\infty} x_j \overline{y_j} \quad \text{for all $x, y \in \ell^2$},
+  \end{equation*}
+  and the norm induced by the inner product $\norm{\cdot} = \sqrt{\ip{\cdot, \cdot}}$ turns $\ell^2$ into a Hilbert space; see \cite[Theorem 4.2.1]{christensen2010functions} for details.
+\end{example}
+
+Notice that the $\ell^2$ space in Example \eqref{lbl_example_ell2_is_HS} has no finite basis in the usual linear algebraic sense of the word; that is, a finite sequence of vectors $e_1, \cdots, e_n \in \ell^2$ such that $\ell^2 = \text{span}\set{e_1, \cdots, e_n}$. We call such a vector space {\emph{infinite-dimensional}}. The concept of a basis is however quite useful, and we can generalise the idea to infinite-dimensional spaces.
+
+\begin{definition}[{\cite[Definition 2.5.4, Definition 4.7.1, Theorem 4.7.2]{christensen2010functions}}]\label{lbl_def_onb}
+  For a vector space $V$, a sequence of vectors $(e_n)_{n \in \N}$ is a {\emph{basis}} for $V$ if for every vector $v \in V$, the exists a unique sequence of scalars $(a_n)_{n \in \N}$ such that
+  \begin{equation*}
+    v = \sum_{n = 1}^{\infty} a_n e_n.
+  \end{equation*}
+  Suppose that $\HS$ is a Hilbert space. We call the basis an {\emph{orthogonal basis}} if, for all $v \in \HS$, any of the following equilvalent statements hold:
+  \begin{enumerate}
+    \item For all $e_j, e_k$ in $(e_n)_{n \in \N}$, $\ip{e_j, e_k} = \delta_{j, k} 1$.
+    \item $v = \sum_{j=1}^{\infty} \ip{v, e_j} e_j$.
+    \item $\ip{v, w} = \sum_{j=1}^{\infty} \ip{v, e_j}\ip{e_j, w}$.
+    \item $\norm{v}^2 = \sum_{j=1}^{\infty} \abs{\norm{v, e_j}}^2$.
+    \item $\overline{\text{span}\set{e_j}_{j \in \N}} = \HS$.
+    \item If $\ip{v, e_j} = 0$ for all $j \in \N$, then $v = 0$.
+  \end{enumerate}
+  For a proof of this equivalence, see {\cite[Theorem 4.7.2]{christensen2010functions}}.
+\end{definition}
+
+\begin{remark}
+  By a result known as {\emph{Hausdorff’s maximality principle}}, every Hilbert space must have an orthonormal basis; for a proof, please see {\cite[Examples 10.28(5)]{muscat}}.
+\end{remark}
+
+\begin{example}
+  We take these two examples from {\cite[Examples 10.28]{muscat}}.
+  \begin{enumerate}[label = (\alph*)]
+    \item Let $\ell^2$ be the Hilbert space defined in terms of the standard inner product as in Example \eqref{lbl_example_ell2_is_HS}. Then, the sequences $e_n$ defined by
+    \begin{equation*}
+      (e_n)_{i} =
+      \begin{cases}
+        1 & \text{if $i = n$}, \\
+        0 & \text{otherwise}
+      \end{cases}
+    \end{equation*}
+    form an orthonormal basis for $\ell^2$. The fact that these are an orthonormal sequence of vectors is clear, as
+    \begin{align*}
+      \ip{e_n, e_m}
+      =
+      0 + (e_n)_n \conjugate{(e_m)_n} + (e_n)_m + \conjugate{(e_m)_m}
+      =
+      \begin{cases}
+        1 & \text{if $n = m$}\\
+        0 & \text{otherwise}.
+      \end{cases}
+      \end{align*}
+      To see that these form a basis, we notice that if $(x_1, x_2, \ldots) \in \big( \text{span}(e_j)_{j\in \N} \big)^\perp$, then for all $n \in \N$, $x_n = \ip{e_j, x} = 0$; therefore, $\big( \text{span}(e_j)_{j \in \N} \big)^\perp = \set{0}$, so $\overline{ \text{span}(e_j)_{j \in \N}} = \big( \text{span}(e_j)_{j \in \N}^\perp \big)^\perp = \HS$.
+
+    \item Let $\HS$ be a Hilbert space and $(v_n)$ be a countable number of vectors in $\HS$. We can then use this set to create a countable number of orthonormal vectors in $\HS$ through the iterative formula
+    \begin{align*}
+      e_1 &\coloneqq \frac{v_0}{\norm{v_0}}, \\
+      e_n &\coloneqq \frac{v_n - \sum_{j=1}^{n-1} \ip{e_j, v_j} e_j}{\norm{v_n - \sum_{j=1}^{n-1} \ip{e_j, v_j} e_j}} \quad \text{for $n \geq 2$}
+    \end{align*}
+    under the condition that if $v_n = 0$ we then discard this vector from the collection. This is known as the {\emph{Gram-Schmidt algorithm}}. This therefore gives us a potential method to construct an orthonormal basis for a Hilbert space.
+  \end{enumerate}
+\end{example}
+
+The Hilbert space $\ell^2$ in Example \eqref{lbl_example_ell2_is_HS} is an example of a {\emph{separable Hilbert space}}, which is simply a Hilbert space with a countable dense subset. Separable Hilbert spaces will play a great importance for us later, and they are nice because they mean we must have a countable orthonormal basis.
+
+\begin{proposition}[{\cite[Proposition 7.18]{muscat}}]
+  A Hilbert space $\HS$ is separable if and only if it has a countable orthonormal basis.
+\end{proposition}
+\begin{proof}
+  We omit this result to stay focused due to the proof relying on results on countable sets; please see {\cite[Proposition 7.18]{muscat}} for a proof.
+\end{proof}
+
+It turns out that every infinite-dimensional separable Hilbert space is isomorphic to $\ell^2$, which makes this Hilbert space very important. Furthermore, this isomorphism is an {\emph{isometry}}; that is, a map which preserves the norm.
+
+\begin{theorem}[{\cite[Theorem 4.7.8]{christensen2010functions}}]
+  Let $\HS$ be any infinite-dimensional separable Hilbert space. Then, $\HS$ is isometrically isomorphic to $\ell^2$.
+\end{theorem}
+\begin{proof}
+  We omit this result, as it is normally seen in a first course to Hilbert spaces; for a proof, please see {\cite[Theorem 4.7.8]{christensen2010functions}} or {\cite[Proposition 10.32]{muscat}}. We note that {\cite[Proposition 10.32]{muscat}} includes the finite-dimensional case, which can be useful but should be known from linear algebra.
+\end{proof}
+
+We conclude this section with the Hilbert space $L^2(\R^n)$. This space will be of huge interest to us when we discuss quantum physics in Section 2.
+
+\begin{definition}[{\cite[p.157]{stein}}]\label{lbl_def_L2}
+  The space $L^2(\R^n)$ is the set of all equivalence classes of square-Lebesgue integrable functions with domain $(\R^n, \mathcal{B}_n)$ and codomain $(\C, \mathcal{B}(\C))$; that is, the equivalence classes whose representatives $f: (\R^n, \mathcal{B}_n) \to (\C, \mathcal{B}(\C))$ satisfy
+  \begin{equation*}
+    L^2(\R^n) \coloneqq \set{f: (\R^n, \mathcal{B}_n) \to (\C, \mathcal{B}(\C)) \,\, \text{is measurable} \,:\, \int \abs{f}^2 \,\mathrm{d}x < \infty }.
+  \end{equation*}
+\end{definition}
+
+\begin{proposition}\label{lbl_L2_hilbert}
+  The space $L^2(\R^n)$ is a Hilbert space with respect to the inner product defined by
+  \begin{equation*}
+    \ip{f, g} \coloneqq \int f(x)\conjugate{g(x)} \,\mathrm{d}
+  \end{equation*}
+  for all $f, g \in L^2(\R^n)$.
+\end{proposition}
+\begin{proof}
+  We prove this using {\cite[Chapter 4, Proposition 1.1]{stein}} as a guidance. First, we note that $L^2(\R^n)$ is a subspace of the vector space of functions from $\R^n$ to $\C$, so we can use the following subspace test to see if $L^2(\R^n)$ is a vector space:
+  \begin{enumerate}[label=(S\arabic*)]
+    \item $0 \in L^2(\R^n)$.
+    \item For all $f, g \in L^2(\R^n)$, $f+g \in L^2(\R^n)$.
+    \item For all $\lambda \in \C$, $\lambda f \in L^2(\R^n)$.
+  \end{enumerate}
+  The 0 map is clearly in $L^2(\R^n)$, as
+  \begin{equation*}
+    \int \abs{0(x)}^2 \,\mathrm{d}x = \int 0 \,\mathrm{d}x = 0 < \infty.
+  \end{equation*}
+  Now, let $f, g \in L^2(\R^n)$. We notice that, for all $x \in \R^n$,
+  \begin{equation*}
+    \abs{f(x) + g(x)} \leq 2\, \text{max}\set{\abs{f(x)}, \abs{g(x)}} \leq 2(\abs{f(x)} + \abs{g(x)}),
+  \end{equation*}
+  giving us that
+  \begin{align*}
+    \abs{f(x) + g(x)}^2
+    &\leq \big(2\, \text{max}\set{\abs{f(x)}, \abs{g(x)}} \big)^2 \\
+    &=
+    4 \, \text{max}\set{\abs{f(x)}^2, \abs{g(x)}^2} \\
+    &\leq
+    4(\abs{f(x)}^2 + \abs{g(x)}^2).
+  \end{align*}
+  We now see that
+  \begin{equation*}
+    \int \abs{f(x) + g(x)}^2 \,\mathrm{d}x \leq \int 4(\abs{\abs{f(x)}^2 + \abs{g(x)}^2}) \,\mathrm{d}x = 4 \int \abs{f(x)}^2 \,\mathrm{d}x + 4\int \abs{g(x)}^2 \,\mathrm{d}x < \infty,
+  \end{equation*}
+  so $f + g \in L^2(\R^n)$. To see that our final subspace criteria is fulfilled, if we let $\lambda \in \C$, we see that
+  \begin{equation*}
+    \int \abs{\lambda f(x)}^2 \,\mathrm{d}x = \abs{\lambda}^2 \int f(x) \,\mathrm{d}x < \infty.
+  \end{equation*}
+  Therefore, $L^2(\R^n)$ is a vector space.
+
+  \medskip
+
+  We now check that for all $f, g \in L^2(\R^n)$, $\ip{f, g}$ is a norm. We first note that $\int f(x) \conjugate{g(x)} \,\mathrm{d}x$ is well defined, as for any non-negative real numbers $A, B \geq 0$, we have that $2AB \leq A^2 + B^2$. Specifically,
+  \begin{equation*}
+    2 \abs{f(x) \conjugate{g(x)}} \leq \abs{f(x)}^2 + \abs{\conjugate{g(x)}}^2,
+  \end{equation*}
+  so
+  \begin{align*}
+    2 \int \abs{f(x) \conjugate{g(x)}} \,\mathrm{d}x
+    &\leq
+    \int \abs{f(x)}^2 \,\mathrm{d}x + \int \abs{\conjugate{g(x)}}^2 \,\mathrm{d}x \\
+    &=
+    \int \abs{f(x)}^2 \,\mathrm{d}x + \int \abs{g(x)}^2 \,\mathrm{d}x \\
+    &< \infty,
+  \end{align*}
+  so $f\conjugate{g}$ is integrable and the integral is defined.
+
+  \medskip
+
+  We now need to show that $\ip{\cdot, \cdot}$ is a linear function in the first variable. For any $h \in L^2(\R^n)$ and $\lambda \in \C$, we have that
+  \begin{align*}
+    \ip{f + \lambda h, g}
+    &= \int (f(x) + \lambda h(x))\conjugate{g(x)} \,\mathrm{d}x \\
+    &=
+    \int f(x)\conjugate{g(x)} \,\mathrm{d}x + \lambda \int h(x)\conjugate{g(x)} \,\mathrm{d}x \\
+    &=
+    \ip{f, g} + \lambda \ip{h, g}.
+  \end{align*}
+  Next, we show the conjugate-symmetry of $\ip{\cdot, \cdot}$, which involves a messy computation of splitting our functions into their real and imaginary parts. We first see that
+  \begin{align*}
+    \ip{f,g}
+    &=
+    \int \big(\text{re}(f(x)) + i\,\text{im}(f(x))\big)\big(\text{re}(g(x)) - i\,\text{im}(g(x))\big) \,\mathrm{d}x \\
+    &=
+    \int \text{re}(f(x))\text{re}(g(x)) \,\mathrm{d}x - i \int \text{re}(f(x))\text{im}(g(x)) \,\mathrm{d}x + i \int \text{im}(f(x))\text{re}(g(x)) \,\mathrm{d}x
+    \\&\qquad\qquad\qquad + \int \text{im}(f(x))\text{im}(g(x)) \,\mathrm{d}x,
+  \end{align*}
+  so
+  \begin{align*}
+    \conjugate{\ip{f, g}}
+    &=
+    \int \text{re}(f(x))\text{re}(g(x)) \,\mathrm{d}x + i \int \text{re}(f(x))\text{im}(g(x)) \,\mathrm{d}x - i \int \text{im}(f(x))\text{re}(g(x)) \,\mathrm{d}x
+    \\&\qquad\qquad\qquad + \int \text{im}(f(x))\text{im}(g(x)) \,\mathrm{d}x, \\
+    &=
+    \int \big(\text{re}(f(x)) - i\,\text{im}(f(x))\big)\big(\text{re}(g(x))+ i\,\text{im}(g(x))\big) \,\mathrm{d}x \\
+    &=
+    \ip{g, f}.
+  \end{align*}
+  Finally, we show the positive-semidefiniteness of $\ip{\cdot, \cdot}$. We notice that
+  \begin{align*}
+    \ip{f, f}
+    &=
+    \int f(x) \conjugate{f(x)} \,\mathrm{d}x \\
+    &=
+    \int \abs{f(x)}^2 \,\mathrm{d}x.
+  \end{align*}
+  As $\abs{f(x)}^2 \geq 0(x)$ for all $x$ with equality if and only if $f = 0$, we see that $\ip{f, f} \geq 0$ with equality if and only if $f$ is equal to 0 almost everywhere. We have therefore shown that $\ip{\cdot, \cdot}$ is in fact a norm on $L^2(\R^n)$.
+
+  \medskip
+
+The completeness with respect to the norm of $L^2(\R^n)$ is a simple slightly long and messy verification. We therefore omit it due to our time considerations; the interested reader can find a proof in {\cite[Chapter 4, Theorem 1.2]{stein}}.
+\end{proof}
+
+\begin{remark}\label{lbl_remark_general_L_p_spaces}
+  In general, for $1 \leq p < \infty$ we can define the $L^p (X, \mathcal{F}, \mu)$ space to be
+  \begin{equation*}
+    L^p(X, \mathcal{F}, \mu) \coloneqq \set{f: (X, \mathcal{F}) \to (\C, \mathcal{B}(\C)) \, \text{is measurable} \,:\, \int \abs{f}^p \,\mathrm{d}\mu < \infty }.
+  \end{equation*}
+  When this is equipped with the norm
+  \begin{equation*}
+    \norm{f}_p \coloneqq \left( \int_{X} \abs{f}^p \,\mathrm{d}\mu \right)^{\frac{1}{p}},
+  \end{equation*}
+  it is always a Banach space; however, it is only a Hilbert space for $p=2$, as in all other cases we can't use this norm to define an inner product. For details, please see {\cite[Chapter 4.2]{sobolev}}, or {\cite[Chapter 5.4]{christensen2010functions}} for the space $L^p(\R)$. We can also define the $L^p$ spaces on a measurable set $E \subset X$, where we just restrict the integral to $E$; that is,
+
+  \begin{equation*}
+    L^p(E, \mathcal{F}, \mu) \coloneqq \set{f: (E, \mathcal{F}) \to (\C, \mathcal{B}(\C)) \, \text{is measurable} \,:\, \int_E \abs{f}^p \,\mathrm{d}\mu < \infty }.
+  \end{equation*}
+
+  In this case, as $E$ is a subset of $X$, the norm on $L^p(E, \mathcal{F}, \mu)$ is just the norm of $L^p(X, \mathcal{F}, \mu)$. For the important case of an open set $(a,b) \subset \R$, please see {\cite[Chapter 5.5]{christensen2010functions}}.
+
+  \medskip
+
+  Importantly, we can also extend this definition to include the case of $p = \infty$. For our work, we will only need the space $L^\infty(\R)$, which is introduced in {\cite[p.110]{christensen2010functions}} as the Banach space
+  \begin{equation*}
+    L^\infty(\R) \coloneqq \set{f \colon \R \to \C \colon \text{$f$ is bounded}}
+  \end{equation*}
+  with the norm
+  \begin{equation*}
+    \norm{f}_\infty = \sup_{x \in \R^n}\set{\abs{f(x)}}.
+  \end{equation*}
+\end{remark}

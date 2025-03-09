@@ -1,0 +1,65 @@
+\subsection{Proof of Lemma \eqref{lbl_lemma_excited_states_ONB}}\label{proof_lbl_lemma_excited_states_ONB}
+
+\begin{lemma}[{\cite[Lemma 11.5]{Hall2013}}]
+  Let $\alpha \in \C$ be any scalar. Then, the partial sums of the series
+  \begin{equation*}
+    \sum_{n=0}^{\infty} \frac{\alpha^n \tilde{x}^n}{n!}\exp\left(-\frac{\tilde{x}^2}{2}\right)
+  \end{equation*}
+  converge in $L^2(\R)$ to $\exp\left(\alpha \tilde{x}\right)\exp\left(-\frac{\tilde{x}^2}{2}\right)$.
+\end{lemma}
+\begin{proof}
+  We showcase this proof directly from the proof of {\cite[Lemma 11.5]{Hall2013}}. We start by noting that $\exp\left(\abs{\alpha} \tilde{x}\right) \exp\left( -\frac{\tilde{x}^2}{2} \right)$ is non-negative for all $\tilde{x} \in \R$. Now,
+  \begin{align*}
+    &\norm{
+      \exp\left(\alpha \tilde{x}\right) \exp\left( -\frac{\tilde{x}^2}{2} \right)
+      -
+      \sum_{n=0}^{N} \frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)
+    }^2 \\
+    &=
+    \norm{
+      \sum_{n=0}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)
+      -
+      \sum_{n=0}^{N} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)
+    }^2 \\
+    &=
+    \norm{
+      \sum_{n=N+1}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)
+    }^2 \\
+    &=
+    \int_{-\infty}^{\infty} \abs{\sum_{n=N+1}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)}^2 \,\mathrm{d}\tilde{x}.
+  \end{align*}
+  As we have the pointwise convergence
+  \begin{equation*}
+    \sum_{n=0}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)
+    =
+    \exp\left(\alpha \tilde{x}\right) \exp\left( -\frac{\tilde{x}^2}{2} \right),
+  \end{equation*}
+  we must have that the tail of the series, \[\sum_{n=N+1}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right),\] pointwise converges to 0 as $N \to \infty$. Now, we see that
+  \begin{align*}
+    \abs{\sum_{n=N+1}^{\infty} \left(\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)\right)}
+    &\leq
+    \sum_{n=N+1}^{\infty} \abs{\frac{(\alpha \tilde{x})^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right)} \\
+    &=
+    \sum_{n = N+1}^{\infty} \frac{\abs{\alpha\tilde{x}}^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right) \\
+    &=
+    \sum_{n = 0}^{\infty} \frac{\abs{\alpha\tilde{x}}^n}{n!} \exp\left( -\frac{\tilde{x}^2}{2} \right) \\
+    &=
+    \exp\left( \abs{a}\abs{\tilde{x}} \right)\exp\left( -\frac{\tilde{x}^2}{2} \right).
+  \end{align*}
+  After a bit of fiddling, we end up with
+  \begin{equation*}
+    \abs{\sum_{n= N+1}^{\infty} \frac{(\alpha\tilde{x})^n}{n!} \exp\left(-\frac{\tilde{x}^2}{2} \right)}^2
+    \leq
+    \exp\left( 2 \abs{\alpha}\abs{\tilde{x}}\right) \exp\left( -\tilde{x}^2 \right).
+  \end{equation*}
+  Now, it can be seen that $\exp\left( 2\abs{\alpha}\abs{\tilde{x}}\right)\exp\left( -\tilde{x}^2 \right)$ has a finite valued integral by making an appropriate substitution and using Lemma \eqref{lbl_oscillator_hard_integral}. This means that, by the dominated convergence theorem, Theorem \eqref{lbl_thrm_dominated_convergence}, we get that
+  \begin{align*}
+    \norm{
+    \exp\left(\alpha \tilde{x}\right) \exp\left(-\frac{\tilde{x}}{2}\right)
+    -
+    \sum_{n=0}^{\infty} \frac{\alpha^n \tilde{x}^n}{n!} \exp\left(-\frac{\tilde{x}^2}{2}\right)
+    }^2
+    \to 0
+  \end{align*}
+  as $N \to \infty$, giving us our result.
+\end{proof}

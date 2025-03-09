@@ -1,0 +1,277 @@
+\subsection{A brief introduction to quantum mechanics}\label{lbl_section_qm_introduction}
+In this section, we introduce how unbounded operators create a framework for quantum mechanics. These are the so-called {\emph{axioms of quantum mechanics}}. To do so, we follow \cite[Chapter 11.1]{kreyszig} and \cite[Chapter 3]{Hall2013} by using the  example of a quantum particle moving living in a single dimension at an arbitrary fixed moment of time as motivation. {\cite[Chapter 2.1]{teschl}} has a similar approach, but with a particle living in three-dimensional space and where time matters.
+
+\medskip
+
+Suppose that we have a quantum particle which lives in $\R$. We will assume that this particle is at an arbitrarily fixed moment of time, which makes things significantly simpler. This particle has properties we can measure, such as its position, momentum, and energy. We call measurable properties of the particle the {\emph{observables}} of the particle. The {\emph{state}} the particle is in is fully described by a function $\psi \colon \R \to \C$, where the input of the function corresponds to the position of the particle. We call $\psi$ a {\emph{wavefunction}}. In classical mechanics, this state can be measured relatively accurately. However, {\cite[p.54]{Hall2013}} tells us that experiments such as the famous double slit experiment show that in the quantum world, you can get different results when you measure an observable of a system multiple times when it is in the same state.  We therefore would like our wavefunctions to have a {\emph{probabilistic nature}} to them, rather than a {\emph{deterministic nature}} like in the classical world. Specifically, {\cite[p.573]{kreyszig}} and {\cite[p.58]{Hall2013}} tell us that, for a subset $E$ of $\R$, the probability that the particle can be found in $E$ is given by
+\begin{align*}
+  \mathbb{P}_E
+  =
+  \int_{E} \abs{\psi(x)}^2 \,\mathrm{d}x.
+\end{align*}
+As the particle lives somewhere in the entirety of $\R$, we clearly  have the constraint that
+\begin{align*}
+  \norm{\psi(x)}^2
+  =
+  \int_{\R} \abs{\psi(x)}^2 \,\mathrm{d}x
+  =
+  1.
+\end{align*}
+This constraint is known as the the {\emph{normalisation condition}}. The normalisation condition must mean that our wavefunction $\psi$ is an element of $L^2(\R)$, so we have an associated Hilbert space describing our quantum system. Such a Hilbert space is often referred to as a {\emph{quantum Hilbert space}}.
+
+\medskip
+
+{\cite[p.574]{kreyszig}} tells us that the normalisation condition our wavefunction $\psi$ has an important consequence. We notice that we obviously have that $\abs{\psi(x)}^2$ is non-negative for all $x$, which together with the normalisation condition means that $\abs{\psi(x)}^2$ can be interpreted as a probability density function. {\cite[p.14]{Hall2013}} tells us that this is known as the {\emph{Copenhagen interpretation of quantum mechanics}}. In this interpretation, a wavefunction of the system cannot be directly observed, but instead prescribes the probability of measuring an observable.
+
+\medskip
+
+As we can interpret $\abs{\psi(x)}^2$ as a probability density function, this therefore means that we can get the expected position of the particle given our state. This is given in the standard probabilistic way by
+\begin{align*}
+  \mu_\psi (x) = \int_{\R} x\abs{\psi(x)}^2 \,\mathrm{d}x.
+\end{align*}
+We can also define the variance of the particle's position in the standard probabilistic way. This is done in {\cite[p.574]{kreyszig}} and in {\cite[p.56]{teschl}}. It will not play a role in our work, so we omit the details; however, it is very important in quantum physics, for instance in the famous {\emph{uncertainty principle}}. The interested reader can find details on the uncertainty principle in {\cite[Chapter 12]{Hall2013}}, {\cite[Theorem 11.2-2]{kreyszig}}, and in {\cite[Theorem 8.2]{teschl}}.
+
+\medskip
+
+Now, as {\cite[p.574]{kreyszig}} observes, it is easy to notice that
+\begin{align}
+  \int_{\R} x\abs{\psi(x)}^2 \,\mathrm{d}x
+  =
+  \int_{\R} x \psi(x) \conjugate{\psi(x)} \,\mathrm{d}x.
+\end{align}
+We saw before in Example \eqref{lbl_example_multiplication_operator_dense_not_bounded} that the expression $x \psi(x)$ is the defining equation of the multiplication by $x$ in $L^2(\R)$ operator. Specifically, this is the operator $X \colon \dom{X} \to L^2(\R)$ given by
+\begin{align*}
+  \dom{X} \coloneqq  \set{\psi \in L^2(\R) \colon x\psi(x) \in L^2(\R)}; \quad
+  \psi(x) &\mapsto x\psi(x).
+\end{align*}
+We use $X$ here to refer to the multiplication by $x$ operator instead of $M_x$ to follow the standard convention in physics. In Example \eqref{lbl_example_multiplication_operator_sa}, we saw that $X$ is self-adjoint on this domain. Our previous observations therefore give us that the position observable has a corresponding operator, and
+\begin{align*}
+  \mu_\psi (x) &= \ip{X\psi, \psi} = \ip{\psi, X\psi}.
+\end{align*}
+As $X$ therefore determines the average position of our particle when it is in a state with the wavefunction $\psi$, we call $X$ the {\emph{position operator}} when we are working in the quantum context.
+
+\medskip
+
+Now, by following {\cite[p.574]{kreyszig}}, we can also say a bit more about our wavefunctions. By the homogeneity of the norm, if we have some wavefunction $\psi$ and some complex number $\alpha$ with a norm of 1, we have that $\norm{\alpha\psi} = \norm{\psi}.$ Physically, this means that the probability density function our wavefunction $\psi$ induces is the same when we look at a wavefunction $\phi$ which is some multiple of norm 1 of $\psi$, so $\psi$ and $\phi$ represent the same physical characteristic. This motivates the following equivalence relation.
+
+\begin{proposition}[{\cite[p.574]{kreyszig}}]\label{lbl_prop_wavefunction_equivalence}
+  Let $\psi_1$ and $\psi_2$ be wavefunctions in $L^2(\R)$. Then, the relation
+  \begin{align*}
+    \psi_1 \sim \psi_2 \,\, \text{if and only if} \,\, \text{there exists some $\alpha \in \C$ such that $\abs{\alpha} = 1$ and $\psi_1 = \alpha \psi_2$}
+  \end{align*}
+  defines an equivalence relation.
+\end{proposition}
+\begin{proof}
+  The proof of this result is a simple verification of the reflexivity, symmetric, and transitivity of $\sim$. Due to our time constraints, we therefore move this verification to Section \eqref{proof_lbl_prop_wavefunction_equivalence}. We note that {\cite[p.574]{kreyszig}} does not prove this result, and we show it in full detail in Section \eqref{proof_lbl_prop_wavefunction_equivalence}.
+\end{proof}
+
+Now, it is also easy to notice that if $\psi$ is a wavefunction, the set
+\begin{equation*}
+  S_\psi \coloneqq \set{\phi \colon \phi = \alpha \psi \,\,\text{for $\alpha \in \C$}}
+\end{equation*}
+is a subspace of $L^2(\R)$, which follows from $\C$ being a field and the distributivity of the scalar multiplication of $L^2(\R)$ over complex addition. This subspace also clearly has the basis $\set{\psi}$, so it is single-dimensional. As {\cite[p.574]{kreyszig}} points out, this motivates an alternative definition of a state; namely, we could define a state to be this one-dimensional subspace. When we pick a vector from this subspace, if it is not already normalised then we can normalise it by dividing by its norm, and then we can define a probability distribution function via these normalised vectors like we did with our original definition of a state. By Proposition \eqref{lbl_prop_wavefunction_equivalence} and the remarks on the homogeneity of the norm just before it, these normalised vectors represent the same physical characteristics of our system. This definition of a state is quite common, particularly in physics literature. We will stick with the definition of a state being a normalised vector, as we do not need this generalisation for our work.
+
+\medskip
+
+We are now ready to present the {\emph{axioms of quantum mechanics}}. The goal of these axioms is to generalise what we have just seen for the position of the particle to any observable in a quantum system. As {\cite[p.57]{teschl}} and {\cite[Chapter 3.6]{Hall2013}} tell us, these axioms are the following:
+\begin{enumerate}[label=(QM\arabic*)]
+  \item The phase space of a quantum system is given by a complex separable Hilbert space $\HS$, which we call a quantum Hilbert space. The possible states of our quantum system are the vectors in $\HS$ with norm 1. When the vector describing a state is a function, we call it a {wavefunction}.
+  \item Every observable of our quantum system corresponds to a self-adjoint linear operator in $\HS$.
+  \item If an observation $a$ has the corresponding operator $A: \dom{A} \to \HS$, then when our quantum system is in state $\psi \in \dom{A}$, the expected value for the measurement of $a$ is given by \(
+    \mathbb{E}_\psi (A) = \ip{A \psi, \psi}.
+  \)
+\end{enumerate}
+% \begin{remark}
+%   \begin{enumerate}[label=(\alph*)]
+%     \item By our remarks surrounding the definition of the adjoint in Section \eqref{lbl_sec_adjoints}, a self-adjoint operator is necessarily densely-defined. This makes the separability of the quantum Hilbert space a necessary condition.
+%     \item There is another axiom of quantum  mechanics, which is there for when we want to study the influence of time on our system. We omit this, however, as for our work, we can stick to looking at an arbitrarily fixed instance of time. For details, please see {\cite[p.57]{teschl}} or {\cite[p.71]{Hall2013}}.
+%     \item By Proposition \eqref{lbl_prop_esa_has_closure_unique_sa_extension}, an essentially self-adjoint operator has a unique self-adjoint extention; namely, its closure. This means that it is often good enough  for the operators we study in quantum mechanics to be essentially self-adjoint rather than self-adjoint, as we can just find the unique self-adjoint extension to satisfy our axioms. The reason for opting for an essentially self-adjoint operator is normally that its domain is more natural to consider, or simply easier to work with.
+%     \item The equivalence relation for wavefunctions that we defined in Proposition \eqref{lbl_prop_wavefunction_equivalence} and the subspace generated by a wavefunction defined just after do not rely on properties of $L^2(\R)$ which aren't shared by any other complex separable Hilbert space. They therefore hold for any choice we make for our quantum Hilbert space.
+%   \end{enumerate}
+% \end{remark}
+
+We end this section with some comments on the axioms we have just introduced. Firstly, as pointed out in Section \eqref{lbl_sec_adjoints}, the adjoint for unbounded operators is necessarily defined on densely-defined operators. This makes the separability of the quantum Hilbert space a necessary condition. Secondly, we can often make do with an essentially self-adjoint operator instead of a self-adjoint operator, as by Proposition \eqref{lbl_prop_esa_has_closure_unique_sa_extension} we know there will exist a unique self-adjoint extension. Thirdly, the equivalence relation we defined in Proposition \eqref{lbl_prop_wavefunction_equivalence} and the subspace generated from a state just after it do not rely on properties specific to $L^2(\R)$; therefore, they hold for any choice of our quantum Hilbert space. Finally, there is another axiom of quantum mechanics, which focuses on what happens to a system over time. We will not need this axiom, so we omit it here; for details, please see {\cite[p.57]{teschl}} or {\cite[p.71]{Hall2013}}.
+
+\subsection{Some useful operators in quantum mechanics}
+
+We now introduce some useful and common operators which crop up in quantum mechanics. All these operators correspond to some observable of the system. We will give these operators for a particle moving through $n$-dimensional space. By virtually the same reasoning as in the last section, the quantum Hilbert space for a single particle moving through $n$-dimensional space is $L^2(\R^n)$.
+
+\medskip
+
+In the last section, we saw that the position operator for a particle confined to a single dimension is given by the multiplication by $x$ operator in $L^2(\R)$. As might be expected, this generalises quite naturally to $n$-dimensional space.
+
+\begin{definition}[{\cite[Section 3.10]{Hall2013}}]\label{lbl_def_position_operator}
+  For a particle moving in $\R^n$, its {\emph{position operator in dimension $1 \leq j \leq n$}} of the particle is the operator $X_j$ in $L^2(\R^n)$ given by
+  \begin{equation*}
+      X_j \psi({x}) \coloneqq x_j \psi({x}).
+  \end{equation*}
+\end{definition}
+\begin{remark}\label{lbl_remark_n_dimensional_position_op_sa}
+  If we are working in a single dimension, then, as we noted in the last section, in Example \eqref{lbl_example_multiplication_operator_sa} we saw that the domain
+  \begin{align*}
+    \dom{X} &\coloneqq  \set{\psi \in L^2(\R) \colon x\psi(x) \in L^2(\R)}
+  \end{align*}
+  makes the single-dimensional position operator self-adjoint. Therefore, this is a suitable domain for the single-dimensional position operator. Intuitively, we would hope that we could generalise this domain to $n$-dimensional space to make the position operators densely-defined and self-adjoint. As {\cite[Corollary 9.31]{Hall2013}} proves us, this is the case; in $n$-dimensional space, the following natural domain makes $X_j$ a densely-defined self-adjoint operator:
+  \begin{equation*}
+    \dom{X_j} = \set{\psi \in L^2(\R^n) \, : \, x_j \psi({x}) \in L^2(\R^n)}.
+  \end{equation*}
+  This is a corollary of {\cite[Proposition 9.30]{Hall2013}}. The interested reader can find the full details there.
+\end{remark}
+
+Another observable a particle has is its {\emph{momentum}}. This physically represents the relationship of a particle's velocity and its mass, and is of great importance in physics. The momentum of a particle is something we can measure, so it has a corresponding operator. The derivation and motivation behind the defining equation of this operator can be found in {\cite[Chapter 11.2]{kreyszig}} and {\cite[Chapter 3.4]{Hall2013}}.
+
+\begin{definition}[Momentum Operators, {\cite[Proposition 9.32]{Hall2013}}]
+  For a particle moving in $\R^n$, its {\emph{position operator in dimension $1 \leq j \leq n$}} is the operator $P_j$ in $L^2(\R^n)$ given by
+  \begin{equation*}
+    P_j \psi({x}) \coloneqq -i \hbar \frac{\partial \psi}{\partial x_j},
+  \end{equation*}
+  where $\hbar$ is the {\emph{Planck's constant}}, which has the value $1.054 \times 10^{-27}$ as {\cite[p.5]{Hall2013}} tells us.
+\end{definition}
+\begin{remark}\label{lbl_standard_domain_momentum_sa}
+  As the proof of {\cite[Proposition 9.32]{Hall2013}} shows us, a suitable and natural domain to make the position operator in dimension $j$ densely-defined and self-adjoint is
+  \begin{equation*}
+    \dom{P_j} \coloneqq \set{\psi \in L^2(\R^n) \, : \, \frac{\partial \psi}{\partial x_j} \in L^2(\R^n)}.
+  \end{equation*}
+  We omit the details of the proof given in {\cite[Proposition 9.32]{Hall2013}}, as it relies on properties of the Fourier transform, which is unfortunately outside the scope of our work. For the non-specialist reader, a good introduction to Fourier transforms can be found in {\cite[Chapter 7.1]{teschl}}. We do note, however, that there is a small caveat here. When we say talk about partial derivatives here, we mean it in the {\emph{distributional sense}}. As {\cite[Proposition 9.32]{Hall2013}} explains, this means that there is a unique vector $\phi$ in $L^2(\R^n)$ such that for all smooth functions $\chi \colon \R^n \to \C$ with compact support in $\R^n$, we have that
+  \begin{equation*}
+    -\ip{\frac{\partial \chi}{\partial x_j}, \psi}
+    =
+    \ip{\chi, \phi}.
+  \end{equation*}
+  This idea of a distribution will not have a huge impact on our work; however, it is very important. A concise introduction to distributions can be found in {\cite[Chapter 2.1]{showalter}}.
+
+  \medskip
+
+  For the single dimensional case, we also saw in Example \eqref{lbl_example_sa_esa_not_esa}(a) that the operator $T \colon \dom{P} \to L^2(\R)$
+  \begin{align*}
+    \dom{T}
+      &= \big\{f \in L^2(\R) \colon \text{f is absolutely continuous on all bounded intervals of $\R$,}\\&\qquad\qquad\qquad\quad \text{$f' \in L^2(\R)$}\big\}, \\
+      T f &= i f',
+  \end{align*}
+  is self-adjoint. it is easy to notice that the difference between the defining equation of $T$ and the single-dimensional momentum operator is just a factor of $-\hbar$. As $-\hbar$ is real, this means that this factor does not make a difference to the self-adjointness properties; therefore, the single-dimensional momentum operator is self-adjoint on $\dom{T}$.
+\end{remark}
+
+Another natural domain to define the position and momentum operators on is the {\emph{Schwartz space}}, $\mathcal{S}(\R^n)$. This is defined in {\cite[p.161]{teschl}} as the set of all smooth functions $f \colon \R^n \to \C$ such that for every $y$ and $z$ in $\N_0^n$ and with $s_z = \sum_{j=1}^{n}z_j$, we have that
+\begin{equation*}
+  \sup_{x \in \R^n}
+  \abs{
+        \prod_{j = 1}^{n} \big( x_j^{y_j}\big)
+        \frac{
+              \partial^{s_z} f(x)
+        }{
+              \partial x_1^{z_1} \partial x_2^{z_2} \cdots \partial x_n^{z_n}
+        }
+  }
+  <
+  \infty.
+\end{equation*}
+This might seem like a confusing definition at first. However, what it means is that if a function is in $\mathcal{S}(\R^n)$, its derivatives are decreasing rapidly. For the interested reader, the Schwartz space is very important in the theory of Fourier transforms, which is developed in {\cite[Chapter 7.1]{teschl}}.
+
+\medskip
+
+We will take for granted that $\mathcal{S}(\R^n)$ is dense in $L^2(\R^n)$. The standard way to show this is to notice that the set of all compactly supported smooth functions $f: \R^n \to \C$, denoted by $C_c^{\infty}(\R^n)$, is dense in $L^2(\R^n)$. This is proven in \cite[Theorem 0.36]{teschl} with the use of a type of function known as a {\emph{mollifier}}, which is outside the scope of our work. As {\cite[p.161]{teschl}} then points out, $C_{c}^{\infty}$ is then a subspace of $\mathcal{S}(\R^n)$, meaning that $\mathcal{S}(\R^n)$ is also dense. {\cite[Chapter 5, Lemma 1.2]{stein}} also provides a proof of the density of $\mathcal{S}(\R^n)$ in $L^2(\R^n)$.
+
+\medskip
+
+As $\mathcal{S}(\R^n)$ is dense in $L^2(\R^n)$, we can define our position and momentum operators on it. It turns out that this domain makes the position and momentum operator essentially self-adjoint. As we said before, this is okay, as by Proposiotion \eqref{lbl_prop_esa_has_closure_unique_sa_extension} an essentially self-adjoint operator has a unique self-adjoint extention.
+
+\begin{proposition}[{\cite[Proposition 5.23, 5.29]{moretti}}]\label{lbl_prop_position_momentum_esa_on_S_R}
+  For a particle in $\R^n$, let $X_j \colon \dom{X_j} \to L^2(\R^n)$ be the position operator in dimension $1 \leq j \leq n$ and let $P_j \colon \dom{P_j} \to L^2(\R^n)$ be the momentum operator in dimension $1 \leq j \leq n$, where our domains are defined by the standard domains for the position and momentum operators introduced in Remark \eqref{lbl_remark_n_dimensional_position_op_sa} and in Remark \eqref{lbl_standard_domain_momentum_sa}.
+
+  \medskip
+
+  The position and momentum operators are essentially self-adjoint when restricted to the domain $\mathcal{S}(\R^n)$.
+\end{proposition}
+\begin{proof}
+  The proof of part (b) relies on properties of the Fourier transform, so we omit them; the interested reader can find the proof in the proof of {\cite[Proposition 5.29]{moretti}}. We note that {\cite[Proposition 5.29]{moretti}} presents the result as $\mathcal{S}(\R^n)$ being a {\emph{core}} for $P_j$,  which are defined in {\cite[Definition 5.20]{moretti}}. It is then shown in {\cite[Proposition 5.21]{moretti}} that this is equivalent to $P_j$ being essentially self-adjoint on $\mathcal{S}(\R^n)$.
+
+  \medskip
+
+  The method for part (a) is fairly simple. Firstly, it is easy to see that $\mathcal{S}(\R^n)$ is a subspace of the domain of $X_j$ which we introduced in Remark \eqref{lbl_remark_n_dimensional_position_op_sa}. This can be seen directly from the definition or from the subspace test. To see that $X_j$ is essentially self-adjoint on $\mathcal{S}(\R^n)$, it is easiest to use the essentially self-adjoint criterion we introduced in Theorem \eqref{lbl_thrm_esa_criteria}. As $X_j$ is self-adjoint on the domain we introduced in Remark \eqref{lbl_remark_n_dimensional_position_op_sa}, by Theorem \eqref{lbl_thrm_sa_criteria} we have that $\range{X_j \pm iI}$ is the entirety of $L^2(\R^n)$. This means that it has a trivial kernel by Proposition \eqref{lbl_prop_properties_of_adjoints}(f) and (a). The kernel of the adjoint of the restriction of $X_j$ on $\mathcal{S}(\R^n)$ must agree with the kernel of $X_j$, giving us our result by Theorem \eqref{lbl_thrm_esa_criteria}.
+
+  \medskip
+
+  Due to the simplicity of the proof of part(a) and our time considerations, the interested reader can find the full details in Section \eqref{proof_lbl_prop_position_momentum_esa_on_S_R}, which we take from {\cite[Proposition 5.23, 5.29]{moretti}}.
+\end{proof}
+\begin{remark}\label{lbl_position_momentum_map_SR_to_SR}
+  For our future work on the quantum harmonic oscillator, we will be interested in the position and momentum operators defined on $\mathcal{\R}$. A very important detail for our domain considerations in this situation is that both operators map $\mathcal{S}(\R)$ into itself. This is pointed out in the proof of {\cite[Theorem 11.4, p.236]{Hall2013}}. The proof of this requires the Fourier transform, which is outside the scope of our material; however, we roughly describe why this is the case here for the interested and informed reader.
+
+  \medskip
+
+  It is very easy to see from the definition of $\mathcal{S}(\R)$ that the position operator maps $\mathcal{S}(\R)$ to itself. If we look at the definition of the Schwartz space, then the momentum operator just changes one of the values of the $y \in \N_0^n$ vector. As the definition needs to be true for every $y$, we have clearly still mapped to the Schwartz space.  Now, for the momentum operator, we require results on the Fourier tranform. We include this here for completeness. {\cite[Theorem 7.4]{teschl}} proves that the Fourier transform is actually a bijection on $\mathcal{S}(\R)$ to itself. As {\cite[Proposition 9.32]{Hall2013}} tells us, the momentum operator can be defined in terms of the inverse of the Fourier transform, so we have that the momentum operator maps $\mathcal{S}(\R)$ into itself.
+\end{remark}
+
+An important relation in quantum mechanics between the position and momentum operators is the {\emph{canonical commutation relations}}, which describe how the position and momentum operators commute on appropriate domains.
+
+\begin{proposition}[{\cite[Proposition 3.25]{Hall2013}}]
+\label{lbl_cannonical_commutation_relations}
+  For a particle moving in $\R^n$, its position and momentum operators when defined on $\mathcal{S}(\R^n)$ satisfy
+  \begin{align*}
+    \frac{1}{i\hbar}[X_j, X_k] = 0, \quad
+    \frac{1}{i\hbar}[P_j, P_k] = 0, \quad \text{and}\,\,
+    \frac{1}{i\hbar}[X_j, P_k] = \delta_{j,k} I
+  \end{align*}
+  for any $1 \leq j \leq n$ and $1 \leq k \leq n$.
+\end{proposition}
+\begin{proof}
+  This result is very fundamental in quantum mechanics. However, it is quite simple to see, as it is a calculation using the definition of the commutator, which we defined in Definition \eqref{lbl_def_commutator}. We therefore move this calculation to Section \eqref{proof_lbl_cannonical_commutation_relations} for the interested reader.
+\end{proof}
+
+Another useful operator throughout quantum mechanics and the study of partial differential equations is the {\emph{Laplacian}}, which is the following operator.
+
+\begin{definition}[{\cite[Proposition 9.34]{Hall2013}}]
+  The {\emph{Laplacian}} operator, $\Delta$, in $L^2(\R^n)$ is the operator given by
+  \begin{equation*}
+    \Delta \psi = \sum_{j = 1}^{n} \frac{\partial^2 \psi}{\partial x_j^2}.
+  \end{equation*}
+\end{definition}
+\begin{remark}\label{lbl_laplacian_SA_domain}
+  {\cite[Proposition 9.34]{Hall2013}} tells us that the Laplacian is self-adjoint on the domain
+  \begin{equation*}
+    \dom{\Delta} = \set{\psi \in L^2(\R^n) \, : \, \sum_{j = 1}^{n} \frac{\partial^2 \psi}{\partial x_j^2} \in L^2(\R^n) },
+  \end{equation*}
+  where  again the derivatives are computed in the distributional sense. The proof of this again relies heavily on the Fourier transform, so we therefore omit it. A justification of this domain can be found in {\cite[p.167]{teschl}}, and the proof of self-adjointness can be found on the next page in {\cite[Theorem 7.8]{teschl}}. We note that {\cite{teschl}} presents this domain as a {\emph{Sobolev space}}, which is defined in {\cite[p.164]{teschl}}.
+\end{remark}
+The Laplacian is useful as it allows us to define the {\emph{kinetic energy}} of a particle. The kinetic energy represents the energy a particle has from its movement, and is something we can measure physically. It has the following corresponding operator.
+
+\begin{definition}[Kinetic Energy Operator, {\cite[p. 83]{Hall2013}}]
+  The operator for the kinetic energy of a particle of mass m is the operator $H_0: \dom{\Delta} \to L^2(\R^n)$ given by \[H_0 = -\frac{\hbar^2}{2m} \Delta.\]
+\end{definition}
+\begin{remark}
+  A useful thing to notice is that we have the following relation between the kinetic energy and momentum operators,
+  \begin{equation*}
+    H_0 = \frac{1}{2m}\sum_{j = 1}^{n} P_{j}^{2}.
+  \end{equation*}
+  As $-\frac{\hbar^2}{2m}$ and $\frac{1}{2m}$ are real constants, it follows that the kinetic energy operator is self-adjoint on any domain the Laplacian is self-adjoint on.
+\end{remark}
+\begin{proposition}[{\cite[p. 188]{Hall2013}}]\label{lbl_KE_positive}
+  The kinetic energy operator is self-adjoint and positive on the domain defined in Remark \eqref{lbl_laplacian_SA_domain}.
+\end{proposition}
+\begin{proof}
+  This result and sketch-proof comes from the comments in {\cite[p. 188]{Hall2013}}. The kinetic energy operator being self-adjoint follows from Remark \eqref{lbl_laplacian_SA_domain}, which tells us that $\Delta$ is self-adjoint on this domain. Positivity easily follows from the Fourier transform being a unitary operator on $L^2(\R^n)$, something proved in {\cite[Theorem 7.5]{teschl}}. We omit the proof to stay focused and not weighed down by the Fourier transform.
+\end{proof}
+
+Another form of energy a particle has is its {\emph{potential energy}}. This represents energy it gets from something other than its movement; for instance, by the {\emph{charge}} of the particle. In general, it can be very hard to give the potential energy operator, $V(\vect{X})$, a defining equation, as it depends on the situation the particle finds itself in.
+
+\medskip
+
+Kinetic energy and potential energy are the two types of energy a particle can have. We often are interested in the total energy of the particle, which is the sum of these two observables. Therefore, it naturally has the following corresponding operator, which is known as the {\emph{Hamiltonian}} of the system. A detailed discussion of the Hamiltonian from a mathematical point of view can be found in {\cite[Chapter 11.4]{kreyszig}}.
+
+\begin{definition}[{\cite[p.83]{Hall2013}}]
+  The {\emph{Hamiltonian}} operator is the operator \[H: \dom{\Delta} \cap \dom{V(\vect{X})} \to L^2(\R^n),\] given by \[H = -\frac{\hbar^2}{2m}\Delta + V(\vect{X}).\]
+\end{definition}
+
+It can be very tricky to find a domain that the Hamiltonian is self-adjoint on. In general, the sum of two self-adjoint operators might not be self-adjoint, as Remark \eqref{lbl_remark_failure_of_addition_of_sa_dense_domains} hinted to. A nice counterexample which also makes sense from a physical point of view is shown in the entirety of {\cite[Chapter 9.10]{Hall2013}}. {\cite[Theorem 9.38]{Hall2013}} also shows us a very nice example of a Hamiltonian which is self-adjoint.
+
+\begin{theorem}{\cite[Theorem 9.38]{Hall2013}}\label{lbl_thrm_hamiltonian_with_potential_SA}
+  Suppose that we have a measurable function $V: \R^n \to \R$ for $n \leq 3$ such that \(
+    V = V_1 + V_2,
+  \) for some $V_1 \in L^2(\R^n)$ and a bounded function $V_2$. Then the Hamiltonian given by
+  \begin{equation*}
+    H = -\frac{\hbar^2}{2m}\Delta + V(\vect{X})
+  \end{equation*}
+  is self-adjoint on the domain defined for the Laplacian in Remark \eqref{lbl_laplacian_SA_domain}, and its spectrum is bounded below.
+\end{theorem}
+\begin{proof}
+  As the proof of {\cite[Theorem 9.38]{Hall2013}} tells us, once we introduce a lemma, this proof is an easy consequence of the Kato-Rellich theorem, Theorem \eqref{lbl_thrm_kato_rellich}, and the positivity of the kinetic energy operator on this domain, Proposition \eqref{lbl_KE_positive}. As the proof is easy and this result acts as a simple example for our purposes, we therefore shift the proof due to our time constraints; the interested reader can find the details in Section \eqref{proof_lbl_thrm_hamiltonian_with_potential_SA} or in {\cite[Theorem 9.38]{Hall2013}}.
+\end{proof}

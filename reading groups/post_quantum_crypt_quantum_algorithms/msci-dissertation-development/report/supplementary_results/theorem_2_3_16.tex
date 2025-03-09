@@ -1,0 +1,38 @@
+\subsection{Proof of Theorem \eqref{lbl_thrm_all_excited_states_of_qho}}\label{proof_lbl_thrm_all_excited_states_of_qho}
+
+
+\begin{theorem}[{\cite[Theorem 11.3]{Hall2013}}]
+  The excited states of the quantum harmonic oscillator with the domain $\mathcal{S}(\R)$, $\psi_n$, are given by
+  \begin{equation*}
+    \psi_n = H_n \psi_0.
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  This proof works by induction, and we take it from {\cite[Theorem 11.3]{Hall2013}}. For $n=0$ we have that $H_n(\tilde{x}) = 1$, so $\psi_0 = \psi_0$ holds trivially. Now suppose that for some $k \in \N$ we have that $\psi_0 = H_k \psi_0$. Now, by Theorem \eqref{lbl_oscillator_chains} we have that $\psi_{k+1} = a^* \psi_k$, and by the proof of Theorem \eqref{lbl_oscillator_general_formula_ground_state} we have that
+  \begin{equation*}
+    \psi_0 (\tilde{x})
+    =
+    C\exp\left(-\frac{\tilde{x}^2}{2}\right),
+  \end{equation*}
+  where $C = D^{-\frac{1}{2}}\pi^{-\frac{1}{4}}$. Together with our induction hypothesis, this gives us that
+  \begin{align*}
+    \psi_{k+1}(\tilde{x})
+    &=
+    a^*(H_k(\tilde{x})\psi_0(\tilde{x})) \\
+    &=
+    \frac{1}{\sqrt{2}}
+      \left(
+        \tilde{x}H_k(\tilde{x})C\exp\left(-\frac{\tilde{x}^2}{2}\right)
+        -
+        \frac{d}{d\tilde{x}}\left( H_k(\tilde{x})C\exp\left(-\frac{\tilde{x}^2}{2}\right) \right)
+      \right) \\
+    &=
+    \frac{1}{\sqrt{2}}
+      \left(
+        2\tilde{x}H_k(\tilde{x}) - \frac{d H_k(\tilde{x})}{d \tilde{x}}
+      \right) C\exp\left(-\frac{\tilde{x}^2}{2}\right) \\
+    &=
+    H_{k+1}(\tilde{x})\psi_0(\tilde{x}),
+  \end{align*}
+  so we get our result by induction.
+\end{proof}

@@ -1,0 +1,117 @@
+\usepackage[utf8]{inputenc}\usepackage[a4paper,
+                                      %right = 3cm
+                                      lines = 42
+                                      ]{geometry}
+\setlength{\textwidth}{15cm}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath,
+            amssymb,
+            gensymb,
+            fancyhdr,
+            esint,
+            tcolorbox,
+            epigraph,
+            mathtools,
+            titlesec,
+            etoolbox,
+            lastpage,
+            scrextend,
+            framed,
+            enumitem,
+            lipsum}
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            anchorcolor=black,
+            citecolor=black,
+            filecolor=black,
+            menucolor=black,
+            runcolor=black,
+            urlcolor=black]{hyperref}
+
+%\usepackage[nottoc,notlot,notlof]{tocbibind} % add bib to contents page
+\usepackage[backend=biber,
+            style=alphabetic,
+           ]{biblatex}
+\addbibresource{references.bib}
+
+
+\usepackage{textcomp} % i forget this package's purpose
+
+\setlength{\parindent}{0pt}
+
+%headers
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\ifthenelse{\isodd{\value{page}}}{\leftmark}{\rightmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot{}
+
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
+\numberwithin{theorem}{subsection}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\HS}{\mathcal{H}}
+\newcommand{\KS}{\mathcal{K}}
+\newcommand{\G}{\operatorname{G}}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}[1]{\text{dist}\left(#1\right)}
+\newcommand{\ip}[1]{\left\langle #1\right\rangle}
+\newcommand{\conjugate}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+\newcommand{\op}[1]{\norm{#1}_\text{op}}
+
+
+
+% bra-ket notation
+% uses package mathtools
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \vert #2}
+\DeclarePairedDelimiterX\ketbra[2]{\delimsize\vert}{\delimsize\vert}{#1 \rangle\langle #2}
+
+\newcommand*{\rvec}[1]{\left( #1\right)}
+\newcommand*{\tr}[1]{\operatorname{tr}\left(#1\right)}
+\newcommand*{\range}[1]{\operatorname{range}\left(#1\right)}
+\renewcommand*{\ker}[1]{\operatorname{ker}\left(#1\right)}
+\newcommand{\dom}[1]{\operatorname{Dom}\left(#1\right)}

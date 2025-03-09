@@ -1,0 +1,57 @@
+\subsection{Proof of Theorem \eqref{lbl_thrm_hamiltonian_with_potential_SA}}\label{proof_lbl_thrm_hamiltonian_with_potential_SA}
+
+\begin{lemma}[{\cite[Chapter 9, Exercise 14]{Hall2013}}]\label{lbl_lemma_laplacian_vectors_bounded}
+  Suppose that $n \leq 3$, and let the domain for the Laplacian be the one defined in Remark \eqref{lbl_laplacian_SA_domain},
+  \begin{equation*}
+    \dom{\Delta} = \set{\psi \in L^2(\R^n) \, : \, \sum_{j = 1}^{n} \frac{\partial^2 \psi}{\partial x_j^2} \in L^2(\R^n) }.
+  \end{equation*}
+  Then, every $\psi \in \dom{\Delta}$ is continuous and for every $\eps > 0$, there exists a real-valued constant $c$ such that for all ${x} \in \R^n$, we have that
+  \begin{equation*}
+    \abs{\psi({x})} \leq c \norm{\psi} + \eps \norm{\Delta \psi}.
+  \end{equation*}
+\end{lemma}
+\begin{proof}
+  This proof relies on the Fourier transform, so we omit it in order to stay focused.
+\end{proof}
+
+\begin{theorem}[{\cite[Theorem 9.38]{Hall2013}}]
+  Suppose that we have a measurable function $V: \R^n \to R$ for $n \leq 3$ such that
+  \begin{equation*}
+    V = V_1 + V_2,
+  \end{equation*}
+  for some $V_1 \in L^2(\R^n)$ and a bounded function $V_2$. Then the Hamiltonian
+  \begin{equation*}
+    H = -\frac{\hbar^2}{2m}\Delta + V(\vect{X})
+  \end{equation*}
+  is self-adjoint on the domain defined for the Laplacian in Remark \eqref{lbl_laplacian_SA_domain}
+  \begin{equation*}
+    \dom{\Delta} = \set{\psi \in L^2(\R^n) \, : \, \sum_{j = 1}^{n} \frac{\partial^2 \psi}{\partial x_j^2} \in L^2(\R^n) },
+  \end{equation*}
+   and its spectrum is bounded below.
+\end{theorem}
+\begin{proof}
+  We display this proof from {\cite[Theorem 9.38]{Hall2013}}. Let $\psi \in \dom{\Delta}$ be any vector and let $\eps > 0$. By Lemma \eqref{lbl_lemma_laplacian_vectors_bounded}, we have that $\psi$ is continuous and for all ${x} \in \R^n$, for every $\eps > 0$ there exists some real constant $c$ with
+  \begin{equation*}
+    \abs{\psi({x})} \leq c \norm{\psi} + \eps \norm{\Delta \psi}.
+  \end{equation*}
+  We therefore get that
+  \begin{align*}
+    \norm{V \psi}
+    &\leq
+    \sup\set{\abs{\psi({x})}}\norm{V_1} + \sup\set{\abs{V_2({x})}}\norm{\psi} \\
+    &\leq
+    \eps \norm{V_1} \norm{\Delta \psi} + \norm{\psi}(c\norm{V_1} + \sup\set{\abs{V_2({x})}}) \\
+    &\leq
+    \eps \norm{V_1} \abs{-\frac{\hbar}{2m}} \norm{\Delta \psi} + \norm{\psi}(c\norm{V_1} + \sup\set{\abs{V_2({x})}}) \\
+    &=
+    \eps \norm{V_1} \norm{-\frac{\hbar}{2m}\Delta \psi} + \norm{\psi}(c\norm{V_1} + \sup\set{\abs{V_2({x})}}) \\
+  \end{align*}
+  Notice that this implies that $\dom{\Delta} \subset \dom{V(\vect{X})}$. As $\eps$ can be any positive number, we can choose it such that $\eps \norm{V_1} < 1$. By the Kato-Rellich theorem, Theorem \eqref{lbl_thrm_kato_rellich}, this therefore means that $-\frac{\hbar}{2m}\Delta + V(\vect{X})$ is self-adjoint.
+
+  \medskip
+
+  By Proposition \eqref{lbl_KE_positive}, we know that the kinetic energy operator $-\frac{\hbar}{2m}\Delta$ is positive on our domain. The Kato-Rellich theorem therefore also tells us that our Hamiltonian is bounded below by
+  \begin{equation*}
+    -\frac{c\norm{V_1} + \sup\set{\abs{V_2({x})}}}{1 - \eps\norm{V_1}}.
+  \end{equation*}
+\end{proof}

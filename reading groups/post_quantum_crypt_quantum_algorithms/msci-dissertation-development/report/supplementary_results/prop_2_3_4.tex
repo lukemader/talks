@@ -1,0 +1,43 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_lowering_raising_symmetric}}\label{proof_lbl_prop_lowering_raising_symmetric}
+
+\begin{proposition}[{\cite[Proof of Theorem 11.4]{Hall2013}}]
+  Let $\phi$ and $\psi$ be vectors in $\mathcal{S}(\R)$. Then we have that
+  \begin{enumerate}[label=(\alph*)]
+    \item $\ip{\phi, a\psi} = \ip{a^* \phi, \psi}$.
+    \item The operator $a^*a$ is symmetric and positive on $\mathcal{S}(\R)$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  These statements are made in the proof of {\cite[Theorem 11.4]{Hall2013}} and rely on an exercise question. We offer a slightly alternative method which relies only on the linearity and conjugate-linearity of the inner product and our $X$ and $P$ operators being symmetric. For the first statement, we see that, for every $\phi, \psi \in \mathcal{S}(\R)$, we have that
+  \begin{align*}
+    \ip{a^* \phi, \psi}
+    &=
+    \ip{
+      \frac{1}{\sqrt{2\hbar m \omega}}(m\omega X \phi - iP\phi), \psi
+    }\\
+    &=
+    \frac{1}{\sqrt{2\hbar m \omega}} \big(m\omega \ip{X\psi, \phi}  - i \ip{P\phi, \psi} \big) \\
+    &=
+    \frac{1}{\sqrt{2\hbar m \omega}}
+      \big(
+        m \omega \ip{\phi, X\psi} - i \ip{\phi, P\psi}
+      \big) \\
+    &=
+    \ip{\phi, \frac{1}{\sqrt{2\hbar m \omega}}(m\omega X \psi + iP\psi) } \\
+    &=
+    \ip{\phi, a\psi}.
+  \end{align*}
+  The second statement follows from the first statement fairly simply too, as we have by the conjugate symmetry of the inner product that
+  \begin{align*}
+    \ip{a^* a \phi, \psi}
+    &=
+    \ip{a \phi, a \psi} \\
+    &=
+    \conjugate{ \ip{a \psi, a \phi}  } \\
+    &=
+    \conjugate{ \ip{a^* a \psi, \phi} } \\
+    &=
+    \ip{\phi, a^* a \psi}.
+  \end{align*}
+  In particular, we have that $\ip{a^*a \psi, \psi} = \ip{a\psi, a\psi}$ for all $\psi \in \mathcal{S}(\R)$, which by positive semi-definiteness of the inner product must be non-negative. This means that $a^*a$ is a positive operator by definition.
+\end{proof}

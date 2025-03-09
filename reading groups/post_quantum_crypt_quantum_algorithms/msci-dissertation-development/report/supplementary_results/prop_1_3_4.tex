@@ -1,0 +1,161 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_properties_of_regular_points}}\label{proof_lbl_prop_properties_of_regular_points}
+\begin{proposition}[{\cite[Proposition 2.1]{konrad}}]
+  Let $T$ be a not necessarily densely-defined operator in $\HS$ and let $\lambda$ be some complex number. Then,
+  \begin{enumerate}[label = (\alph*)]
+    \item $\lambda$ is a regular point if and only if $T - \lambda I$ has a bounded inverse.
+    \item $\pi(T)$ is an open subset of $\C$.
+    \item If $T$ is closable, then if $\lambda$ is a regular point, we have that
+      \begin{enumerate}[label=(\roman*)]
+        \item $\overline{\range{T - \lambda I}} = \range{\overline{T} - \lambda I}$
+        \item $\pi(T) = \pi(\overline{T})$, and
+        \item $d_\lambda(T) = d_\lambda (\overline{T})$.
+      \end{enumerate}
+    \item If $T$ is closed and $\lambda$ is a regular point, then $\range{T - \lambda I}$ is closed.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  We recreate this proof from the proof of {\cite[Proposition 2.1]{konrad}}. For (a), first suppose that $\lambda  \in \pi(T)$. Then, there exists some $c_\lambda > 0$ such that for all $x \in \dom{T}$,
+  \begin{equation}\label{proof_lbl_eq_regular_point_inequality_1_19}
+    c_\lambda \norm{x} \leq \norm{(T - \lambda I)x}.
+  \end{equation}
+  By the positive-definiteness of the norm, we have that $(T - \lambda I)x = 0$ if and only if $\norm{(T - \lambda I)x} = 0$, which by Equation \eqref{proof_lbl_eq_regular_point_inequality_1_19} is true if and only if $\norm{x} = 0$, which again by positive-semidefiniteness is true if and only if $x = 0$. We therefore have that $\ker{T - \lambda I} = \set{0}$ when $\lambda$ is a regular point of $T$.
+
+  \medskip
+
+  As $\ker{T - \lambda I} = \set{0}$, we have that $T - \lambda I$ is injective and the inverse therefore exists with $\dom{(T - \lambda I)^{-1}} = \range{T - \lambda I}$. Therefore, if we take $y$ to be in the domain of $(T - \lambda I)^{-1}$, there is then some $x$ in the domain of $T - \lambda I$ such that $y = (T - \lambda I)x$. We therefore see that
+  \begin{align*}
+    \norm{(T - \lambda I)^{-1} y}
+    &=
+    \norm{x} \\
+    &\leq
+    \frac{1}{c_\lambda} \norm{(T - \lambda I)x} \qquad \text{by Equation \eqref{proof_lbl_eq_regular_point_inequality_1_19}} \\
+    &=
+    \frac{1}{c_\lambda} \norm{y}.
+  \end{align*}
+  As our choice of $y$ was arbitrary, this is true for every element in the domain of $(T - \lambda I)^{-1}$. We therefore see that $(T - \lambda I)^{-1}$ is bounded with $\op{(T - \lambda I)} \leq c_\lambda^{-1}$.
+
+  \medskip
+
+  Now suppose that $\lambda \in \C$ is some complex number such that $T - \lambda I$ has a bounded inverse. Therefore, for any $y$ in the domain of $(T - \lambda I)^{-1}$, there is some $x$ in the domain of $T$ such that $(T - \lambda I)^{-1}y = x$ and $x = (T - \lambda I)y$.  We now see that
+  \begin{align*}
+    \norm{x}
+    &=
+    \norm{(T - \lambda I)^{-1}y} \\
+    &\leq
+    \op{(T - \lambda I)^{-1}} \norm{y} \\
+    &=
+    \op{(T - \lambda I)^{-1}} \norm{(T - \lambda I)x},
+  \end{align*}
+  meaning that
+  \begin{equation*}
+    \frac{1}{  \op{(T - \lambda I)^{-1}}} \norm{x} \leq \norm{(T - \lambda I)x}.
+  \end{equation*}
+  As we have that $T - \lambda I$ has an inverse, this is true for all $x \in \dom{T}$, which therefore means that $\lambda$ is a regular point of $T$ and we have that
+  \begin{equation*}
+    c_\lambda = \frac{1}{  \op{(T - \lambda I)^{-1}}}.
+  \end{equation*}
+
+  \medskip
+
+  For part (b), we show that any element $\lambda$ in the regularity domain of $T$ is bounded by an open ball of radius $c_\lambda$. Let $\lambda$ be any regular point of $T$, and let $\mu$ be a complex number such that $\abs{\mu - \lambda} < c_\lambda$. Then, for all $x$ in the domain of $T$, we see that
+  \begin{align*}
+    \norm{(T - \mu I) x}
+    &=
+    \norm{(T - \lambda I)x - (\mu - \lambda)x} \\
+    &\leq
+    \norm{T - \lambda Ix} - \abs{\mu - \lambda} \qquad \text{by the reverse triangle inequality} \\
+    &\leq
+    c_\lambda \norm{x} - \abs{\mu - \lambda}\norm{x} \qquad \text{as $\lambda$ is a regular point of $T$} \\
+    &=
+    \big( c_\lambda - \abs{\mu - \lambda} \big)\norm{x}.
+  \end{align*}
+  Now, as $\abs{\mu - \lambda} < c_\lambda$, we have that $c_\lambda - \abs{\mu - \lambda} > 0$, so $\mu$ is a regular point of $T$ too. Therefore, every point $\lambda$ of the regularity domain of $T$ is bounded by an open ball of radius $c_\lambda$.
+
+  \medskip
+
+  For part (c), suppose that $T$ is closable and that $\lambda$ is in the regularity domain of $T$. Let $y$ be an element of $\overline{\range{T - \lambda I}}$ such that for some sequence $(x_n)_{n \in \N}$ in the domain of $T$, the sequence $(y_n)_{n \in \N} \coloneqq \big( (T - \lambda I)x_n \big)$ converges to $y$. As $\lambda$ is a regular point, $(T - \lambda I)$ is linear, and $(x_n)_{n \in \N}$ is contained in $\dom{T}$, we have that there is some constant $c_\lambda > 0$ such that for all $n, m > 0$,
+  \begin{equation*}
+    \norm{x_n - x_m}
+    \leq
+    \frac{1}{c_\lambda} \norm{(T - \lambda I)  (x_n - x_m)}
+    =
+    \frac{1}{c_\lambda}\norm{y_n - y_m}.
+  \end{equation*}
+  Now, as $(y_n)_{n \in \N}$ is convergent, it also Cauchy, so $\norm{y_n - y_m} \to 0$ as $n, m \to \infty$. Therefore, by the positivity of the norm and the sandwich principle, we have that $\norm{x_n - x_m} \to 0$ as $n, m \to \infty$, so $(x_n)_{n \in \N}$ is also a Cauchy sequence. As $(x_n)_{n \in \N}$ is also contained in $\HS$ and $\HS$ is a Hilbert space, we have that it converges to some $x \in \HS$. Therefore, we have that
+  \begin{equation*}
+    Tx_n = y_n + \lambda x_n
+    \to
+    y + \lambda x \qquad \text{as $n \to \infty$.}
+  \end{equation*}
+  Since $T$ is closable, by definition of $\overline{T}$ we have that  $x \in \dom{\overline{T}}$ and also that $\overline{T}x = y + \lambda x$. Re-arranging shows us that
+  \begin{equation*}
+    y = (\overline{T} - \lambda I)x.
+  \end{equation*}
+  Therefore, we have that if $y$ is in $\overline{\range{T - \lambda I}}$, it also is in $\range{\overline{T} -  \lambda I}$; in other words,
+  \begin{equation*}
+    \overline{\range{T - \lambda I}} \subset \range{\overline{T} -  \lambda I}.
+  \end{equation*}
+
+  Now, $\range{\overline{T} -  \lambda I}$ being contained in $\overline{\range{T - \lambda I}}$ follows by definition of the closure. As $\overline{T}$ is the closure of $T$ and as Corollary \eqref{lbl_closed_means_resolvent_function_closed} tells us that $\overline{T} - \lambda I$ is also closed for any $\lambda$ in the regularity domain of $T$, $\range{\overline{T} - \lambda I}$ is built from all elements of $\range{T - \lambda I}$ and all of the limit points of $\range{T - \lambda I}$. We therefore either have that for $y \in \dom{\overline{T} - \lambda I}$, $y$ is either in $\range{T - \lambda I}$ if it isn't a limit point of a sequence in $\range{T - \lambda I}$, or that it is in $\overline{\range{T - \lambda I}}$ if it is the limit point of a sequence in $\range{T - \lambda I}$. As $\range{T - \lambda I}$ is contained in $\overline{\range{T - \lambda I}}$, it therefore follows that
+  \begin{equation*}
+    \range{\overline{T} -  \lambda I} \subset \overline{\range{T - \lambda I}}.
+  \end{equation*}
+
+  By double inclusion, we therefore get that
+  \begin{equation*}
+    \overline{\range{T - \lambda I}} = \range{\overline{T} -  \lambda I}.
+  \end{equation*}
+
+  We now show that $\pi(T) =  \pi(\overline{T})$. For any regular point $\lambda$ of $T$, we have that there exists some constant $c_\lambda > 0$ such that for all $x \in \dom{T}$,
+  \begin{equation*}
+    c_\lambda \norm{x} \leq \norm{(T - \lambda I) x}.
+  \end{equation*}
+  As $\overline{T}$ is an extension of $T$, clearly this is true if and only if
+  \begin{equation*}
+    c_\lambda \norm{x} \leq \norm{(\overline{T} - \lambda I) x}.
+  \end{equation*}
+  for all $x$ in the domain of $T$. Therefore, $\lambda$ is a regular point of $\overline{T}$ too.
+
+  Now suppose that $\lambda$ is a regular point of $\overline{T}$. Again, we have by definition that there exists some $c_\lambda > 0$ such that for all $x \in \dom{\overline{T}}$,
+  \begin{equation*}
+    c_\lambda \norm{x} \leq \norm{(\overline{T} - \lambda I) x}.
+  \end{equation*}
+  As the domain of $\overline{T}$ contains the domain of $T$, this is clearly true for all elements of the domain of $T$. Therefore, $\lambda$ must be a regular point of $T$ if it is a regular point of $\overline{T}$. By putting these two inclusions together, we get that $\pi(T) = \pi(\overline{T})$.
+
+  Finally, we show that for some regular point $\lambda$ of $T$, we have that $d_\lambda(T) = d\lambda(\overline{T})$.  By part (i), we know that $\lambda$ being a regular point implies that
+  \begin{equation*}
+    \overline{\range{T - \lambda I}}
+    =
+    \range{\overline{T} - \lambda I},
+  \end{equation*}
+  meaning that
+  \begin{equation*}
+    \left(\overline{\range{T - \lambda I}}\right)^\perp
+    =
+    \big(\range{\overline{T} - \lambda I}\big)^\perp.
+  \end{equation*}
+  We therefore get that
+  \begin{align*}
+    d_\lambda (\overline{T})
+    &=
+    \text{dim}  \left( \big(\range{\overline{T} - \lambda I}\big)^\perp \right)\\
+    &=
+    \text{dim} \left( \left(\overline{\range{T - \lambda I}}\right)^\perp \right) \\
+    &=
+    \text{dim} \left( \left( \range{T - \lambda I} \right)^\perp \right) \\
+    &=
+    d_\lambda (T).
+  \end{align*}
+
+  \medskip
+
+  We finally show part (d). Suppose that $T$ is closed. Then, $T = \overline{T}$ and part (c) tells us that if $\lambda$ is a regular point of $T$, we have that
+  \begin{equation*}
+    \overline{\range{T - \lambda I}}
+    =
+    \range{\overline{T} - \lambda I}
+    =
+    \range{T - \lambda I},
+  \end{equation*}
+  meaning that $\range{T - \lambda I}$ is closed when $T$ is closed.
+\end{proof}

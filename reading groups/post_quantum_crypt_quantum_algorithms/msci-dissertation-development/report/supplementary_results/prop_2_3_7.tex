@@ -1,0 +1,33 @@
+\subsection{Proof of Proposition \eqref{lbl_aastar_lowers_raises}}\label{proof_lbl_aastar_lowers_raises}
+
+\begin{proposition}[{\cite[Proposition 11.1]{Hall2013}}]
+  Suppose that $a^*a$ is defined on $\mathcal{S}(\R)$ and has an eigenvector $\psi$, and let $\lambda$ be the corresponding eigenvalue to $\psi$. Then,
+  \begin{enumerate}[label=(\alph*)]
+    \item $a^*a (a\psi) = (\lambda - 1)a\psi$.
+    \item $a^*a (a^* \psi) = (\lambda + 1)a^*\psi$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  This proof comes from the proof of {\cite[Proposition 11.1]{Hall2013}}. Let $\psi$ be an eigenvector for $a^*a$ with the corresponding eigenvalue $\lambda$. By Proposition \eqref{lbl_raising_commutation_relationships} we have that
+  \begin{equation*}
+    [a, a^*a] = a.
+  \end{equation*}
+  By definition of the commutator operator and our assumption that $\psi$ is an eigenvector of $a^*a$ with corresponding eigenvalue $\lambda$, we see that
+  \begin{align*}
+    a^*a(a\psi)
+    &= (a(a^* a) - a) \psi \\
+    &= a\lambda\psi - a\psi \\
+    &= (\lambda - 1)a\psi.
+  \end{align*}
+  Analogously, by Proposition \eqref{lbl_raising_commutation_relationships} we also have that
+  \begin{equation*}
+    [a^*, a^*a] = -a^*,
+  \end{equation*}
+  so we get that
+  \begin{align*}
+    a^*a (a\psi)
+    &= (a^*(a^*a) + a^*)\psi \\
+    &= a^*\lambda\psi + a^*\psi \\
+    &= (\lambda + 1)a^*\psi.
+  \end{align*}
+\end{proof}

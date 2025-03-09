@@ -1,0 +1,26 @@
+\subsection{Proof of Proposition \eqref{lbl_prop_sym_ops_real_eigenvalues}} \label{proof_lbl_prop_sym_ops_real_eigenvalues}
+
+\begin{proposition}[{\cite[Chapter 41, Theorem 2]{glazman}}]
+  If $T$ is a symmetric operator in $\HS$, then all of its eigenvalues are real-valued.
+\end{proposition}
+\begin{proof}
+  We recreate this proof from the proof of {\cite[Chapter 41 Theorem 2]{glazman}}. Let $v \in \dom{T}$ be an eigenvalue for $T$ with the corresponding eigenvalue $\lambda \in \C$; that is,
+  \begin{equation*}
+    Tv = \lambda v.
+  \end{equation*}
+  We then notice that
+  \begin{align*}
+    \lambda \ip{v, v}
+    &=
+    \ip{\lambda v, v} \\
+    &=
+    \ip{Tv, v} \\
+    &=
+    \ip{v, Tv} \\
+    &=
+    \ip{v, \lambda v} \\
+    &=
+    \conjugate{\lambda}\ip{v, v}.
+  \end{align*}
+  This is true if and only if $\lambda = \conjugate{\lambda}$, which is true if and only if $\lambda \in \R$.
+\end{proof}

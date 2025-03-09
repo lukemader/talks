@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\input{preamble}
+
+
+\title{Unbounded operators in Hilbert spaces \\and their role in quantum mechanics}
+\author{Luke Mader\\[.1cm]{\small Supervisor: Dr. Robin Hillier}}
+\date{{\small 29\textsuperscript{th} April 2022}}
+
+%\usepackage[pagewise]{lineno}
+%\linenumbers
+%==================================================
+\begin{document}
+
+%------------------------------
+% Title page
+%------------------------------
+\begin{figure}
+    \flushright{\includegraphics[scale=0.3]{images/LUMathsStatsLogo.png}}
+\end{figure}
+
+\maketitle
+
+\begin{abstract}
+  Unbounded operators are linear maps on normed vector spaces and are studied by mathematicians and physicists alike. When they act over a Hilbert space, they have a rich theory and can be used to build a mathematically rigorous model of quantum mechanics. Our goal is to firstly introduce what an unbounded operator is. We then look at some different classes of unbounded operators and some important results concerning them. Finally, we turn our attention towards their role in quantum mechanics, and we find the energy levels of the one-dimensional quantum harmonic oscillator.
+\end{abstract}
+
+\tableofcontents
+
+%\clearpage
+
+%================================================
+% section 0 - intro
+%================================================
+% \setcounter{section}{-1}
+% \section{Introduction}
+%
+% \clearpage
+
+%================================================
+% section 2 - unbounded operators
+%================================================
+\section{Unbounded operators}
+
+\input{sec_unbounded/main}
+
+
+%================================================
+% section 3 - quantum physics
+%================================================
+\section{Quantum Mechanics}
+
+\input{sec_quantum/main}
+\clearpage
+
+
+
+%================================================
+% appendix A - background
+%================================================
+
+\appendix
+\addcontentsline{toc}{section}{Appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\section{Background}\label{appendix:background_chapter}
+\input{sec_background/main}
+\clearpage
+
+%================================================
+% appendix A - background
+%================================================
+\section{Proofs of various results}\label{appendix:supplementary_chapter}
+\input{supplementary_results/main}
+\clearpage
+
+
+%================================================
+% bibliography
+%================================================
+% \bibliographystyle{plain}
+% \bibliography{references}
+\printbibliography
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\end{document}

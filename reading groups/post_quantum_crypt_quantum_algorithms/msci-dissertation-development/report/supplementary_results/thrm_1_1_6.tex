@@ -1,0 +1,104 @@
+\subsection{Proof of Theorem \eqref{lbl_thrm_bounded_unique_extension_to_HS}}\label{proof_lbl_thrm_bounded_unique_extension_to_HS}
+
+\begin{theorem}[{\cite[Proposition 2.1.11]{analysis_now}}]
+  Let $T \colon \dom{T} \to \HS$ be a (necessarily densely-defined) operator in $\HS$. If $T$ is continuous, there then exists a unique continuous extension, $R$, to the entirety of $\HS$ such that $\op{R} = \op{T}$.
+\end{theorem}
+\begin{proof}
+  We model this proof off the proof given in {\cite[Proposition 2.1.11]{analysis_now}}. As $T$ is densely-defined, for every vector $x \in \HS$, there exists a sequence $(x_n)_{n \in \N}$ such that $x_n \to x$ as $n \to \infty$. Now, as $T$ is continuous on $\dom{T}$, it is bounded on $\dom{T}$. It therefore follows that $T$ is uniformly continuous on $\dom{T}$, as for all $x, y \in \dom{T}$, we have that $x - y \in \dom{T}$ due to $\dom{T}$ being a subspace, so
+  \begin{equation*}
+    \norm{Tx - Ty}
+    =
+    \norm{T(x - y)}
+    \leq
+    \op{T}\norm{x - y}.
+  \end{equation*}
+  Therefore, given any $\eps > 0$, we have that $\norm{Tx - Ty} \leq \eps$ whenever \[\norm{x - y} \leq \eps/\op{T},\]
+
+  meaning that $T$ is uniformly continuous. Now, as $(x_n)_{n \in \N}$ is convergent, it must be Cauchy. As proved in {\cite[Proposition 4.12]{muscat}}, uniform continuity is Cauchy preserving, so $(Tx_n)_{n \in \N}$ is a Cauchy sequence. As $\HS$ is a Hilbert space, we therefore have that $(Tx_n)_{n \in \N}$ is convergent. Conditional on it being well-defined, we can therefore define a map $R: \HS \to \HS$ by
+  \begin{equation*}
+    Rx = \lim_{n \to \infty} Tx_n,
+  \end{equation*}
+  where $x$ is any vector in $\HS$ and $(x_n)_{n \in \N}$ is a sequence in $\dom{T}$ converging to $T$. We clearly have for any $y \in \dom{T}$, $Ry = Ty$. As $\dom{T} \subset \dom{R}$, this is a  potential candidate for our unique extension, given that it is well-defined, an operator, and preserves the operator norm.
+
+  \medskip
+
+  We first verify that $R$ is well-defined. Let $x$ be a vector in $\HS$ and let $(x_n)_{n \in \N}$ be a sequence in $\dom{T}$ converging to $x$. As $(Tx_n)_{n \in \N}$ converges to $R(x)$, we have that for all $\eps > 0$, there exists some positive integer $N_1$ such that
+  \begin{equation*}
+    \norm{Rx - Tx_n} \leq \frac{\eps}{2}
+  \end{equation*}
+  whenever $n \geq N_1$. Now, suppose that $(y_n)_{n \in \N}$ is another sequence in $\dom{T}$ which converges to $x$. By the uniform continuity of $T$, there therefore exists a $\delta > 0$ such that
+  \begin{equation*}
+    \norm{Tx_n - Ty_n} \leq \frac{\eps}{2}
+  \end{equation*}
+  whenever $\norm{x_n - y_n} \leq \delta$. By the convergence of $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$, for this $\delta$ there therefore exists positive integers $N_2, N_3$ such that
+  \begin{align*}
+    \norm{x_n - x} &\leq \delta \,\,\text{for all $n \geq N_2$, and}\\
+    \norm{y_n - x} &\leq \delta \,\, \text{for all $m \geq N_3$}.
+  \end{align*}
+  Therefore, by setting $N = \max\set{N_1, N_2, N_3}$, we get that for all $n \geq N$,
+  \begin{align*}
+    \norm{Rx - Ty_n}
+    &=
+    \norm{Rx - Tx_n + Tx_n - Ty_n} \\
+    &\leq
+    \norm{Rx - Tx_n} + \norm{Tx_n - Ty_n} \\
+    &\leq
+    \frac{\eps}{2} + \frac{\eps}{2} \\
+    &=
+    \eps.
+  \end{align*}
+  Therefore, $(Ty_n)_{n \in \N}$ converges to $Rx$ as well, so our definition of $R$ is well-defined.
+
+  \medskip
+
+  We now show that $R$ is a linear, and therefore indeed an operator. Let $x, y \in \HS$ be vectors such that the sequences $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$ in $\dom{T}$ converge to $x$ and $y$ respectively. Then, for any $\alpha, \beta \in \C$, we see that
+  \begin{align*}
+    R(\alpha x + \beta y)
+    &=
+    \lim_{n \to \infty} T(\alpha x_n + \beta y_n) \\
+    &=
+    \lim_{n \to \infty} \big(  \alpha Tx_n + \beta Ty_n \big) \\
+    &=
+    \alpha \lim_{n \to \infty}\big( Tx_n \big) + \beta \lim_{n \to \infty}\big( Ty_n \big) \\
+    &=
+    \alpha Rx + \beta Rx.
+  \end{align*}
+  We next show that $\op{R} = \op{T}$. Let $ x \in \HS$ be a vector and let $(x_n)_{n \in \N}$ be a convergent sequence in $\dom{T}$ whose limit point is $x$. We then have that
+  \begin{align*}
+    \norm{Rx}
+    &=
+    \norm{\lim_{n \to \infty}Tx_n} \\
+    &=
+    \lim_{n \to \infty} \norm{Tx_n} \\
+    &\leq
+    \lim_{n \to \infty} \op{T}\norm{x_n} \\
+    &=
+    \op{T} \norm{\lim_{n \to \infty} x_n} \\
+    &=
+    \op{T}\norm{x},
+  \end{align*}
+  giving us that $\op{R} \leq \op{T}$. On other hand, for all $y \in \dom{T}$, we have that $Ry = Ty$, so
+  \begin{align*}
+     \norm{Ty}
+      =
+      \norm{Ry}
+      \leq \op{R}\norm{y},
+  \end{align*}
+  giving us that $\op{T} \leq \op{R}$. Together, we therefore get that $\op{R} = \op{T}$. We therefore have that $R$ is a well-defined operator, that it is an extension of $T$, and that $R$ preserves the operator norm of $T$.
+
+  \medskip
+
+  We finally show the uniqueness of $R$. Suppose that $S: \HS \to \HS$ is another norm-preserving extension of $T$. For this $x$, there exists a sequence $(x_n)_{n \in \N}$ converging to $x$ as $\HS$ is dense with respect to itself. As $S$ is norm-preserving, it is also bounded; therefore, it is sequentially continuous, so $Sx_n \to Sx$ as $n \to \infty$. As it is an extension, $Sx_n = Tx_n$ for all $n \in \N$. Therefore, for all $x \in \HS$,
+  \begin{align*}
+    Rx
+    &=
+    \lim_{n \to \infty} Rx_n \\
+    &=
+    \lim_{n \to \infty} Tx_n \\
+    &=
+    \lim_{n \to \infty} Sx_n \\
+    &=
+    Sx
+  \end{align*}
+  This therefore means that $R$ is the unique extension of $T$.
+\end{proof}

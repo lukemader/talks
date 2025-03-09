@@ -1,0 +1,77 @@
+In this section, we look at how unbounded operators create a framework for quantum mechanics. We start by looking at how the quantum world behaves, before moving on to some important operators in quantum mechanics and finishing with the important model of the {\emph{quantum harmonic oscillator}}.
+
+\input{sec_quantum/new_introduction}
+
+% \subsection{Foundations of quantum mechanics}
+%
+% This section aims to describe how the maths describing the quantum world needs to work. These are things we need to take true, and are inspired or deduced from experimental resutls. It is directly taken from {\cite[Chapter 2.1]{teschl}}. It's worth noting that {\cite[Chapter 3.6]{Hall2013}} describes this in a similar way; however, it is inspired more from classical mechanics, so to get straight to the point we don't use it.
+%
+% \medskip
+%
+% If we have a general quantum system, then its states are described by a complex separable Hilbert space $\HS$, where the possible states are the vectors with a norm of 1. For instance, suppose that we have a single quantum particle in $\R^n$. This particle is described by a {\emph{wave function}} $\psi: \R^n \times \R \to \C$, which satisfies the condition that $\abs{\psi(\vect{x},t)}^2$ is a probability density function; in particular, this gives the condition that $\int_{-\infty}^{\infty} \abs{\psi(\vect{x},t)}^2 d^nx$ = 1, meaning that an appropriate Hilbert space for our particle is $\mathcal{H} = L^2(\R^n)$. The vectors $\vect{x} \in \R^n$ represent the position of our particle, and the real numbers $t \in \R$ represent the time of the system which we are talking about. The existence of a wave function is not unique to this case of a particle in $\R^n$, and is defined just to be a complex-valued function which describes the state of our system. For our considerations, we won't have to worry about how time affects things.
+%
+% \medskip
+%
+% An {\emph{observable}} of our quantum system is something that can be measured; for instance, the position of a single particle is an observable. We want that every observable $a$ corresponds to a linear operator $A: \dom{A} \to \HS$. If our system is in the state $\psi \in \HS$, then the {\emph{expectation of A}} is given by
+% \begin{equation*}
+%   \mathbb{E}_\psi (A) = \ip{\psi, A \psi} = \ip{A \psi, \psi}.
+% \end{equation*}
+% Note that this means that our operator $A$ must be symmetric. As we have already discussed, unbounded operators cannot be defined naturally on the entire Hilbert space. As a Hilbert space is dense with respect to itself, we therefore require the condition that the operator $A$ corresponding to the observable $a$ has a dense domain, as that means that our operator will be defined on `at least most' of our states.
+%
+% \medskip
+%
+% Just like one would expect, quantum systems can change with time. In order to describe this, we require the notion of a {\emph{strongly continuous one-parameter unitary group}}.
+%
+% \begin{definition}[Strongly continuous one-parameter unitary group {\cite[Definition 10.11]{Hall2013}}]
+%   A family of unitary operators, $U(t)$ for $t \in \R$, on $\HS$ is called a {\emph{one-parameter unitary group}} if $U(0) = 1$ and if for all $s, t \in \R$, we have that $U(s+t)=U(s)U(t)$. $U(t)$ is said to be strongly continuous if for all $\psi \in \HS$ and for all $t \in \R$, we have that
+%   \begin{equation*}
+%       \lim_{s \to t} \norm{U(t)\psi - U(s)\psi} = 0.
+%   \end{equation*}
+% \end{definition}
+%
+% \begin{definition}[The infinitesimal generator of a strongly continuous one-parameter unitary group {\cite[Definition 10.13]{Hall2013}}]
+%   For a strongly continuous one-parameter unitary group $U(t)$, the {\emph{infinitesimal generator}} of $U(t)$ is the operator $H$ defined by
+%   \begin{equation*}
+%     H \psi = \lim_{i \to 0}\frac{U(t)\psi - \psi}{it}
+%   \end{equation*}
+%   with the domain being the $\psi \in \HS$ such that our limit exists in the norm topology on $\HS$.
+% \end{definition}
+%
+% \medskip
+%
+% If our quantum system begins in the state $\psi(0) \in \HS$, then we want the state of the system at time $t \in \R$ to be given by a unique state $\psi(t) \in \HS$ and the relation to $\psi(0)$ to be
+% \begin{equation*}
+%   \psi(t) = U(t)\psi(0)
+% \end{equation*}
+% for a strongly continuous one-parameter unitary group $U(t)$. The infinitesimal generator of $U(t)$ is called the {\emph{Hamiltonian}} of our quantum system, and represents the energy of the system. It follows that if $\psi(0)$ is in the domain of $H$, then $\psi(t)$ will solve
+% \begin{equation*}
+%   H \psi(t) = i \frac{d}{dt}\psi(t),
+% \end{equation*}
+% which is called the {\emph{Schr{\"{o}}dinger equation}}.
+%
+% \medskip
+%
+% This description of quantum mechanics is summarised by the {\emph{axioms of quantum mechanics}}, which are as follows:
+%
+% \begin{enumerate}[label=(QM\arabic*)]
+%   \item The phase space of a quantum system is given by a complex separable Hilbert space $\HS$, and the possible states of our quantum system are the vectors in $\HS$ with norm 1.
+%   \item Every observable of our quantum system corresponds to a symmetric linear operator in $\HS$ which is defined on a dense subset $\dom{A}$ of $\HS$.
+%   \item If an observation $a$ has the corresponding linear operator $A: \dom{A} \to \HS$, then when our quantum system is in state $\psi \in \dom{A}$, the expected value for the measurement of $a$ is given by \begin{equation*}
+%     \mathbb{E}_\psi (A) = \ip{\psi, A \psi} = \ip{A \psi, \psi}.
+%   \end{equation*}
+%   \item The time evolution of our quantum system is given by a strongly continuous unitary group $U(t)$, and the generator of this group describes the energy of our quantum system. We call this generator the Hamiltonian.
+% \end{enumerate}
+%
+%
+% %\subsection{The axioms of quantum mechanics}
+% %\input{sec_quantum/quantum_axioms}
+%
+% \subsection{A quantum particle moving in $\R^n$}
+%
+% \input{sec_quantum/quantum_single_particle}
+
+%\subsection{The free Schr{\"{o}}dinger operator}
+%\input{sec_quantum/quantum_free_schroedinger}
+
+\subsection{The quantum harmonic oscillator}\label{lbl_section_qho}
+\input{sec_quantum/quantum_oscillator}

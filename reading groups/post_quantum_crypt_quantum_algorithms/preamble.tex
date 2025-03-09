@@ -1,0 +1,67 @@
+\usepackage[export]{adjustbox}
+\usepackage{amsmath,
+            amssymb,
+            gensymb,
+            mathtools
+            }
+
+\usepackage{textcomp} % i forget this package's purpose
+
+% \usepackage{pgfplots}
+% \pgfplotsset{width=10cm}
+\linespread{1.8}
+
+
+\usepackage{amsthm}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\HS}{\mathcal{H}}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}[1]{\text{dist}\left(#1\right)}
+\newcommand{\ip}[1]{\left\langle #1\right\rangle}
+\newcommand{\conjugate}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+\newcommand{\op}[1]{\norm{#1}_\text{op}}
+
+
+
+% bra-ket notation
+% uses package mathtools
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \vert #2}
+\DeclarePairedDelimiterX\ketbra[2]{\delimsize\vert}{\delimsize\vert}{#1 \rangle\langle #2}
+
+
+
+
+
+\newcommand*{\rvec}[1]{\left( #1\right)}
+\newcommand*{\tr}[1]{\operatorname{tr}\left(#1\right)}
+\newcommand*{\range}[1]{\operatorname{range}\left(#1\right)}
+\renewcommand*{\ker}[1]{\operatorname{ker}\left(#1\right)}

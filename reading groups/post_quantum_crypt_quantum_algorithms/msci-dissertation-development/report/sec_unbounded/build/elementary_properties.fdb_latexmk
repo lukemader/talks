@@ -1,0 +1,13 @@
+# Fdb version 3
+["pdflatex"] 1651009053 "elementary_properties.tex" "build/elementary_properties.pdf" "elementary_properties" 1651009055
+  "C:/Users/lukem/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1650452009 82219 79aadf6af1e219536b1903d61c9da10c ""
+  "C:/Users/lukem/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1642275621 9769967 afaeec4b2eea34476578f1e2a5a94354 ""
+  "C:/Users/lukem/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "C:/Users/lukem/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "build/elementary_properties.aux" 1648995945 34 3985256e7290058c681f74d7a3565a19 ""
+  "build/sec_unbounded/graphs.tex" 0 -1 0 ""
+  "elementary_properties.tex" 1650997251 125093 2fd14bc0a47894bd18e41ff34e2e9fc0 ""
+  "sec_unbounded/graphs.tex" 0 -1 0 ""
+  (generated)
+  "build/elementary_properties.log"
+  "build/elementary_properties.pdf"
