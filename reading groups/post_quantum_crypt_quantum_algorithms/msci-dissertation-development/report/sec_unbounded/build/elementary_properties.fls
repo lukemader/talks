@@ -1,8 +1,0 @@
-PWD C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_unbounded
-INPUT C:\Users\lukem\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT elementary_properties.tex
-OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_unbounded\build\elementary_properties.log
-INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
-OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_unbounded\build\elementary_properties.pdf
-INPUT C:\Users\lukem\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map

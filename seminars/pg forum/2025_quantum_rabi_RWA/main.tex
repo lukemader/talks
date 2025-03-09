@@ -1,0 +1,52 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{subcaption}
+
+\usepackage{graphicx}
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+
+\setbeamercolor{alerted text}{fg=teal}
+\setbeamercolor{emph}{fg=teal}
+\renewcommand<>{\emph}[1]{%
+  {\usebeamercolor[fg]{emph}\only#2{\itshape}#1}%
+}
+
+\title{TBC: Quantum Rabi RWA}
+\subtitle{Lancaster University Postgraduate Forum}
+% \date{\today}
+\date{25/03/2025}
+\author{Luke Mader, joint work with Daniel Elton and Robin Hillier}
+% \institute{Lancaster University}
+
+\input{preamble}
+
+\begin{document}
+\metroset{block=fill}
+\maketitle
+
+\begin{frame}{Rough Plan}
+    \begin{enumerate}
+        \item Hilbert space formulation of QM
+        % \vspace{1cm}
+        \item The Quantum Rabi model for a two-state atom interacting with a laser 
+        \item The Jaynes-Cumming model 
+        \item What is an approximation? How do we justify it?
+        \item Rotating frames 
+        \item Neglecting counter-rotating terms 
+        \item Asymptotic justifications
+    \end{enumerate}
+\end{frame}
+\end{document}

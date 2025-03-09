@@ -1,8 +1,0 @@
-PWD C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_quantum
-INPUT C:\Users\lukem\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT quantum_single_particle.tex
-OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_quantum\build\quantum_single_particle.log
-INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
-INPUT C:\Users\lukem\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-OUTPUT C:\Users\lukem\Documents\files\code\msci-dissertation\report\sec_quantum\build\quantum_single_particle.pdf
-INPUT C:\Users\lukem\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
