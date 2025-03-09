@@ -3,6 +3,9 @@ A collection of slides I've given for talks at various seminars, reading groups,
 
 ## Seminar Talks 
 
+
+**TBC** - [Lancaster University Postgraduate Forum](https://www.lancaster.ac.uk/maths/) - 25/03/2025
+
 **An Invitation to Mathematical Quantum Physics** - [Lancaster University Postgraduate Forum](https://www.lancaster.ac.uk/maths/) - 27/11/2023
 
 ## Reading Group 
